@@ -1,0 +1,58 @@
+body {
+	font-size: 14px;
+	font-weight:400;
+	/*color: #6E6D6D;	*/
+	color: #434643;	
+	font-family: 'Oxygen', sans-serif;
+}
+.container {
+	margin-left: 50px;
+}
+
+.doc_title {
+	font-weight: bold;
+}
+
+.instit_logo {
+	width: 60px;
+	height: 60px;
+}
+
+.award_cup {
+	margin: 0px;
+	padding: 0px;
+	width: 30px;
+	height: 30px;
+}
+
+a {
+	color: #009CFF;
+}
+
+a:visited {
+	color: #00BFFF;
+}
+
+mark {
+	background: #FF9;
+}
+
+b {
+	font-weight: 700;
+}
+
+hr {
+	margin-top: 5px;
+}
+
+.top-buffer {
+	margin-top: 10px;
+}
+
+.bottom-buffer {
+	margin-bottom: 20px;
+}
+
+.number-font {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}

@@ -56,3 +56,7 @@ hr {
 .number-font {
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+
+.clumap{
+	display:none;
+}

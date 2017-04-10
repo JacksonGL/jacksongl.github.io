@@ -1,10 +1,19 @@
 body {
-	font-size: 14px;
+	font-size: 13px;
 	font-weight:400;
 	/*color: #6E6D6D;	*/
 	color: #434643;	
 	font-family: 'Oxygen', sans-serif;
 }
+.comp-info {
+	color: #666;
+}
+
+.my-name {
+	color: #666;
+	/* font-weight: bold; */
+}
+
 .container {
 	margin-left: 50px;
 }
@@ -55,6 +64,7 @@ hr {
 
 .number-font {
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	color: #666;
 }
 
 .clumap{

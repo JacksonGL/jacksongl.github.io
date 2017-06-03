@@ -1,0 +1,2665 @@
+{
+  "nodes": [
+    {
+      "name": "<non callback> @ /test-connect2.js",
+      "isTopNode": true
+    },
+    {
+      "name": "emitListeningNT",
+      "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:25:8)"
+    },
+    {
+      "name": "g",
+      "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:25:8)"
+    },
+    {
+      "name": "server_listen_cb",
+      "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:25:8)"
+    },
+    {
+      "name": "resume_",
+      "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:46:8)"
+    },
+    {
+      "name": "afterWrite",
+      "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)"
+    },
+    {
+      "name": "net_create_conn_cb",
+      "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:39:20)"
+    },
+    {
+      "name": "g",
+      "highRegCallerLocation": "    at Socket._read (net.js:418:10)"
+    },
+    {
+      "name": "<Anonymous>",
+      "highRegCallerLocation": "    at Socket._read (net.js:418:10)"
+    },
+    {
+      "name": "afterWrite",
+      "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)"
+    },
+    {
+      "name": "afterWrite",
+      "highRegCallerLocation": "    at Socket.net_create_conn_cb (/demo/tests/testScripts/test-connect2.js:42:10)"
+    },
+    {
+      "name": "client_write_cb",
+      "highRegCallerLocation": "    at Socket.net_create_conn_cb (/demo/tests/testScripts/test-connect2.js:42:10)"
+    },
+    {
+      "name": "afterWrite",
+      "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)"
+    },
+    {
+      "name": "net_create_server_cb",
+      "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:4:20)"
+    },
+    {
+      "name": "afterWrite",
+      "highRegCallerLocation": "    at Server.net_create_server_cb (/demo/tests/testScripts/test-connect2.js:11:5)"
+    },
+    {
+      "name": "server_write_cb",
+      "highRegCallerLocation": "    at Server.net_create_server_cb (/demo/tests/testScripts/test-connect2.js:11:5)"
+    },
+    {
+      "name": "resume_",
+      "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:551:7)"
+    },
+    {
+      "name": "afterWrite",
+      "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)"
+    },
+    {
+      "name": "onread",
+      "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:39:20)"
+    },
+    {
+      "name": "client_on_data_cb",
+      "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:46:8)"
+    },
+    {
+      "name": "afterWrite",
+      "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)"
+    },
+    {
+      "name": "maybeReadMore_",
+      "highRegCallerLocation": "    at maybeReadMore (_stream_readable.js:446:13)"
+    },
+    {
+      "name": "ondata",
+      "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:551:7)"
+    },
+    {
+      "name": "afterWrite",
+      "highRegCallerLocation": "    at Socket.ondata (_stream_readable.js:555:20)"
+    },
+    {
+      "name": "maybeReadMore_",
+      "highRegCallerLocation": "    at maybeReadMore (_stream_readable.js:446:13)"
+    },
+    {
+      "name": "onread",
+      "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:39:20)"
+    },
+    {
+      "name": "client_on_data_cb",
+      "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:46:8)"
+    },
+    {
+      "name": "afterWrite",
+      "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)"
+    },
+    {
+      "name": "maybeReadMore_",
+      "highRegCallerLocation": "    at maybeReadMore (_stream_readable.js:446:13)"
+    },
+    {
+      "name": "setTimeout_cb",
+      "highRegCallerLocation": "    at /demo/tests/testScripts/test-connect2.js:29:7"
+    },
+    {
+      "name": "afterWrite",
+      "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)"
+    },
+    {
+      "name": "<Anonymous>",
+      "highRegCallerLocation": "    at Socket.client_on_data_cb (/demo/tests/testScripts/test-connect2.js:48:3)"
+    },
+    {
+      "name": "g",
+      "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:596:8)"
+    },
+    {
+      "name": "onfinish",
+      "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:596:8)"
+    },
+    {
+      "name": "onunpipe",
+      "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:501:8)"
+    },
+    {
+      "name": "endReadableNT",
+      "highRegCallerLocation": "    at endReadable (_stream_readable.js:965:13)"
+    },
+    {
+      "name": "server_on_cb",
+      "highRegCallerLocation": "    at intermediate_fun (/demo/tests/testScripts/test-connect2.js:7:7)"
+    },
+    {
+      "name": "g",
+      "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:499:9)"
+    },
+    {
+      "name": "onend",
+      "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:499:9)"
+    },
+    {
+      "name": "g",
+      "highRegCallerLocation": "    at Socket.onSocketEnd (net.js:272:10)"
+    },
+    {
+      "name": "end",
+      "highRegCallerLocation": "    at Socket.onSocketEnd (net.js:272:10)"
+    },
+    {
+      "name": "endReadableNT",
+      "highRegCallerLocation": "    at endReadable (_stream_readable.js:965:13)"
+    },
+    {
+      "name": "emitCloseNT",
+      "highRegCallerLocation": "    at Socket.destroySoon (net.js:458:10)"
+    },
+    {
+      "name": "g",
+      "highRegCallerLocation": "    at Timeout.setTimeout_cb (/demo/tests/testScripts/test-connect2.js:30:16)"
+    },
+    {
+      "name": "server_close_cb",
+      "highRegCallerLocation": "    at Timeout.setTimeout_cb (/demo/tests/testScripts/test-connect2.js:30:16)"
+    },
+    {
+      "name": "afterWrite",
+      "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)"
+    },
+    {
+      "name": "g",
+      "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:590:8)"
+    },
+    {
+      "name": "onclose",
+      "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:590:8)"
+    },
+    {
+      "name": "<Anonymous>",
+      "highRegCallerLocation": "    at Socket.client_on_data_cb (/demo/tests/testScripts/test-connect2.js:48:3)"
+    },
+    {
+      "name": "onread",
+      "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:39:20)"
+    },
+    {
+      "name": "g",
+      "highRegCallerLocation": "    at ShutdownWrap.afterShutdown [as oncomplete] (net.js:255:10)"
+    },
+    {
+      "name": "ist_destroy",
+      "highRegCallerLocation": "    at ShutdownWrap.afterShutdown [as oncomplete] (net.js:255:10)"
+    },
+    {
+      "name": "endReadableNT",
+      "highRegCallerLocation": "    at endReadable (_stream_readable.js:965:13)"
+    },
+    {
+      "name": "client_on_end_cb",
+      "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:52:8)"
+    },
+    {
+      "name": "g",
+      "highRegCallerLocation": "    at Socket.onSocketEnd (net.js:272:10)"
+    },
+    {
+      "name": "end",
+      "highRegCallerLocation": "    at Socket.onSocketEnd (net.js:272:10)"
+    },
+    {
+      "name": "endReadableNT",
+      "highRegCallerLocation": "    at endReadable (_stream_readable.js:965:13)"
+    },
+    {
+      "name": "afterWrite",
+      "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)"
+    }
+  ],
+  "links": [
+    {
+      "source": 0,
+      "target": 1,
+      "value": "Server.listen -> process.nextTick",
+      "info": {
+        "calleeName": "emitListeningNT",
+        "cbCallee": "emitListeningNT",
+        "calleeStack": [
+          "    at emitListeningNT (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:71:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)",
+          "    at Function.Module.runMain (module.js:607:11)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "callerOfRegister": "Object.<anonymous>",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Server.ist_listen [as listen] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:25:8)",
+        "highRegFuncName": "Server.listen",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Server._listen2 (net.js:1276:11)",
+          "    at listen (net.js:1298:10)",
+          "    at Server.listen (net.js:1376:9)",
+          "    at Server.ist_listen [as listen] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:25:8)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (/demo/run.js:97:27)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Function.Module.runMain (module.js:605:10)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990399,
+        "calleeTimestamp": 1496460990406,
+        "calleeEventOrder": 13,
+        "registerEventOrder": 6
+      }
+    },
+    {
+      "source": 0,
+      "target": 2,
+      "value": "Server.listen -> Server.on",
+      "info": {
+        "calleeName": "g",
+        "cbCallee": "g",
+        "calleeStack": [
+          "    at g (dummy.js:1:1)",
+          "    at emitNone (events.js:86:13)",
+          "    at Server.emit (events.js:185:7)",
+          "    at emitListeningNT (net.js:1288:10)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:71:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)",
+          "    at Function.Module.runMain (module.js:607:11)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "callerOfRegister": "Object.<anonymous>",
+        "lowRegLocation": "    at Server.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Server.ist_listen [as listen] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:25:8)",
+        "highRegFuncName": "Server.listen",
+        "lowRegFuncName": "Server.on",
+        "registerStack": [
+          "    at Server.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Server.once (events.js:302:8)",
+          "    at Server.ist_once [as once] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Server.listen (net.js:1344:10)",
+          "    at Server.ist_listen [as listen] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:25:8)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (/demo/run.js:97:27)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Function.Module.runMain (module.js:605:10)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990391,
+        "calleeTimestamp": 1496460990408,
+        "calleeEventOrder": 14,
+        "registerEventOrder": 5
+      }
+    },
+    {
+      "source": 0,
+      "target": 3,
+      "value": "Server.listen -> Server.once",
+      "info": {
+        "calleeName": "server_listen_cb",
+        "cbCallee": "server_listen_cb",
+        "calleeStack": [
+          "    at server_listen_cb (dummy.js:1:1)",
+          "    at Server.g (events.js:292:16)",
+          "    at emitNone (events.js:86:13)",
+          "    at Server.emit (events.js:185:7)",
+          "    at emitListeningNT (net.js:1288:10)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:71:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)",
+          "    at Function.Module.runMain (module.js:607:11)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "callerOfRegister": "Object.<anonymous>",
+        "lowRegLocation": "    at Server.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Server.ist_listen [as listen] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:25:8)",
+        "highRegFuncName": "Server.listen",
+        "lowRegFuncName": "Server.once",
+        "registerStack": [
+          "    at Server.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Server.listen (net.js:1344:10)",
+          "    at Server.ist_listen [as listen] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:25:8)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (/demo/run.js:97:27)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Function.Module.runMain (module.js:605:10)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990390,
+        "calleeTimestamp": 1496460990409,
+        "calleeEventOrder": 15,
+        "registerEventOrder": 4
+      }
+    },
+    {
+      "source": 0,
+      "target": 4,
+      "value": "Socket.on -> process.nextTick",
+      "info": {
+        "calleeName": "resume_",
+        "cbCallee": "resume_",
+        "calleeStack": [
+          "    at resume_ (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)",
+          "    at Function.Module.runMain (module.js:607:11)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "callerOfRegister": "Object.<anonymous>",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:46:8)",
+        "highRegFuncName": "Socket.on",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at resume (_stream_readable.js:730:13)",
+          "    at Socket.Readable.resume (_stream_readable.js:722:5)",
+          "    at Socket.ist_resume [as resume] (/demo/asyncTrack/async-track.js:751:44)",
+          "    at Socket.Readable.on (_stream_readable.js:692:12)",
+          "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:46:8)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (/demo/run.js:97:27)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Function.Module.runMain (module.js:605:10)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990404,
+        "calleeTimestamp": 1496460990414,
+        "calleeEventOrder": 18,
+        "registerEventOrder": 11
+      }
+    },
+    {
+      "source": 3,
+      "target": 5,
+      "value": "process.nextTick",
+      "info": {
+        "calleeName": "afterWrite",
+        "cbCallee": "afterWrite",
+        "calleeStack": [
+          "    at afterWrite (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:80:20)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)",
+          "    at Function.Module.runMain (module.js:607:11)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "callerOfRegister": "onwrite",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)",
+        "highRegFuncName": "process.nextTick",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at onwrite (_stream_writable.js:377:15)",
+          "    at WritableState.onwrite (_stream_writable.js:90:5)",
+          "    at WriteStream.Socket._writeGeneric (net.js:724:5)",
+          "    at WriteStream.Socket._write (net.js:734:8)",
+          "    at doWrite (_stream_writable.js:334:12)",
+          "    at writeOrBuffer (_stream_writable.js:320:5)",
+          "    at WriteStream.Writable.write (_stream_writable.js:247:11)",
+          "    at WriteStream.Socket.write (net.js:661:40)",
+          "    at Console.log (console.js:43:16)",
+          "    at Server.server_listen_cb (/demo/tests/testScripts/test-connect2.js:26:11)",
+          "    at Server.g (events.js:292:16)",
+          "    at emitNone (events.js:86:13)",
+          "    at Server.emit (events.js:185:7)",
+          "    at emitListeningNT (net.js:1288:10)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:71:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)",
+          "    at Function.Module.runMain (module.js:607:11)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "registerFileName": "_stream_writable.js",
+        "registerTimestamp": 1496460990411,
+        "calleeTimestamp": 1496460990415,
+        "calleeEventOrder": 21,
+        "registerEventOrder": 16
+      }
+    },
+    {
+      "source": 0,
+      "target": 6,
+      "value": "Object.createConnection",
+      "info": {
+        "calleeName": "net_create_conn_cb",
+        "cbCallee": "net_create_conn_cb",
+        "calleeStack": [
+          "    at net_create_conn_cb (dummy.js:1:1)",
+          "    at Socket.g (events.js:292:16)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1077:10)"
+        ],
+        "callerOfRegister": "Object.<anonymous>",
+        "lowRegLocation": "    at Object.ist_createConnection [as createConnection] (/demo/asyncTrack/async-track.js:629:17)",
+        "highRegLocation": "    at Object.ist_createConnection [as createConnection] (/demo/asyncTrack/async-track.js:629:17)",
+        "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:39:20)",
+        "highRegFuncName": "Object.createConnection",
+        "lowRegFuncName": "Object.createConnection",
+        "registerStack": [
+          "    at Object.ist_createConnection [as createConnection] (/demo/asyncTrack/async-track.js:629:17)",
+          "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:39:20)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (/demo/run.js:97:27)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Function.Module.runMain (module.js:605:10)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990399,
+        "calleeTimestamp": 1496460990416,
+        "calleeEventOrder": 22,
+        "registerEventOrder": 7
+      }
+    },
+    {
+      "source": 4,
+      "target": 7,
+      "value": "Socket.once -> Socket.on",
+      "info": {
+        "calleeName": "g",
+        "cbCallee": "g",
+        "calleeStack": [
+          "    at g (dummy.js:1:1)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1077:10)"
+        ],
+        "callerOfRegister": "Socket._read",
+        "lowRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at Socket._read (net.js:418:10)",
+        "highRegFuncName": "Socket.once",
+        "lowRegFuncName": "Socket.on",
+        "registerStack": [
+          "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.once (events.js:302:8)",
+          "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Socket._read (net.js:418:10)",
+          "    at Socket.Readable.read (_stream_readable.js:348:10)",
+          "    at Socket.read (net.js:308:43)",
+          "    at resume_ (_stream_readable.js:737:12)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)",
+          "    at Function.Module.runMain (module.js:607:11)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "registerFileName": "net.js",
+        "registerTimestamp": 1496460990414,
+        "calleeTimestamp": 1496460990418,
+        "calleeEventOrder": 26,
+        "registerEventOrder": 20
+      }
+    },
+    {
+      "source": 4,
+      "target": 8,
+      "value": "Socket.once",
+      "info": {
+        "calleeName": "<Anonymous>",
+        "cbCallee": "<Anonymous>",
+        "calleeStack": [
+          "    at  (dummy.js:1:1)",
+          "    at Socket.g (events.js:292:16)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1077:10)"
+        ],
+        "callerOfRegister": "Socket._read",
+        "lowRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at Socket._read (net.js:418:10)",
+        "highRegFuncName": "Socket.once",
+        "lowRegFuncName": "Socket.once",
+        "registerStack": [
+          "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket._read (net.js:418:10)",
+          "    at Socket.Readable.read (_stream_readable.js:348:10)",
+          "    at Socket.read (net.js:308:43)",
+          "    at resume_ (_stream_readable.js:737:12)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)",
+          "    at Function.Module.runMain (module.js:607:11)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "registerFileName": "net.js",
+        "registerTimestamp": 1496460990414,
+        "calleeTimestamp": 1496460990419,
+        "calleeEventOrder": 27,
+        "registerEventOrder": 19
+      }
+    },
+    {
+      "source": 6,
+      "target": 9,
+      "value": "process.nextTick",
+      "info": {
+        "calleeName": "afterWrite",
+        "cbCallee": "afterWrite",
+        "calleeStack": [
+          "    at afterWrite (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:80:20)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "onwrite",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)",
+        "highRegFuncName": "process.nextTick",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at onwrite (_stream_writable.js:377:15)",
+          "    at WritableState.onwrite (_stream_writable.js:90:5)",
+          "    at WriteStream.Socket._writeGeneric (net.js:724:5)",
+          "    at WriteStream.Socket._write (net.js:734:8)",
+          "    at doWrite (_stream_writable.js:334:12)",
+          "    at writeOrBuffer (_stream_writable.js:320:5)",
+          "    at WriteStream.Writable.write (_stream_writable.js:247:11)",
+          "    at WriteStream.Socket.write (net.js:661:40)",
+          "    at Console.log (console.js:43:16)",
+          "    at Socket.net_create_conn_cb (/demo/tests/testScripts/test-connect2.js:41:11)",
+          "    at Socket.g (events.js:292:16)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1077:10)"
+        ],
+        "registerFileName": "_stream_writable.js",
+        "registerTimestamp": 1496460990417,
+        "calleeTimestamp": 1496460990419,
+        "calleeEventOrder": 28,
+        "registerEventOrder": 23
+      }
+    },
+    {
+      "source": 6,
+      "target": 10,
+      "value": "Socket.write -> process.nextTick",
+      "info": {
+        "calleeName": "afterWrite",
+        "cbCallee": "afterWrite",
+        "calleeStack": [
+          "    at afterWrite (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:80:20)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "Socket.net_create_conn_cb",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_write [as write] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at Socket.net_create_conn_cb (/demo/tests/testScripts/test-connect2.js:42:10)",
+        "highRegFuncName": "Socket.write",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at onwrite (_stream_writable.js:377:15)",
+          "    at WritableState.onwrite (_stream_writable.js:90:5)",
+          "    at Socket._writeGeneric (net.js:724:5)",
+          "    at Socket._write (net.js:734:8)",
+          "    at doWrite (_stream_writable.js:334:12)",
+          "    at writeOrBuffer (_stream_writable.js:320:5)",
+          "    at Socket.Writable.write (_stream_writable.js:247:11)",
+          "    at Socket.write (net.js:661:40)",
+          "    at Socket.ist_write [as write] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Socket.net_create_conn_cb (/demo/tests/testScripts/test-connect2.js:42:10)",
+          "    at Socket.g (events.js:292:16)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1077:10)"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990418,
+        "calleeTimestamp": 1496460990419,
+        "calleeEventOrder": 29,
+        "registerEventOrder": 25
+      }
+    },
+    {
+      "source": 6,
+      "target": 11,
+      "value": "Socket.write",
+      "info": {
+        "calleeName": "client_write_cb",
+        "cbCallee": "client_write_cb",
+        "calleeStack": [
+          "    at client_write_cb (dummy.js:1:1)",
+          "    at afterWrite (_stream_writable.js:388:3)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:80:20)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "Socket.net_create_conn_cb",
+        "lowRegLocation": "    at Socket.ist_write [as write] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_write [as write] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at Socket.net_create_conn_cb (/demo/tests/testScripts/test-connect2.js:42:10)",
+        "highRegFuncName": "Socket.write",
+        "lowRegFuncName": "Socket.write",
+        "registerStack": [
+          "    at Socket.ist_write [as write] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.net_create_conn_cb (/demo/tests/testScripts/test-connect2.js:42:10)",
+          "    at Socket.g (events.js:292:16)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1077:10)"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990418,
+        "calleeTimestamp": 1496460990419,
+        "calleeEventOrder": 30,
+        "registerEventOrder": 24
+      }
+    },
+    {
+      "source": 11,
+      "target": 12,
+      "value": "process.nextTick",
+      "info": {
+        "calleeName": "afterWrite",
+        "cbCallee": "afterWrite",
+        "calleeStack": [
+          "    at afterWrite (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:80:20)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "onwrite",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)",
+        "highRegFuncName": "process.nextTick",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at onwrite (_stream_writable.js:377:15)",
+          "    at WritableState.onwrite (_stream_writable.js:90:5)",
+          "    at WriteStream.Socket._writeGeneric (net.js:724:5)",
+          "    at WriteStream.Socket._write (net.js:734:8)",
+          "    at doWrite (_stream_writable.js:334:12)",
+          "    at writeOrBuffer (_stream_writable.js:320:5)",
+          "    at WriteStream.Writable.write (_stream_writable.js:247:11)",
+          "    at WriteStream.Socket.write (net.js:661:40)",
+          "    at Console.log (console.js:43:16)",
+          "    at client_write_cb (/demo/tests/testScripts/test-connect2.js:43:13)",
+          "    at afterWrite (_stream_writable.js:388:3)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:80:20)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "registerFileName": "_stream_writable.js",
+        "registerTimestamp": 1496460990419,
+        "calleeTimestamp": 1496460990420,
+        "calleeEventOrder": 32,
+        "registerEventOrder": 31
+      }
+    },
+    {
+      "source": 0,
+      "target": 13,
+      "value": "Object.createServer",
+      "info": {
+        "calleeName": "net_create_server_cb",
+        "cbCallee": "net_create_server_cb",
+        "calleeStack": [
+          "    at net_create_server_cb (dummy.js:1:1)",
+          "    at emitOne (events.js:96:13)",
+          "    at Server.emit (events.js:188:7)",
+          "    at TCP.onconnection (net.js:1454:8)"
+        ],
+        "callerOfRegister": "Object.<anonymous>",
+        "lowRegLocation": "    at Object.ist_createServer [as createServer] (/demo/asyncTrack/async-track.js:629:17)",
+        "highRegLocation": "    at Object.ist_createServer [as createServer] (/demo/asyncTrack/async-track.js:629:17)",
+        "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:4:20)",
+        "highRegFuncName": "Object.createServer",
+        "lowRegFuncName": "Object.createServer",
+        "registerStack": [
+          "    at Object.ist_createServer [as createServer] (/demo/asyncTrack/async-track.js:629:17)",
+          "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:4:20)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (/demo/run.js:97:27)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Function.Module.runMain (module.js:605:10)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990382,
+        "calleeTimestamp": 1496460990420,
+        "calleeEventOrder": 33,
+        "registerEventOrder": 1
+      }
+    },
+    {
+      "source": 13,
+      "target": 14,
+      "value": "Socket.write -> process.nextTick",
+      "info": {
+        "calleeName": "afterWrite",
+        "cbCallee": "afterWrite",
+        "calleeStack": [
+          "    at afterWrite (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:80:20)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "Server.net_create_server_cb",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_write [as write] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at Server.net_create_server_cb (/demo/tests/testScripts/test-connect2.js:11:5)",
+        "highRegFuncName": "Socket.write",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at onwrite (_stream_writable.js:377:15)",
+          "    at WritableState.onwrite (_stream_writable.js:90:5)",
+          "    at Socket._writeGeneric (net.js:724:5)",
+          "    at Socket._write (net.js:734:8)",
+          "    at doWrite (_stream_writable.js:334:12)",
+          "    at writeOrBuffer (_stream_writable.js:320:5)",
+          "    at Socket.Writable.write (_stream_writable.js:247:11)",
+          "    at Socket.write (net.js:661:40)",
+          "    at Socket.ist_write [as write] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Server.net_create_server_cb (/demo/tests/testScripts/test-connect2.js:11:5)",
+          "    at emitOne (events.js:96:13)",
+          "    at Server.emit (events.js:188:7)",
+          "    at TCP.onconnection (net.js:1454:8)"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990421,
+        "calleeTimestamp": 1496460990424,
+        "calleeEventOrder": 48,
+        "registerEventOrder": 36
+      }
+    },
+    {
+      "source": 13,
+      "target": 15,
+      "value": "Socket.write",
+      "info": {
+        "calleeName": "server_write_cb",
+        "cbCallee": "server_write_cb",
+        "calleeStack": [
+          "    at server_write_cb (dummy.js:1:1)",
+          "    at afterWrite (_stream_writable.js:388:3)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:80:20)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "Server.net_create_server_cb",
+        "lowRegLocation": "    at Socket.ist_write [as write] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_write [as write] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at Server.net_create_server_cb (/demo/tests/testScripts/test-connect2.js:11:5)",
+        "highRegFuncName": "Socket.write",
+        "lowRegFuncName": "Socket.write",
+        "registerStack": [
+          "    at Socket.ist_write [as write] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Server.net_create_server_cb (/demo/tests/testScripts/test-connect2.js:11:5)",
+          "    at emitOne (events.js:96:13)",
+          "    at Server.emit (events.js:188:7)",
+          "    at TCP.onconnection (net.js:1454:8)"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990421,
+        "calleeTimestamp": 1496460990425,
+        "calleeEventOrder": 49,
+        "registerEventOrder": 35
+      }
+    },
+    {
+      "source": 13,
+      "target": 16,
+      "value": "Socket.on -> process.nextTick",
+      "info": {
+        "calleeName": "resume_",
+        "cbCallee": "resume_",
+        "calleeStack": [
+          "    at resume_ (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "Socket.Readable.pipe",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:551:7)",
+        "highRegFuncName": "Socket.on",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at resume (_stream_readable.js:730:13)",
+          "    at Socket.Readable.resume (_stream_readable.js:722:5)",
+          "    at Socket.ist_resume [as resume] (/demo/asyncTrack/async-track.js:751:44)",
+          "    at Socket.Readable.on (_stream_readable.js:692:12)",
+          "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Socket.Readable.pipe (_stream_readable.js:551:7)",
+          "    at Server.net_create_server_cb (/demo/tests/testScripts/test-connect2.js:14:5)",
+          "    at emitOne (events.js:96:13)",
+          "    at Server.emit (events.js:188:7)",
+          "    at TCP.onconnection (net.js:1454:8)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460990423,
+        "calleeTimestamp": 1496460990425,
+        "calleeEventOrder": 51,
+        "registerEventOrder": 42
+      }
+    },
+    {
+      "source": 15,
+      "target": 17,
+      "value": "process.nextTick",
+      "info": {
+        "calleeName": "afterWrite",
+        "cbCallee": "afterWrite",
+        "calleeStack": [
+          "    at afterWrite (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:80:20)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "onwrite",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)",
+        "highRegFuncName": "process.nextTick",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at onwrite (_stream_writable.js:377:15)",
+          "    at WritableState.onwrite (_stream_writable.js:90:5)",
+          "    at WriteStream.Socket._writeGeneric (net.js:724:5)",
+          "    at WriteStream.Socket._write (net.js:734:8)",
+          "    at doWrite (_stream_writable.js:334:12)",
+          "    at writeOrBuffer (_stream_writable.js:320:5)",
+          "    at WriteStream.Writable.write (_stream_writable.js:247:11)",
+          "    at WriteStream.Socket.write (net.js:661:40)",
+          "    at Console.log (console.js:43:16)",
+          "    at server_write_cb (/demo/tests/testScripts/test-connect2.js:12:13)",
+          "    at afterWrite (_stream_writable.js:388:3)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:80:20)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "registerFileName": "_stream_writable.js",
+        "registerTimestamp": 1496460990425,
+        "calleeTimestamp": 1496460990425,
+        "calleeEventOrder": 52,
+        "registerEventOrder": 50
+      }
+    },
+    {
+      "source": 0,
+      "target": 18,
+      "value": "Object.createConnection",
+      "info": {
+        "calleeName": "onread",
+        "cbCallee": "onread",
+        "calleeStack": [
+          "    at onread (dummy.js:1:1)"
+        ],
+        "callerOfRegister": "Object.<anonymous>",
+        "lowRegLocation": "    at Object.ist_createConnection [as createConnection] (/demo/asyncTrack/async-track.js:637:17)",
+        "highRegLocation": "    at Object.ist_createConnection [as createConnection] (/demo/asyncTrack/async-track.js:637:17)",
+        "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:39:20)",
+        "highRegFuncName": "Object.createConnection",
+        "lowRegFuncName": "Object.createConnection",
+        "registerStack": [
+          "    at Object.ist_createConnection [as createConnection] (/demo/asyncTrack/async-track.js:637:17)",
+          "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:39:20)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (/demo/run.js:97:27)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Function.Module.runMain (module.js:605:10)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990403,
+        "calleeTimestamp": 1496460990425,
+        "calleeEventOrder": 53,
+        "registerEventOrder": 8
+      }
+    },
+    {
+      "source": 0,
+      "target": 19,
+      "value": "Socket.on",
+      "info": {
+        "calleeName": "client_on_data_cb",
+        "cbCallee": "client_on_data_cb",
+        "calleeStack": [
+          "    at client_on_data_cb (dummy.js:1:1)",
+          "    at emitOne (events.js:96:13)",
+          "    at Socket.emit (events.js:188:7)",
+          "    at readableAddChunk (_stream_readable.js:176:18)",
+          "    at Socket.Readable.push (_stream_readable.js:134:10)",
+          "    at TCP.onread (net.js:551:20)"
+        ],
+        "callerOfRegister": "Object.<anonymous>",
+        "lowRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:46:8)",
+        "highRegFuncName": "Socket.on",
+        "lowRegFuncName": "Socket.on",
+        "registerStack": [
+          "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:46:8)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (/demo/run.js:97:27)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Function.Module.runMain (module.js:605:10)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990404,
+        "calleeTimestamp": 1496460990426,
+        "calleeEventOrder": 54,
+        "registerEventOrder": 10
+      }
+    },
+    {
+      "source": 19,
+      "target": 20,
+      "value": "process.nextTick",
+      "info": {
+        "calleeName": "afterWrite",
+        "cbCallee": "afterWrite",
+        "calleeStack": [
+          "    at afterWrite (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:80:20)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "onwrite",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)",
+        "highRegFuncName": "process.nextTick",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at onwrite (_stream_writable.js:377:15)",
+          "    at WritableState.onwrite (_stream_writable.js:90:5)",
+          "    at WriteStream.Socket._writeGeneric (net.js:724:5)",
+          "    at WriteStream.Socket._write (net.js:734:8)",
+          "    at doWrite (_stream_writable.js:334:12)",
+          "    at writeOrBuffer (_stream_writable.js:320:5)",
+          "    at WriteStream.Writable.write (_stream_writable.js:247:11)",
+          "    at WriteStream.Socket.write (net.js:661:40)",
+          "    at Console.log (console.js:43:16)",
+          "    at Socket.client_on_data_cb (/demo/tests/testScripts/test-connect2.js:47:11)",
+          "    at emitOne (events.js:96:13)",
+          "    at Socket.emit (events.js:188:7)",
+          "    at readableAddChunk (_stream_readable.js:176:18)",
+          "    at Socket.Readable.push (_stream_readable.js:134:10)",
+          "    at TCP.onread (net.js:551:20)"
+        ],
+        "registerFileName": "_stream_writable.js",
+        "registerTimestamp": 1496460990426,
+        "calleeTimestamp": 1496460990428,
+        "calleeEventOrder": 58,
+        "registerEventOrder": 55
+      }
+    },
+    {
+      "source": 19,
+      "target": 21,
+      "value": "process.nextTick",
+      "info": {
+        "calleeName": "maybeReadMore_",
+        "cbCallee": "maybeReadMore_",
+        "calleeStack": [
+          "    at maybeReadMore_ (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "maybeReadMore",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at maybeReadMore (_stream_readable.js:446:13)",
+        "highRegFuncName": "process.nextTick",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at maybeReadMore (_stream_readable.js:446:13)",
+          "    at readableAddChunk (_stream_readable.js:191:7)",
+          "    at Socket.Readable.push (_stream_readable.js:134:10)",
+          "    at TCP.onread (net.js:551:20)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460990428,
+        "calleeTimestamp": 1496460990428,
+        "calleeEventOrder": 59,
+        "registerEventOrder": 57
+      }
+    },
+    {
+      "source": 13,
+      "target": 22,
+      "value": "Socket.on",
+      "info": {
+        "calleeName": "ondata",
+        "cbCallee": "ondata",
+        "calleeStack": [
+          "    at ondata (dummy.js:1:1)",
+          "    at emitOne (events.js:96:13)",
+          "    at Socket.emit (events.js:188:7)",
+          "    at readableAddChunk (_stream_readable.js:176:18)",
+          "    at Socket.Readable.push (_stream_readable.js:134:10)",
+          "    at TCP.onread (net.js:551:20)"
+        ],
+        "callerOfRegister": "Socket.Readable.pipe",
+        "lowRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:551:7)",
+        "highRegFuncName": "Socket.on",
+        "lowRegFuncName": "Socket.on",
+        "registerStack": [
+          "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.Readable.pipe (_stream_readable.js:551:7)",
+          "    at Server.net_create_server_cb (/demo/tests/testScripts/test-connect2.js:14:5)",
+          "    at emitOne (events.js:96:13)",
+          "    at Server.emit (events.js:188:7)",
+          "    at TCP.onconnection (net.js:1454:8)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460990423,
+        "calleeTimestamp": 1496460990428,
+        "calleeEventOrder": 60,
+        "registerEventOrder": 41
+      }
+    },
+    {
+      "source": 22,
+      "target": 23,
+      "value": "Socket.write -> process.nextTick",
+      "info": {
+        "calleeName": "afterWrite",
+        "cbCallee": "afterWrite",
+        "calleeStack": [
+          "    at afterWrite (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:80:20)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "Socket.ondata",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_write [as write] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at Socket.ondata (_stream_readable.js:555:20)",
+        "highRegFuncName": "Socket.write",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at onwrite (_stream_writable.js:377:15)",
+          "    at WritableState.onwrite (_stream_writable.js:90:5)",
+          "    at Socket._writeGeneric (net.js:724:5)",
+          "    at Socket._write (net.js:734:8)",
+          "    at doWrite (_stream_writable.js:334:12)",
+          "    at writeOrBuffer (_stream_writable.js:320:5)",
+          "    at Socket.Writable.write (_stream_writable.js:247:11)",
+          "    at Socket.write (net.js:661:40)",
+          "    at Socket.ist_write [as write] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Socket.ondata (_stream_readable.js:555:20)",
+          "    at emitOne (events.js:96:13)",
+          "    at Socket.emit (events.js:188:7)",
+          "    at readableAddChunk (_stream_readable.js:176:18)",
+          "    at Socket.Readable.push (_stream_readable.js:134:10)",
+          "    at TCP.onread (net.js:551:20)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460990429,
+        "calleeTimestamp": 1496460990429,
+        "calleeEventOrder": 63,
+        "registerEventOrder": 61
+      }
+    },
+    {
+      "source": 22,
+      "target": 24,
+      "value": "process.nextTick",
+      "info": {
+        "calleeName": "maybeReadMore_",
+        "cbCallee": "maybeReadMore_",
+        "calleeStack": [
+          "    at maybeReadMore_ (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "maybeReadMore",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at maybeReadMore (_stream_readable.js:446:13)",
+        "highRegFuncName": "process.nextTick",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at maybeReadMore (_stream_readable.js:446:13)",
+          "    at readableAddChunk (_stream_readable.js:191:7)",
+          "    at Socket.Readable.push (_stream_readable.js:134:10)",
+          "    at TCP.onread (net.js:551:20)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460990429,
+        "calleeTimestamp": 1496460990429,
+        "calleeEventOrder": 64,
+        "registerEventOrder": 62
+      }
+    },
+    {
+      "source": 0,
+      "target": 25,
+      "value": "Object.createConnection",
+      "info": {
+        "calleeName": "onread",
+        "cbCallee": "onread",
+        "calleeStack": [
+          "    at onread (dummy.js:1:1)"
+        ],
+        "callerOfRegister": "Object.<anonymous>",
+        "lowRegLocation": "    at Object.ist_createConnection [as createConnection] (/demo/asyncTrack/async-track.js:637:17)",
+        "highRegLocation": "    at Object.ist_createConnection [as createConnection] (/demo/asyncTrack/async-track.js:637:17)",
+        "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:39:20)",
+        "highRegFuncName": "Object.createConnection",
+        "lowRegFuncName": "Object.createConnection",
+        "registerStack": [
+          "    at Object.ist_createConnection [as createConnection] (/demo/asyncTrack/async-track.js:637:17)",
+          "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:39:20)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (/demo/run.js:97:27)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Function.Module.runMain (module.js:605:10)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990403,
+        "calleeTimestamp": 1496460990429,
+        "calleeEventOrder": 65,
+        "registerEventOrder": 8
+      }
+    },
+    {
+      "source": 0,
+      "target": 26,
+      "value": "Socket.on",
+      "info": {
+        "calleeName": "client_on_data_cb",
+        "cbCallee": "client_on_data_cb",
+        "calleeStack": [
+          "    at client_on_data_cb (dummy.js:1:1)",
+          "    at emitOne (events.js:96:13)",
+          "    at Socket.emit (events.js:188:7)",
+          "    at readableAddChunk (_stream_readable.js:176:18)",
+          "    at Socket.Readable.push (_stream_readable.js:134:10)",
+          "    at TCP.onread (net.js:551:20)"
+        ],
+        "callerOfRegister": "Object.<anonymous>",
+        "lowRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:46:8)",
+        "highRegFuncName": "Socket.on",
+        "lowRegFuncName": "Socket.on",
+        "registerStack": [
+          "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:46:8)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (/demo/run.js:97:27)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Function.Module.runMain (module.js:605:10)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990404,
+        "calleeTimestamp": 1496460990429,
+        "calleeEventOrder": 66,
+        "registerEventOrder": 10
+      }
+    },
+    {
+      "source": 26,
+      "target": 27,
+      "value": "process.nextTick",
+      "info": {
+        "calleeName": "afterWrite",
+        "cbCallee": "afterWrite",
+        "calleeStack": [
+          "    at afterWrite (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:80:20)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "onwrite",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)",
+        "highRegFuncName": "process.nextTick",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at onwrite (_stream_writable.js:377:15)",
+          "    at WritableState.onwrite (_stream_writable.js:90:5)",
+          "    at WriteStream.Socket._writeGeneric (net.js:724:5)",
+          "    at WriteStream.Socket._write (net.js:734:8)",
+          "    at doWrite (_stream_writable.js:334:12)",
+          "    at writeOrBuffer (_stream_writable.js:320:5)",
+          "    at WriteStream.Writable.write (_stream_writable.js:247:11)",
+          "    at WriteStream.Socket.write (net.js:661:40)",
+          "    at Console.log (console.js:43:16)",
+          "    at Socket.client_on_data_cb (/demo/tests/testScripts/test-connect2.js:47:11)",
+          "    at emitOne (events.js:96:13)",
+          "    at Socket.emit (events.js:188:7)",
+          "    at readableAddChunk (_stream_readable.js:176:18)",
+          "    at Socket.Readable.push (_stream_readable.js:134:10)",
+          "    at TCP.onread (net.js:551:20)"
+        ],
+        "registerFileName": "_stream_writable.js",
+        "registerTimestamp": 1496460990430,
+        "calleeTimestamp": 1496460990430,
+        "calleeEventOrder": 70,
+        "registerEventOrder": 67
+      }
+    },
+    {
+      "source": 26,
+      "target": 28,
+      "value": "process.nextTick",
+      "info": {
+        "calleeName": "maybeReadMore_",
+        "cbCallee": "maybeReadMore_",
+        "calleeStack": [
+          "    at maybeReadMore_ (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "maybeReadMore",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at maybeReadMore (_stream_readable.js:446:13)",
+        "highRegFuncName": "process.nextTick",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at maybeReadMore (_stream_readable.js:446:13)",
+          "    at readableAddChunk (_stream_readable.js:191:7)",
+          "    at Socket.Readable.push (_stream_readable.js:134:10)",
+          "    at TCP.onread (net.js:551:20)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460990430,
+        "calleeTimestamp": 1496460990430,
+        "calleeEventOrder": 71,
+        "registerEventOrder": 69
+      }
+    },
+    {
+      "source": 3,
+      "target": 29,
+      "value": "setTimeout",
+      "info": {
+        "calleeName": "setTimeout_cb",
+        "cbCallee": "setTimeout_cb",
+        "calleeStack": [
+          "    at setTimeout_cb (dummy.js:1:1)",
+          "    at ontimeout (timers.js:365:14)",
+          "    at tryOnTimeout (timers.js:237:5)",
+          "    at Timer.listOnTimeout (timers.js:207:5)"
+        ],
+        "callerOfRegister": " ",
+        "lowRegLocation": "    at ist_setTimeout (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at ist_setTimeout (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at /demo/tests/testScripts/test-connect2.js:29:7",
+        "highRegFuncName": "setTimeout",
+        "lowRegFuncName": "setTimeout",
+        "registerStack": [
+          "    at ist_setTimeout (/demo/asyncTrack/async-track.js:770:17)",
+          "    at /demo/tests/testScripts/test-connect2.js:29:7",
+          "    at /demo/tests/testScripts/test-connect2.js:35:7",
+          "    at Server.server_listen_cb (/demo/tests/testScripts/test-connect2.js:36:5)",
+          "    at Server.g (events.js:292:16)",
+          "    at emitNone (events.js:86:13)",
+          "    at Server.emit (events.js:185:7)",
+          "    at emitListeningNT (net.js:1288:10)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:71:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)",
+          "    at Function.Module.runMain (module.js:607:11)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990411,
+        "calleeTimestamp": 1496460991413,
+        "calleeEventOrder": 72,
+        "registerEventOrder": 17
+      }
+    },
+    {
+      "source": 29,
+      "target": 30,
+      "value": "process.nextTick",
+      "info": {
+        "calleeName": "afterWrite",
+        "cbCallee": "afterWrite",
+        "calleeStack": [
+          "    at afterWrite (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:80:20)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "onwrite",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)",
+        "highRegFuncName": "process.nextTick",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at onwrite (_stream_writable.js:377:15)",
+          "    at WritableState.onwrite (_stream_writable.js:90:5)",
+          "    at WriteStream.Socket._writeGeneric (net.js:724:5)",
+          "    at WriteStream.Socket._write (net.js:734:8)",
+          "    at doWrite (_stream_writable.js:334:12)",
+          "    at writeOrBuffer (_stream_writable.js:320:5)",
+          "    at WriteStream.Writable.write (_stream_writable.js:247:11)",
+          "    at WriteStream.Socket.write (net.js:661:40)",
+          "    at Console.log (console.js:43:16)",
+          "    at Timeout.setTimeout_cb (/demo/tests/testScripts/test-connect2.js:33:17)",
+          "    at ontimeout (timers.js:365:14)",
+          "    at tryOnTimeout (timers.js:237:5)",
+          "    at Timer.listOnTimeout (timers.js:207:5)"
+        ],
+        "registerFileName": "_stream_writable.js",
+        "registerTimestamp": 1496460991414,
+        "calleeTimestamp": 1496460991414,
+        "calleeEventOrder": 77,
+        "registerEventOrder": 76
+      }
+    },
+    {
+      "source": 19,
+      "target": 31,
+      "value": "setTimeout",
+      "info": {
+        "calleeName": "<Anonymous>",
+        "cbCallee": "<Anonymous>",
+        "calleeStack": [
+          "    at  (dummy.js:1:1)",
+          "    at ontimeout (timers.js:365:14)",
+          "    at tryOnTimeout (timers.js:237:5)",
+          "    at Timer.listOnTimeout (timers.js:207:5)"
+        ],
+        "callerOfRegister": "Socket.client_on_data_cb",
+        "lowRegLocation": "    at ist_setTimeout (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at ist_setTimeout (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at Socket.client_on_data_cb (/demo/tests/testScripts/test-connect2.js:48:3)",
+        "highRegFuncName": "setTimeout",
+        "lowRegFuncName": "setTimeout",
+        "registerStack": [
+          "    at ist_setTimeout (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.client_on_data_cb (/demo/tests/testScripts/test-connect2.js:48:3)",
+          "    at emitOne (events.js:96:13)",
+          "    at Socket.emit (events.js:188:7)",
+          "    at readableAddChunk (_stream_readable.js:176:18)",
+          "    at Socket.Readable.push (_stream_readable.js:134:10)",
+          "    at TCP.onread (net.js:551:20)"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990427,
+        "calleeTimestamp": 1496460991427,
+        "calleeEventOrder": 78,
+        "registerEventOrder": 56
+      }
+    },
+    {
+      "source": 13,
+      "target": 32,
+      "value": "Socket.once -> Socket.on",
+      "info": {
+        "calleeName": "g",
+        "cbCallee": "g",
+        "calleeStack": [
+          "    at g (dummy.js:1:1)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at finishMaybe (_stream_writable.js:515:14)",
+          "    at endWritable (_stream_writable.js:525:3)",
+          "    at Socket.Writable.end (_stream_writable.js:490:5)",
+          "    at Socket.end (net.js:431:31)",
+          "    at Socket.ist_end [as end] (/demo/asyncTrack/async-track.js:751:44)",
+          "    at Socket.destroySoon (net.js:458:10)",
+          "    at Socket.onSocketEnd (net.js:281:10)",
+          "    at emitNone (events.js:86:13)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCP.onread (net.js:590:8)"
+        ],
+        "callerOfRegister": "Socket.Readable.pipe",
+        "lowRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:596:8)",
+        "highRegFuncName": "Socket.once",
+        "lowRegFuncName": "Socket.on",
+        "registerStack": [
+          "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.once (events.js:302:8)",
+          "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Socket.Readable.pipe (_stream_readable.js:596:8)",
+          "    at Server.net_create_server_cb (/demo/tests/testScripts/test-connect2.js:14:5)",
+          "    at emitOne (events.js:96:13)",
+          "    at Server.emit (events.js:188:7)",
+          "    at TCP.onconnection (net.js:1454:8)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460990424,
+        "calleeTimestamp": 1496460991430,
+        "calleeEventOrder": 86,
+        "registerEventOrder": 47
+      }
+    },
+    {
+      "source": 13,
+      "target": 33,
+      "value": "Socket.once",
+      "info": {
+        "calleeName": "onfinish",
+        "cbCallee": "onfinish",
+        "calleeStack": [
+          "    at onfinish (dummy.js:1:1)",
+          "    at Socket.g (events.js:292:16)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at finishMaybe (_stream_writable.js:515:14)",
+          "    at endWritable (_stream_writable.js:525:3)",
+          "    at Socket.Writable.end (_stream_writable.js:490:5)",
+          "    at Socket.end (net.js:431:31)",
+          "    at Socket.ist_end [as end] (/demo/asyncTrack/async-track.js:751:44)",
+          "    at Socket.destroySoon (net.js:458:10)",
+          "    at Socket.onSocketEnd (net.js:281:10)",
+          "    at emitNone (events.js:86:13)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCP.onread (net.js:590:8)"
+        ],
+        "callerOfRegister": "Socket.Readable.pipe",
+        "lowRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:596:8)",
+        "highRegFuncName": "Socket.once",
+        "lowRegFuncName": "Socket.once",
+        "registerStack": [
+          "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.Readable.pipe (_stream_readable.js:596:8)",
+          "    at Server.net_create_server_cb (/demo/tests/testScripts/test-connect2.js:14:5)",
+          "    at emitOne (events.js:96:13)",
+          "    at Server.emit (events.js:188:7)",
+          "    at TCP.onconnection (net.js:1454:8)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460990424,
+        "calleeTimestamp": 1496460991431,
+        "calleeEventOrder": 87,
+        "registerEventOrder": 46
+      }
+    },
+    {
+      "source": 13,
+      "target": 34,
+      "value": "Socket.on",
+      "info": {
+        "calleeName": "onunpipe",
+        "cbCallee": "onunpipe",
+        "calleeStack": [
+          "    at onunpipe (dummy.js:1:1)",
+          "    at emitOne (events.js:96:13)",
+          "    at Socket.emit (events.js:188:7)",
+          "    at Socket.Readable.unpipe (_stream_readable.js:650:12)",
+          "    at unpipe (_stream_readable.js:600:9)",
+          "    at Socket.onfinish (_stream_readable.js:594:5)",
+          "    at Socket.g (events.js:292:16)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at finishMaybe (_stream_writable.js:515:14)",
+          "    at endWritable (_stream_writable.js:525:3)",
+          "    at Socket.Writable.end (_stream_writable.js:490:5)",
+          "    at Socket.end (net.js:431:31)",
+          "    at Socket.ist_end [as end] (/demo/asyncTrack/async-track.js:751:44)",
+          "    at Socket.destroySoon (net.js:458:10)",
+          "    at Socket.onSocketEnd (net.js:281:10)",
+          "    at emitNone (events.js:86:13)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCP.onread (net.js:590:8)"
+        ],
+        "callerOfRegister": "Socket.Readable.pipe",
+        "lowRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:501:8)",
+        "highRegFuncName": "Socket.on",
+        "lowRegFuncName": "Socket.on",
+        "registerStack": [
+          "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.Readable.pipe (_stream_readable.js:501:8)",
+          "    at Server.net_create_server_cb (/demo/tests/testScripts/test-connect2.js:14:5)",
+          "    at emitOne (events.js:96:13)",
+          "    at Server.emit (events.js:188:7)",
+          "    at TCP.onconnection (net.js:1454:8)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460990422,
+        "calleeTimestamp": 1496460991432,
+        "calleeEventOrder": 88,
+        "registerEventOrder": 39
+      }
+    },
+    {
+      "source": 31,
+      "target": 35,
+      "value": "process.nextTick",
+      "info": {
+        "calleeName": "endReadableNT",
+        "cbCallee": "endReadableNT",
+        "calleeStack": [
+          "    at endReadableNT (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "endReadable",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at endReadable (_stream_readable.js:965:13)",
+        "highRegFuncName": "process.nextTick",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at endReadable (_stream_readable.js:965:13)",
+          "    at Socket.Readable.read (_stream_readable.js:299:7)",
+          "    at flow (_stream_readable.js:761:34)",
+          "    at emitReadable_ (_stream_readable.js:433:3)",
+          "    at emitReadable (_stream_readable.js:426:7)",
+          "    at onEofChunk (_stream_readable.js:411:3)",
+          "    at readableAddChunk (_stream_readable.js:153:5)",
+          "    at Socket.Readable.push (_stream_readable.js:134:10)",
+          "    at TCP.onread (net.js:580:8)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460991428,
+        "calleeTimestamp": 1496460991432,
+        "calleeEventOrder": 89,
+        "registerEventOrder": 81
+      }
+    },
+    {
+      "source": 13,
+      "target": 36,
+      "value": "Socket.on",
+      "info": {
+        "calleeName": "server_on_cb",
+        "cbCallee": "server_on_cb",
+        "calleeStack": [
+          "    at server_on_cb (dummy.js:1:1)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at endReadableNT (_stream_readable.js:974:12)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "intermediate_fun",
+        "lowRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at intermediate_fun (/demo/tests/testScripts/test-connect2.js:7:7)",
+        "highRegFuncName": "Socket.on",
+        "lowRegFuncName": "Socket.on",
+        "registerStack": [
+          "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at intermediate_fun (/demo/tests/testScripts/test-connect2.js:7:7)",
+          "    at Server.net_create_server_cb (/demo/tests/testScripts/test-connect2.js:10:5)",
+          "    at emitOne (events.js:96:13)",
+          "    at Server.emit (events.js:188:7)",
+          "    at TCP.onconnection (net.js:1454:8)"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990421,
+        "calleeTimestamp": 1496460991432,
+        "calleeEventOrder": 90,
+        "registerEventOrder": 34
+      }
+    },
+    {
+      "source": 13,
+      "target": 37,
+      "value": "Socket.once -> Socket.on",
+      "info": {
+        "calleeName": "g",
+        "cbCallee": "g",
+        "calleeStack": [
+          "    at g (dummy.js:1:1)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at endReadableNT (_stream_readable.js:974:12)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "Socket.Readable.pipe",
+        "lowRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:499:9)",
+        "highRegFuncName": "Socket.once",
+        "lowRegFuncName": "Socket.on",
+        "registerStack": [
+          "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.once (events.js:302:8)",
+          "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Socket.Readable.pipe (_stream_readable.js:499:9)",
+          "    at Server.net_create_server_cb (/demo/tests/testScripts/test-connect2.js:14:5)",
+          "    at emitOne (events.js:96:13)",
+          "    at Server.emit (events.js:188:7)",
+          "    at TCP.onconnection (net.js:1454:8)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460990422,
+        "calleeTimestamp": 1496460991433,
+        "calleeEventOrder": 92,
+        "registerEventOrder": 38
+      }
+    },
+    {
+      "source": 13,
+      "target": 38,
+      "value": "Socket.once",
+      "info": {
+        "calleeName": "onend",
+        "cbCallee": "onend",
+        "calleeStack": [
+          "    at onend (dummy.js:1:1)",
+          "    at Socket.g (events.js:292:16)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at endReadableNT (_stream_readable.js:974:12)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "Socket.Readable.pipe",
+        "lowRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:499:9)",
+        "highRegFuncName": "Socket.once",
+        "lowRegFuncName": "Socket.once",
+        "registerStack": [
+          "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.Readable.pipe (_stream_readable.js:499:9)",
+          "    at Server.net_create_server_cb (/demo/tests/testScripts/test-connect2.js:14:5)",
+          "    at emitOne (events.js:96:13)",
+          "    at Server.emit (events.js:188:7)",
+          "    at TCP.onconnection (net.js:1454:8)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460990422,
+        "calleeTimestamp": 1496460991433,
+        "calleeEventOrder": 93,
+        "registerEventOrder": 37
+      }
+    },
+    {
+      "source": 31,
+      "target": 39,
+      "value": "Socket.once -> Socket.on",
+      "info": {
+        "calleeName": "g",
+        "cbCallee": "g",
+        "calleeStack": [
+          "    at g (dummy.js:1:1)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at endReadableNT (_stream_readable.js:974:12)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "Socket.onSocketEnd",
+        "lowRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at Socket.onSocketEnd (net.js:272:10)",
+        "highRegFuncName": "Socket.once",
+        "lowRegFuncName": "Socket.on",
+        "registerStack": [
+          "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.once (events.js:302:8)",
+          "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Socket.onSocketEnd (net.js:272:10)",
+          "    at emitNone (events.js:86:13)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCP.onread (net.js:590:8)"
+        ],
+        "registerFileName": "net.js",
+        "registerTimestamp": 1496460991429,
+        "calleeTimestamp": 1496460991433,
+        "calleeEventOrder": 94,
+        "registerEventOrder": 83
+      }
+    },
+    {
+      "source": 31,
+      "target": 40,
+      "value": "Socket.once",
+      "info": {
+        "calleeName": "end",
+        "cbCallee": "end",
+        "calleeStack": [
+          "    at end (dummy.js:1:1)",
+          "    at Socket.g (events.js:292:16)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at endReadableNT (_stream_readable.js:974:12)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "Socket.onSocketEnd",
+        "lowRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at Socket.onSocketEnd (net.js:272:10)",
+        "highRegFuncName": "Socket.once",
+        "lowRegFuncName": "Socket.once",
+        "registerStack": [
+          "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.onSocketEnd (net.js:272:10)",
+          "    at emitNone (events.js:86:13)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCP.onread (net.js:590:8)"
+        ],
+        "registerFileName": "net.js",
+        "registerTimestamp": 1496460991429,
+        "calleeTimestamp": 1496460991433,
+        "calleeEventOrder": 95,
+        "registerEventOrder": 82
+      }
+    },
+    {
+      "source": 31,
+      "target": 41,
+      "value": "process.nextTick",
+      "info": {
+        "calleeName": "endReadableNT",
+        "cbCallee": "endReadableNT",
+        "calleeStack": [
+          "    at endReadableNT (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "endReadable",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at endReadable (_stream_readable.js:965:13)",
+        "highRegFuncName": "process.nextTick",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at endReadable (_stream_readable.js:965:13)",
+          "    at Socket.Readable.read (_stream_readable.js:299:7)",
+          "    at Socket.onSocketEnd (net.js:276:10)",
+          "    at emitNone (events.js:86:13)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCP.onread (net.js:590:8)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460991429,
+        "calleeTimestamp": 1496460991434,
+        "calleeEventOrder": 96,
+        "registerEventOrder": 84
+      }
+    },
+    {
+      "source": 31,
+      "target": 42,
+      "value": "Socket.end -> process.nextTick",
+      "info": {
+        "calleeName": "emitCloseNT",
+        "cbCallee": "emitCloseNT",
+        "calleeStack": [
+          "    at emitCloseNT (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:71:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "Socket.destroySoon",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_end [as end] (/demo/asyncTrack/async-track.js:751:44)",
+        "highRegCallerLocation": "    at Socket.destroySoon (net.js:458:10)",
+        "highRegFuncName": "Socket.end",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Server._emitCloseIfDrained (net.js:1538:11)",
+          "    at Socket._destroy (net.js:519:20)",
+          "    at Socket.destroy (net.js:527:8)",
+          "    at Socket.ist_destroy [as destroy] (/demo/asyncTrack/async-track.js:751:44)",
+          "    at Socket.onSocketFinish (net.js:222:17)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at finishMaybe (_stream_writable.js:515:14)",
+          "    at endWritable (_stream_writable.js:525:3)",
+          "    at Socket.Writable.end (_stream_writable.js:490:5)",
+          "    at Socket.end (net.js:431:31)",
+          "    at Socket.ist_end [as end] (/demo/asyncTrack/async-track.js:751:44)",
+          "    at Socket.destroySoon (net.js:458:10)",
+          "    at Socket.onSocketEnd (net.js:281:10)",
+          "    at emitNone (events.js:86:13)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCP.onread (net.js:590:8)"
+        ],
+        "registerFileName": "net.js",
+        "registerTimestamp": 1496460991430,
+        "calleeTimestamp": 1496460991434,
+        "calleeEventOrder": 97,
+        "registerEventOrder": 85
+      }
+    },
+    {
+      "source": 29,
+      "target": 43,
+      "value": "Server.close -> Server.on",
+      "info": {
+        "calleeName": "g",
+        "cbCallee": "g",
+        "calleeStack": [
+          "    at g (dummy.js:1:1)",
+          "    at emitNone (events.js:86:13)",
+          "    at Server.emit (events.js:185:7)",
+          "    at emitCloseNT (net.js:1544:8)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:71:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "Timeout.setTimeout_cb",
+        "lowRegLocation": "    at Server.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Server.ist_close [as close] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at Timeout.setTimeout_cb (/demo/tests/testScripts/test-connect2.js:30:16)",
+        "highRegFuncName": "Server.close",
+        "lowRegFuncName": "Server.on",
+        "registerStack": [
+          "    at Server.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Server.once (events.js:302:8)",
+          "    at Server.ist_once [as once] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Server.close (net.js:1501:12)",
+          "    at Server.ist_close [as close] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Timeout.setTimeout_cb (/demo/tests/testScripts/test-connect2.js:30:16)",
+          "    at ontimeout (timers.js:365:14)",
+          "    at tryOnTimeout (timers.js:237:5)",
+          "    at Timer.listOnTimeout (timers.js:207:5)"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460991414,
+        "calleeTimestamp": 1496460991434,
+        "calleeEventOrder": 98,
+        "registerEventOrder": 75
+      }
+    },
+    {
+      "source": 29,
+      "target": 44,
+      "value": "Server.close -> Server.once",
+      "info": {
+        "calleeName": "server_close_cb",
+        "cbCallee": "server_close_cb",
+        "calleeStack": [
+          "    at server_close_cb (dummy.js:1:1)",
+          "    at Server.g (events.js:292:16)",
+          "    at emitNone (events.js:86:13)",
+          "    at Server.emit (events.js:185:7)",
+          "    at emitCloseNT (net.js:1544:8)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:71:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "Timeout.setTimeout_cb",
+        "lowRegLocation": "    at Server.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Server.ist_close [as close] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at Timeout.setTimeout_cb (/demo/tests/testScripts/test-connect2.js:30:16)",
+        "highRegFuncName": "Server.close",
+        "lowRegFuncName": "Server.once",
+        "registerStack": [
+          "    at Server.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Server.close (net.js:1501:12)",
+          "    at Server.ist_close [as close] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Timeout.setTimeout_cb (/demo/tests/testScripts/test-connect2.js:30:16)",
+          "    at ontimeout (timers.js:365:14)",
+          "    at tryOnTimeout (timers.js:237:5)",
+          "    at Timer.listOnTimeout (timers.js:207:5)"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460991414,
+        "calleeTimestamp": 1496460991434,
+        "calleeEventOrder": 99,
+        "registerEventOrder": 74
+      }
+    },
+    {
+      "source": 36,
+      "target": 45,
+      "value": "process.nextTick",
+      "info": {
+        "calleeName": "afterWrite",
+        "cbCallee": "afterWrite",
+        "calleeStack": [
+          "    at afterWrite (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:80:20)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "onwrite",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)",
+        "highRegFuncName": "process.nextTick",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at onwrite (_stream_writable.js:377:15)",
+          "    at WritableState.onwrite (_stream_writable.js:90:5)",
+          "    at WriteStream.Socket._writeGeneric (net.js:724:5)",
+          "    at WriteStream.Socket._write (net.js:734:8)",
+          "    at doWrite (_stream_writable.js:334:12)",
+          "    at writeOrBuffer (_stream_writable.js:320:5)",
+          "    at WriteStream.Writable.write (_stream_writable.js:247:11)",
+          "    at WriteStream.Socket.write (net.js:661:40)",
+          "    at Console.log (console.js:43:16)",
+          "    at Socket.server_on_cb (/demo/tests/testScripts/test-connect2.js:8:15)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at endReadableNT (_stream_readable.js:974:12)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "registerFileName": "_stream_writable.js",
+        "registerTimestamp": 1496460991432,
+        "calleeTimestamp": 1496460991434,
+        "calleeEventOrder": 100,
+        "registerEventOrder": 91
+      }
+    },
+    {
+      "source": 13,
+      "target": 46,
+      "value": "Socket.once -> Socket.on",
+      "info": {
+        "calleeName": "g",
+        "cbCallee": "g",
+        "calleeStack": [
+          "    at g (dummy.js:1:1)",
+          "    at emitOne (events.js:96:13)",
+          "    at Socket.emit (events.js:188:7)",
+          "    at TCP._handle.close [as _onclose] (net.js:501:12)"
+        ],
+        "callerOfRegister": "Socket.Readable.pipe",
+        "lowRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:590:8)",
+        "highRegFuncName": "Socket.once",
+        "lowRegFuncName": "Socket.on",
+        "registerStack": [
+          "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.once (events.js:302:8)",
+          "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Socket.Readable.pipe (_stream_readable.js:590:8)",
+          "    at Server.net_create_server_cb (/demo/tests/testScripts/test-connect2.js:14:5)",
+          "    at emitOne (events.js:96:13)",
+          "    at Server.emit (events.js:188:7)",
+          "    at TCP.onconnection (net.js:1454:8)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460990424,
+        "calleeTimestamp": 1496460991434,
+        "calleeEventOrder": 101,
+        "registerEventOrder": 45
+      }
+    },
+    {
+      "source": 13,
+      "target": 47,
+      "value": "Socket.once",
+      "info": {
+        "calleeName": "onclose",
+        "cbCallee": "onclose",
+        "calleeStack": [
+          "    at onclose (dummy.js:1:1)",
+          "    at Socket.g (events.js:292:16)",
+          "    at emitOne (events.js:96:13)",
+          "    at Socket.emit (events.js:188:7)",
+          "    at TCP._handle.close [as _onclose] (net.js:501:12)"
+        ],
+        "callerOfRegister": "Socket.Readable.pipe",
+        "lowRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at Socket.Readable.pipe (_stream_readable.js:590:8)",
+        "highRegFuncName": "Socket.once",
+        "lowRegFuncName": "Socket.once",
+        "registerStack": [
+          "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.Readable.pipe (_stream_readable.js:590:8)",
+          "    at Server.net_create_server_cb (/demo/tests/testScripts/test-connect2.js:14:5)",
+          "    at emitOne (events.js:96:13)",
+          "    at Server.emit (events.js:188:7)",
+          "    at TCP.onconnection (net.js:1454:8)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460990424,
+        "calleeTimestamp": 1496460991434,
+        "calleeEventOrder": 102,
+        "registerEventOrder": 44
+      }
+    },
+    {
+      "source": 26,
+      "target": 48,
+      "value": "setTimeout",
+      "info": {
+        "calleeName": "<Anonymous>",
+        "cbCallee": "<Anonymous>",
+        "calleeStack": [
+          "    at  (dummy.js:1:1)",
+          "    at ontimeout (timers.js:365:14)",
+          "    at tryOnTimeout (timers.js:237:5)",
+          "    at Timer.listOnTimeout (timers.js:207:5)"
+        ],
+        "callerOfRegister": "Socket.client_on_data_cb",
+        "lowRegLocation": "    at ist_setTimeout (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at ist_setTimeout (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at Socket.client_on_data_cb (/demo/tests/testScripts/test-connect2.js:48:3)",
+        "highRegFuncName": "setTimeout",
+        "lowRegFuncName": "setTimeout",
+        "registerStack": [
+          "    at ist_setTimeout (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.client_on_data_cb (/demo/tests/testScripts/test-connect2.js:48:3)",
+          "    at emitOne (events.js:96:13)",
+          "    at Socket.emit (events.js:188:7)",
+          "    at readableAddChunk (_stream_readable.js:176:18)",
+          "    at Socket.Readable.push (_stream_readable.js:134:10)",
+          "    at TCP.onread (net.js:551:20)"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990430,
+        "calleeTimestamp": 1496460991435,
+        "calleeEventOrder": 103,
+        "registerEventOrder": 68
+      }
+    },
+    {
+      "source": 0,
+      "target": 49,
+      "value": "Object.createConnection",
+      "info": {
+        "calleeName": "onread",
+        "cbCallee": "onread",
+        "calleeStack": [
+          "    at onread (dummy.js:1:1)"
+        ],
+        "callerOfRegister": "Object.<anonymous>",
+        "lowRegLocation": "    at Object.ist_createConnection [as createConnection] (/demo/asyncTrack/async-track.js:637:17)",
+        "highRegLocation": "    at Object.ist_createConnection [as createConnection] (/demo/asyncTrack/async-track.js:637:17)",
+        "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:39:20)",
+        "highRegFuncName": "Object.createConnection",
+        "lowRegFuncName": "Object.createConnection",
+        "registerStack": [
+          "    at Object.ist_createConnection [as createConnection] (/demo/asyncTrack/async-track.js:637:17)",
+          "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:39:20)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (/demo/run.js:97:27)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Function.Module.runMain (module.js:605:10)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990403,
+        "calleeTimestamp": 1496460991435,
+        "calleeEventOrder": 104,
+        "registerEventOrder": 8
+      }
+    },
+    {
+      "source": 31,
+      "target": 50,
+      "value": "Socket.once -> Socket.on",
+      "info": {
+        "calleeName": "g",
+        "cbCallee": "g",
+        "calleeStack": [
+          "    at g (dummy.js:1:1)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCP.onread (net.js:590:8)"
+        ],
+        "callerOfRegister": "ShutdownWrap.afterShutdown",
+        "lowRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at ShutdownWrap.afterShutdown [as oncomplete] (net.js:255:10)",
+        "highRegFuncName": "Socket.once",
+        "lowRegFuncName": "Socket.on",
+        "registerStack": [
+          "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.once (events.js:302:8)",
+          "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at ShutdownWrap.afterShutdown [as oncomplete] (net.js:255:10)"
+        ],
+        "registerFileName": "[as oncomplete] (net.js",
+        "registerTimestamp": 1496460991428,
+        "calleeTimestamp": 1496460991436,
+        "calleeEventOrder": 110,
+        "registerEventOrder": 80
+      }
+    },
+    {
+      "source": 31,
+      "target": 51,
+      "value": "Socket.once",
+      "info": {
+        "calleeName": "ist_destroy",
+        "cbCallee": "ist_destroy",
+        "calleeStack": [
+          "    at ist_destroy (dummy.js:1:1)",
+          "    at Socket.g (events.js:292:16)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCP.onread (net.js:590:8)"
+        ],
+        "callerOfRegister": "ShutdownWrap.afterShutdown",
+        "lowRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at ShutdownWrap.afterShutdown [as oncomplete] (net.js:255:10)",
+        "highRegFuncName": "Socket.once",
+        "lowRegFuncName": "Socket.once",
+        "registerStack": [
+          "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at ShutdownWrap.afterShutdown [as oncomplete] (net.js:255:10)"
+        ],
+        "registerFileName": "[as oncomplete] (net.js",
+        "registerTimestamp": 1496460991427,
+        "calleeTimestamp": 1496460991437,
+        "calleeEventOrder": 111,
+        "registerEventOrder": 79
+      }
+    },
+    {
+      "source": 49,
+      "target": 52,
+      "value": "process.nextTick",
+      "info": {
+        "calleeName": "endReadableNT",
+        "cbCallee": "endReadableNT",
+        "calleeStack": [
+          "    at endReadableNT (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "endReadable",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at endReadable (_stream_readable.js:965:13)",
+        "highRegFuncName": "process.nextTick",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at endReadable (_stream_readable.js:965:13)",
+          "    at Socket.Readable.read (_stream_readable.js:299:7)",
+          "    at flow (_stream_readable.js:761:34)",
+          "    at emitReadable_ (_stream_readable.js:433:3)",
+          "    at emitReadable (_stream_readable.js:426:7)",
+          "    at onEofChunk (_stream_readable.js:411:3)",
+          "    at readableAddChunk (_stream_readable.js:153:5)",
+          "    at Socket.Readable.push (_stream_readable.js:134:10)",
+          "    at TCP.onread (net.js:580:8)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460991435,
+        "calleeTimestamp": 1496460991437,
+        "calleeEventOrder": 112,
+        "registerEventOrder": 105
+      }
+    },
+    {
+      "source": 0,
+      "target": 53,
+      "value": "Socket.on",
+      "info": {
+        "calleeName": "client_on_end_cb",
+        "cbCallee": "client_on_end_cb",
+        "calleeStack": [
+          "    at client_on_end_cb (dummy.js:1:1)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at endReadableNT (_stream_readable.js:974:12)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "Object.<anonymous>",
+        "lowRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:52:8)",
+        "highRegFuncName": "Socket.on",
+        "lowRegFuncName": "Socket.on",
+        "registerStack": [
+          "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Object.<anonymous> (/demo/tests/testScripts/test-connect2.js:52:8)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (/demo/run.js:97:27)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Function.Module.runMain (module.js:605:10)",
+          "    at mainRun (/demo/run.js:159:23)",
+          "    at /demo/run.js:244:9",
+          "    at Object.<anonymous> (/demo/run.js:249:2)",
+          "    at Module._compile (module.js:571:32)",
+          "    at Object.Module._extensions..js (module.js:580:10)",
+          "    at Module.load (module.js:488:32)",
+          "    at tryModuleLoad (module.js:447:12)",
+          "    at Function.Module._load (module.js:439:3)",
+          "    at Module.runMain (module.js:605:10)",
+          "    at run (bootstrap_node.js:420:7)",
+          "    at startup (bootstrap_node.js:139:9)",
+          "    at bootstrap_node.js:535:3"
+        ],
+        "registerFileName": "/test-connect2.js",
+        "registerTimestamp": 1496460990405,
+        "calleeTimestamp": 1496460991437,
+        "calleeEventOrder": 113,
+        "registerEventOrder": 12
+      }
+    },
+    {
+      "source": 49,
+      "target": 54,
+      "value": "Socket.once -> Socket.on",
+      "info": {
+        "calleeName": "g",
+        "cbCallee": "g",
+        "calleeStack": [
+          "    at g (dummy.js:1:1)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at endReadableNT (_stream_readable.js:974:12)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "Socket.onSocketEnd",
+        "lowRegLocation": "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:775:79)",
+        "highRegCallerLocation": "    at Socket.onSocketEnd (net.js:272:10)",
+        "highRegFuncName": "Socket.once",
+        "lowRegFuncName": "Socket.on",
+        "registerStack": [
+          "    at Socket.ist_on [as on] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.once (events.js:302:8)",
+          "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:775:79)",
+          "    at Socket.onSocketEnd (net.js:272:10)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCP.onread (net.js:590:8)"
+        ],
+        "registerFileName": "net.js",
+        "registerTimestamp": 1496460991436,
+        "calleeTimestamp": 1496460991438,
+        "calleeEventOrder": 115,
+        "registerEventOrder": 108
+      }
+    },
+    {
+      "source": 49,
+      "target": 55,
+      "value": "Socket.once",
+      "info": {
+        "calleeName": "end",
+        "cbCallee": "end",
+        "calleeStack": [
+          "    at end (dummy.js:1:1)",
+          "    at Socket.g (events.js:292:16)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at endReadableNT (_stream_readable.js:974:12)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "Socket.onSocketEnd",
+        "lowRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at Socket.onSocketEnd (net.js:272:10)",
+        "highRegFuncName": "Socket.once",
+        "lowRegFuncName": "Socket.once",
+        "registerStack": [
+          "    at Socket.ist_once [as once] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at Socket.onSocketEnd (net.js:272:10)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCP.onread (net.js:590:8)"
+        ],
+        "registerFileName": "net.js",
+        "registerTimestamp": 1496460991436,
+        "calleeTimestamp": 1496460991438,
+        "calleeEventOrder": 116,
+        "registerEventOrder": 107
+      }
+    },
+    {
+      "source": 49,
+      "target": 56,
+      "value": "process.nextTick",
+      "info": {
+        "calleeName": "endReadableNT",
+        "cbCallee": "endReadableNT",
+        "calleeStack": [
+          "    at endReadableNT (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "endReadable",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at endReadable (_stream_readable.js:965:13)",
+        "highRegFuncName": "process.nextTick",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at endReadable (_stream_readable.js:965:13)",
+          "    at Socket.Readable.read (_stream_readable.js:299:7)",
+          "    at Socket.onSocketEnd (net.js:276:10)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at TCP.onread (net.js:590:8)"
+        ],
+        "registerFileName": "_stream_readable.js",
+        "registerTimestamp": 1496460991436,
+        "calleeTimestamp": 1496460991438,
+        "calleeEventOrder": 117,
+        "registerEventOrder": 109
+      }
+    },
+    {
+      "source": 53,
+      "target": 57,
+      "value": "process.nextTick",
+      "info": {
+        "calleeName": "afterWrite",
+        "cbCallee": "afterWrite",
+        "calleeStack": [
+          "    at afterWrite (dummy.js:1:1)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:80:20)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "callerOfRegister": "onwrite",
+        "lowRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegLocation": "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+        "highRegCallerLocation": "    at onwrite (_stream_writable.js:377:15)",
+        "highRegFuncName": "process.nextTick",
+        "lowRegFuncName": "process.nextTick",
+        "registerStack": [
+          "    at process.ist_nextTick [as nextTick] (/demo/asyncTrack/async-track.js:770:17)",
+          "    at onwrite (_stream_writable.js:377:15)",
+          "    at WritableState.onwrite (_stream_writable.js:90:5)",
+          "    at WriteStream.Socket._writeGeneric (net.js:724:5)",
+          "    at WriteStream.Socket._write (net.js:734:8)",
+          "    at doWrite (_stream_writable.js:334:12)",
+          "    at writeOrBuffer (_stream_writable.js:320:5)",
+          "    at WriteStream.Writable.write (_stream_writable.js:247:11)",
+          "    at WriteStream.Socket.write (net.js:661:40)",
+          "    at Console.log (console.js:43:16)",
+          "    at Socket.client_on_end_cb (/demo/tests/testScripts/test-connect2.js:53:11)",
+          "    at emitNone (events.js:91:20)",
+          "    at Socket.emit (events.js:185:7)",
+          "    at endReadableNT (_stream_readable.js:974:12)",
+          "    at _combinedTickCallback (internal/process/next_tick.js:74:11)",
+          "    at process._tickCallback (internal/process/next_tick.js:98:9)"
+        ],
+        "registerFileName": "_stream_writable.js",
+        "registerTimestamp": 1496460991437,
+        "calleeTimestamp": 1496460991438,
+        "calleeEventOrder": 118,
+        "registerEventOrder": 114
+      }
+    }
+  ]
+}

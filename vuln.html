@@ -1,0 +1,2134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vuln found by Liang Gong</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="http://fonts.googleapis.com/css?family=Oxygen:400,300,700" rel="stylesheet" type="text/css">
+    <link rel="icon" href="http://www.berkeley.edu/favicon.ico">
+    <style>
+        body {
+            background-color: #3e3947;
+            color: white;
+        }
+        .emph {
+            color: #ffcd22;
+        }
+        .table {
+            font-size: 13px;
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        .table > thead > tr > th {
+            vertical-align: bottom;
+            border-bottom: 2px solid grey;
+        }
+
+        .table thead {
+            font-size: 15px;
+        }
+
+        .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+            padding: 8px;
+            line-height: 1.42857143;
+            vertical-align: top;
+            border-top: 1px solid grey;
+        }
+
+        hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 0;
+            border-top: 1px solid grey;
+        }
+        
+        .vuln-title-link {
+            margin-left: 10%;
+            color: grey;
+        }
+        
+        .introduction {
+            margin-top: 50px;
+            margin-bottom: 30px;
+            margin-left: 20%;
+            margin-right: 20%;
+            font-size: 14px;
+        }
+
+        .vuln-severity {
+            margin-left: 5%;
+        }
+        
+        a,
+        .vuln-title-link,
+        .vuln-pkg-name a {
+            text-decoration: underline;
+            color: #00fbca;
+        }
+
+        .vuln-pkg-name a:visited {
+            color: #00fbca;
+        }
+        .vuln-pkg-name a:hover, a:focus {
+            color: #00fbca;
+        }
+        .vuln-pkg-name a {
+            color: #00fbca;
+        }
+
+        .vuln-title-link a:visited {
+            color: #9cdcfe;
+        }
+        .vuln-title-link a:hover, a:focus {
+            color: #9cdcfe;
+        }
+        .vuln-title-link a {
+            color: #9cdcfe;
+        }
+
+        .introduction a {
+            color: #00BFFF;
+        }
+
+        .vuln-severity-high {
+            color: #ff9a56;
+        }
+
+        .vuln-severity-medium {
+            color: #ff9a56;
+            margin-right: -20px;
+        }
+
+        .logos {
+            margin-left: 20%;
+        }
+
+        .logo {
+            height: 80px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="introduction">
+        In my recent collaboration with Microsoft Research, <a href="index.html">I</a> found <b>hundreds of security vulnerabilities</b> in npm packages. So far, <span class="emph">120+ vulnerabilities</span> have been validated by the community, including <span class="emph">Snyk.io</span> (E.g., <a href="https://snyk.io/vuln/npm:craft-ai-icons:20170514">[Vuln-1]</a>,
+        <a href="https://snyk.io/vuln/npm:desafio:20170429">[Vuln-2]</a>), <span class="emph">node security platform</span> (e.g., <a href="https://nodesecurity.io/advisories/350">[Vuln-3]</a>, <a href="https://nodesecurity.io/advisories/304">[Vuln-4]</a>), and package authors
+        (E.g., <a href="https://github.com/henrytseng/hostr/issues/8">[Vuln-5]</a>, <a href="https://github.com/request/request/issues/2640">[Vuln-6]</a>). Most of those issues are marked as highly severe. A subset of those security issues
+        is listed below. The proof-of-concepts of those security vulnerabilities are <a href="https://github.com/JacksonGL/NPM-Vuln-PoC">available</a>.
+        <br/>
+    </div>
+    <div class="logos">
+        <a href="https://eecs.berkeley.edu/"><img class="logo" src="img/ucb-2.png" style="height: 55px;" /></a>
+        <a href="https://www.microsoft.com/en-us/research/"><img class="logo" src="img/ms.png" /></a>
+        <a href="https://snyk.io/"><img class="logo" src="img/snyk.png" /></a>
+        <a href="https://nodesecurity.io/"><img class="logo" src="img/nsp.png" style="height: 60px;" /></a>
+    </div>
+    <div>
+        <table class="table">
+            <thead class="thead-inverse">
+                <tr class="vuln-header-row">
+                    <th class="vuln-header-type">
+                        <span class="vuln-severity">Severity and Vulnerability</span>
+                    </th>
+                    <th class="vuln-header-title">
+                        Validated Vulnerable NPM Package
+                    </th>
+                </tr>
+            </thead>
+            <tbody class=".table-striped">
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:windows-build-tools:21122016" class="vuln-link-text">
+                  <strong >Resources Downloaded over Insecure Protocol</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:windows-build-tools">windows-build-tools</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:frvr:20170511" class="vuln-link-text">
+                  <strong >Arbitrary File Write</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:frvr">frvr</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-medium">Medium</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:hostr:20161211" class="vuln-link-text">
+                  <strong>Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:hostr">hostr</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:innomon:20170518" class="vuln-link-text">
+                  <strong >Arbitrary File Write</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:innomon">innomon</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:connect-parse-php:20170511" class="vuln-link-text">
+                  <strong >Arbitrary File Write</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:connect-parse-php">connect-parse-php</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:hftp:20170422" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:hftp">hftp</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:mysql2csv:20170510" class="vuln-link-text">
+                  <strong >Arbitrary File Write</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:mysql2csv">mysql2csv</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:zjjserver:20170509" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:zjjserver">zjjserver</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:yzt:20170509" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:yzt">yzt</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:yyooopack:20170516" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:yyooopack">yyooopack</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:yttivy:20170521" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:yttivy">yttivy</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:mfrs:20170427" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:mfrs">mfrs</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:xtalk:20170418" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:xtalk">xtalk</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:ltt:20170503" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:ltt">ltt</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:xiongrui-httpserver:20170504" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:xiongrui-httpserver">xiongrui-httpserver</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:ltt.js:20170503" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:ltt.js">ltt.js</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:wisper:20170509" class="vuln-link-text">
+                  <strong >Arbitrary File Write</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:wisper">wisper</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:thrushs:20170509" class="vuln-link-text">
+                  <strong >Arbitrary File Write</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:thrushs">thrushs</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:wintiwebdev:20170521" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:wintiwebdev">wintiwebdev</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:thrushs:20170427" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:thrushs">thrushs</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:wind-mvc:20170503" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:wind-mvc">wind-mvc</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:whispercast:20170511" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:whispercast">whispercast</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:wenluhong1:20170509" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:wenluhong1">wenluhong1</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:rtcmulticonnection-client:20170425" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:rtcmulticonnection-client">rtcmulticonnection-client</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:lam:20170510" class="vuln-link-text">
+                  <strong >Arbitrary File Write</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:lam">lam</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:weather.swlyons:20170427" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:weather.swlyons">weather.swlyons</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:given-html-report:20170514" class="vuln-link-text">
+                  <strong >Resources downloaded over insecure protocol</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:given-html-report">given-html-report</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:wangguojing123:20170518" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:wangguojing123">wangguojing123</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:uv-tj-demo:20170509" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:uv-tj-demo">uv-tj-demo</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:parse-ssi:20170518" class="vuln-link-text">
+                  <strong >Arbitrary File Write</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:parse-ssi">parse-ssi</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:utahcityfinder:20170510" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:utahcityfinder">utahcityfinder</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:unicorn-list:20170510" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:unicorn-list">unicorn-list</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:uekw1511server:20170509" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:uekw1511server">uekw1511server</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:tmock:20170420" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:tmock">tmock</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:tinyserver2:20170503" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:tinyserver2">tinyserver2</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:tiny-http:20170418" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:tiny-http">tiny-http</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:tencent-server:20170503" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:tencent-server">tencent-server</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:static-html-server:20170418" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:static-html-server">static-html-server</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:sspa:20170510" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:sspa">sspa</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:sly07:20170518" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:sly07">sly07</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:shit-server:20170511" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:shit-server">shit-server</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:sgqserve:20170518" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:sgqserve">sgqserve</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:serverzyy:20170430" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:serverzyy">serverzyy</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:serveryztyzt:20170516" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:serveryztyzt">serveryztyzt</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:serveryaozeyan:20170504" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:serveryaozeyan">serveryaozeyan</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:serverwzl:20170511" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:serverwzl">serverwzl</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:serverwg:20170511" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:serverwg">serverwg</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:serverlyr:20170518" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:serverlyr">serverlyr</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:serverliujiayi1:20170518" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:serverliujiayi1">serverliujiayi1</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:serverhuwenhui:20170516" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:serverhuwenhui">serverhuwenhui</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:serverabc:20170518" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:serverabc">serverabc</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:run-this-place:20170508" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:run-this-place">run-this-place</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:ritp:20170508" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:ritp">ritp</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:reecerver:20170425" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:reecerver">reecerver</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:quickserver:20170425" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:quickserver">quickserver</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:qinserve:20170510" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:qinserve">qinserve</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:pytservce:20170508" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:pytservce">pytservce</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:picard:20170510" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:picard">picard</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:peiserver:20170518" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:peiserver">peiserver</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:open-device:20170430" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:open-device">open-device</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:nodeload-nmickuli:20170418" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:nodeload-nmickuli">nodeload-nmickuli</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:nodeaaaaa:20170430" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:nodeaaaaa">nodeaaaaa</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:node-server-forfront:20170521" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:node-server-forfront">node-server-forfront</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:zwserver:20170516" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:zwserver">zwserver</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:myserver.alexcthomas18:20170518" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:myserver.alexcthomas18">myserver.alexcthomas18</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:myprolyz:20170505" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:myprolyz">myprolyz</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:mockserve:20170423" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:mockserve">mockserve</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:mfrserver:20170505" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:mfrserver">mfrserver</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:looppake:20170518" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:looppake">looppake</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:liyujing:20170510" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:liyujing">liyujing</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:liuyaserver:20170521" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:liuyaserver">liuyaserver</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:lessindex:20170425" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:lessindex">lessindex</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:lab6.brit95:20170518" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:lab6.brit95">lab6.brit95</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:jn_jj_server:20170422" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:jn_jj_server">jn_jj_server</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:jansenstuffpleasework:20170518" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:jansenstuffpleasework">jansenstuffpleasework</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:iter-server:20170511" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:iter-server">iter-server</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:iter-http:20170418" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:iter-http">iter-http</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:intsol-package:20170511" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:intsol-package">intsol-package</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:infraserver:20170518" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:infraserver">infraserver</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="Medium severity">Severity: <span class="vuln-severity-medium">Medium</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:hubl-server:20170605" class="vuln-link-text">
+                  <strong >Resources downloaded over insecure protocol</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:hubl-server">hubl-server</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:hcbserver:20170429" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:hcbserver">hcbserver</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:gomeplus-h5-proxy:20170429" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:gomeplus-h5-proxy">gomeplus-h5-proxy</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:getcityapi.yoehoehne:20170518" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:getcityapi.yoehoehne">getcityapi.yoehoehne</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:gaoxuyan:20170505" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:gaoxuyan">gaoxuyan</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:gaoxiaotingtingting:20170510" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:gaoxiaotingtingting">gaoxiaotingtingting</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:fsk-server:20170419" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:fsk-server">fsk-server</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:fbr-client:20170510" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:fbr-client">fbr-client</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:fast-http-cli:20170418" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:fast-http-cli">fast-http-cli</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:exxxxxxxxxxx:20170510" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:exxxxxxxxxxx">exxxxxxxxxxx</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:ewgaddis.lab6:20170510" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:ewgaddis.lab6">ewgaddis.lab6</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:enserver:20170516" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:enserver">enserver</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <td class="vuln-title">
+                    <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                    <span class="vuln-title-link">
+               <a  href="https://snyk.io/vuln/npm:easyquick:20170418" class="vuln-link-text">
+               <strong >Directory Traversal</strong>
+               </a>
+               </span>
+                </td>
+                <td class="vuln-pkg-item">
+                    <strong class="vuln-pkg-name">
+               <a  href="https://snyk.io/vuln/npm:easyquick">easyquick</a>
+               </strong>
+                    <span class="vuln-version">*</span>
+                </td>
+                <td class="vuln-notes">
+                </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:earlybird:20170418" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:earlybird">earlybird</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:dylmomo:20170518" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:dylmomo">dylmomo</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:dgard8.lab6:20170516" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:dgard8.lab6">dgard8.lab6</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:desafio:20170429" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:desafio">desafio</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:dcserver:20170516" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:dcserver">dcserver</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:datachannel-client:20170418" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:datachannel-client">datachannel-client</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:dasafio:20170509" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:dasafio">dasafio</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:cyber-js:20170418" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:cyber-js">cyber-js</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:cuciuci:20170511" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:cuciuci">cuciuci</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:craft-ai-icons:20170514" class="vuln-link-text">
+                  <strong >Resources downloaded over insecure protocol</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:craft-ai-icons">craft-ai-icons</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:city-weather-abe:20170521" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:city-weather-abe">city-weather-abe</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:censorify.tanisjr:20170509" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:censorify.tanisjr">censorify.tanisjr</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:calmquist.static-server:20170516" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:calmquist.static-server">calmquist.static-server</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:badjs-sourcemap-server:20170418" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:badjs-sourcemap-server">badjs-sourcemap-server</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:22lixian:20170511" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:22lixian">22lixian</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:11xiaoli:20170509" class="vuln-link-text">
+                  <strong >Directory Traversal</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:11xiaoli">11xiaoli</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+                <tr class="vuln-item-row">
+                    <td class="vuln-title">
+                        <span class="vuln-severity" title="High severity">Severity: <span class="vuln-severity-high">High</span></span>
+                        <span class="vuln-title-link">
+                  <a  href="https://snyk.io/vuln/npm:rocketmake-nuget:20170514" class="vuln-link-text">
+                  <strong >Resources downloaded over insecure protocol</strong>
+                  </a>
+                  </span>
+                    </td>
+                    <td class="vuln-pkg-item">
+                        <strong class="vuln-pkg-name">
+                  <a  href="https://snyk.io/vuln/npm:rocketmake-nuget">rocketmake-nuget</a>
+                  </strong>
+                        <span class="vuln-version">*</span>
+                    </td>
+                    <td class="vuln-notes">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <h4>&nbsp; </h4>
+        <hr>
+        <p class="text-center">© <a href="index.html">Liang Gong</a>, Electric Engineering & Computer Science, University of California, Berkeley.</p>
+    </div>
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-12769553-4', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <a class="clumap" href="http://www.clustrmaps.com/map/jacksongl.github.io" title="Visitor Map for jacksongl.github.io"><img src="http://www.clustrmaps.com/map_v2.png?u=GPZx&d=cDYLeDpLpooXv_bGWJWQP0tGHUKNdekNlIQ5asvT3oM" /></a>
+    </div>
+</body>
+
+</html>

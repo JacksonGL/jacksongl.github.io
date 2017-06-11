@@ -70,3 +70,8 @@ hr {
 .clumap{
 	display:none;
 }
+
+.highlight {
+	font-weight: bold;
+	color: #ff9a56;
+}

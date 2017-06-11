@@ -1,0 +1,57 @@
+<div class="col-md-5">
+                <div class="row">
+                    <h3>Selected Awards</h3>
+                    <hr>
+                </div>
+                <ul style="margin-left: -20px;">
+                    <li>
+                        ACM SIGSOFT Distinguished Paper Award
+                        <div class="comp-info"> 2015/09, FSE'15 </div>
+                    </li>
+                    <li>
+                        US National Science Foundation Travel Grant
+                        <div class="comp-info"> 2015/09, ISSTA'15 </div>
+                    </li>
+                    <li>
+                        Grand Prize at Yahoo! Hack Day <br/> 
+                        (top team in China)
+                        [<a href="https://www.flickr.com/photos/ydn/8757303671/in/album-72157633485041163/">Pic</a>]
+                        [<a href="https://www.flickr.com/photos/ydn/sets/72157633485041163">Album</a>]
+                        [<a href="http://developer.yahoo.com/blogs/ydn/star-students-show-off-innovation-yahoo-hack-beijing-154340971.html">More</a>]
+                        <div class="comp-info"> 2013/07, Yahoo!, Beijing </div>
+                    </li>
+                </ul>
+                    
+                <div class="col-md-2 number-font"> 2013/07 </div>
+                <div class="col-md-10"> 
+                    
+                </div>
+                <div class="col-md-2 number-font"> 2013/05 </div>
+                <div class="col-md-10"> 
+                Excellent Graduate of Tsinghua Univeristy
+                </div>
+                <div class="col-md-2 number-font"> 2013/06 </div>
+                <div class="col-md-10"> 
+                    Excellent Thesis Award of Tsinghua University
+                </div>
+                <div class="col-md-2 number-font"> 2013/06 </div>
+                <div class="col-md-10"> 
+                    Excellent Graduate of Beijing
+                </div>
+                <div class="col-md-2 number-font"> 2013/05 </div>
+                <div class="col-md-10"> 
+                    China National Scholarship for Graduate Students
+                </div>
+                <div class="col-md-2 number-font"> 2013/05 </div>
+                <div class="col-md-10"> 
+                    First-level Scholarship in Tsinghua University (2/130)
+                </div>
+                <div class="col-md-2 number-font"> 2012/05 </div>
+                <div class="col-md-10"> 
+                    First-level Scholarship in Tsinghua University (2/130)
+                </div>
+                <div class="col-md-2 number-font"> 2008/05 </div>
+                <div class="col-md-10"> 
+                    China National Scholarship
+                </div>
+            </div>

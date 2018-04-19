@@ -1,0 +1,17 @@
+<h4>Detect style Property as String</h4>
+<p>
+The <tt>style</tt> property of a HTML DOM element is an object that holds properties corresponding to the style values specified in the element markup.
+However, with the following code snippet, we found the following interesting operations on <a href="http://www.craigslist.org/about/sites">craiglist</a> 
+that tries to compare the style object with a string:
+</p>
+<tt>[iid: 26203006]: [object CSS2Properties] !== 100px</tt> <br/>
+<tt>	 result: true"</tt> <br/>
+<tt>[iid: 26203006]: [object CSS2Properties] !== auto</tt> <br/>
+<tt>	 result: true"</tt> <br/>
+</tt>
+<p>
+It seems like the developer consider the style as the string that is explicitly specified in the HTML markup and tries to determine if the
+style is as expected by comparing it with the css style value string. However converting the style object into string ends up with string
+<tt id='tt_1'><script>var regx = /function[ ]([^ ^\(]+)[ \(\)]*\{/; var result = document.body.style.constructor.toString().match(regx); if(result === null) {regx = /\[[^ ]+[ ]([^\]]+)\]/; result = document.body.style.constructor.toString().match(regx);} document.getElementById("tt_1").innerHTML = result[1];</script></tt>(in your current browser) which is meaningless to compare with.
+</p>
+

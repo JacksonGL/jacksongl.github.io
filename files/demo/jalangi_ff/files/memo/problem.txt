@@ -1,0 +1,3 @@
+<h4>Finding Memoizable Functions</h4>
+Memoization is the process of building a function that is capable of remembering its previously computed answers.
+Although it is straightforward to introduce memoization into an existing function, it is not always clear which function we should spend time to optimize. For example, some functions may be non-deterministic, some functions rarely encounter the same parameter more than once, some functions do lightweight computation so it is not profitable to do memoization. This detector calculates those metrics to help prioritize and guide to the right functions to be optimized.

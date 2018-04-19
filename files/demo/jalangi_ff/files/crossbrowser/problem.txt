@@ -1,0 +1,37 @@
+<h4>Detecting Cross-browser Issues</h4>
+<p>
+Another simple but powerful analysis that can be built 
+on top of Jalangi is checking the cross-browser 
+compatibility issues of web applications.
+It is well known that when developing a website, it is
+difficult and painful to support all web browsers because
+each browsers has their own implementations of the DOM,
+JavaScript and CSS standard which could lead to very serious
+issues.
+</p>
+<p>
+The reasons for JavaScript incompatibility are many-fold:
+First, specifications can sometimes be poorly written, have
+ambiguity. Second, some part of the specification is hard to
+implement because of backwards compatibility issues. And
+lastly, browser vendors sometimes sacrifice correctness for
+interoperability and politics. Some browsers do not consider
+the standard a priority to implement the DOM tree interfaces
+correctly (or even fully, for that matter). As a result,
+to have a cross-browser website, web developers have to
+check all of the website's pages and JavaScript operations
+in various browsers the visitors might use.
+Just running our analysis module and framework on Firefox,
+we can detect those compatibility issues on all browser
+platforms.
+</p>
+<p>
+To implement this analysis application, we first search for
+reported compatibility issues on the Internet and organized
+a list of specifically for JavaScript DOM model.
+For example, <tt>x.compareDocumentPosition(y)</tt> method gives
+the relative place of one element <tt>y</tt> compared to element <tt>x</tt>
+by comparing the document (DOM) positions of those elements.
+However, this method is not supported by Internet Explorer
+5.5, 6, 7, and 8.
+</p>

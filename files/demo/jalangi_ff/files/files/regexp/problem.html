@@ -1,0 +1,3 @@
+<h4>Finding Redundant Regular Expression Definition</h4>
+Compilation occurs when the regular expression is first created. During compilation, the expression is parsed by the JavaScript engine and converted into its internal representation. If the JavaScript virtual machine is not smart enough to cache the compilation results, the compilation has to be done every time a regular expression is created. <br/>
+This analysis module detects the creation of regular expressions that share the same expression. Refactoring these duplicated definition by predefining only one regular expression for later use will hopefully give us a runtime speed up.

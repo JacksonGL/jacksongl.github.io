@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'Exo 2';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Exo 2 Medium'), local('Exo2-Medium'), url(SJSKlaAoPzG8E6EMHXZfevesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+}
+@font-face {
+  font-family: 'Quando';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Quando-Regular'), url(qVv1zuxOTRil_FcBMa30Kg.woff) format('woff');
+}
+@font-face {
+  font-family: 'Russo One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Russo One'), local('RussoOne-Regular'), url(RO6e96EC9m6OLO0tr7J3zz8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}

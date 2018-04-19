@@ -1,0 +1,28 @@
+<pre>
+Part I  (5 points)
+------------------
+Fill in the smoosh() method in the Homework3 class so that it performs as
+indicated in the comment.  Your solution should not use linked lists, nor
+should it use your squish() method.
+
+  /**
+   *  smoosh() takes an array of ints.  On completion the array contains
+   *  the same numbers, but wherever the array had two or more consecutive
+   *  duplicate numbers, they are replaced by one copy of the number.  Hence,
+   *  after smoosh() is done, no two consecutive numbers in the array are the
+   *  same.
+   *
+   *  Any unused elements at the end of the array are set to -1.
+   *
+   *  For example, if the input array is [ 0 0 0 0 1 1 0 0 0 3 3 3 1 1 0 ],
+   *  it reads [ 0 1 0 3 1 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 ] after smoosh()
+   *  completes.
+   *
+   *  @param ints the input array.
+   **/
+
+  public static void smoosh(int[] ints) {
+    // Fill in your solution here.  (Ours is fourteen lines long, not counting
+    // blank lines or lines already present in this file.)
+  }
+</pre>

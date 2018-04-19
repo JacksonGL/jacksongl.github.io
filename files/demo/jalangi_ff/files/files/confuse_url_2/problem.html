@@ -1,0 +1,20 @@
+<h4>Confusing URL II</h4>
+<p>
+<!--All right, you might think the previous trick is too easy.-->
+Again, what would happen if you click the following link or copy and paste it into your browser's address bar?
+Without careful inspection, some casual readers might think the following URL jumps to <tt>www.google.com</tt>, but again Bing is waiting for them. <br/>
+<script>
+	var linkElem = document.getElementById('fraud_url_example');
+	var fraud_url_sample = "http://www.google.com" + "\u2044" + "www.bing.com";
+	linkElem.innerHTML = fraud_url_sample;
+	linkElem.href = fraud_url_sample;
+	var spanElem = document.getElementById('url_span');
+	spanElem.innerHTML = "www.google.com" + "\u2044" + "www";
+</script>
+<a id="fraud_url_example" href="">
+</a>
+</p>
+<p>
+The character behind <tt>www.google.com</tt> is just a character that looks like a normal slash in URL (Actually it is <a href="http://www.fileformat.info/info/unicode/char/2044/index.htm">fraction slash</a>. BTW <a href="http://www.fileformat.info/info/unicode/char/2215/index.htm">division slash</a> can also do the trick.).
+Therefore, the browser engine will interpret <tt><span id="url_span"><span></tt> as a sub-domain of <tt>bing.com</tt>.
+</p>

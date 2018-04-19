@@ -1,0 +1,29 @@
+<h4>Detect for-in over Arrays</h4>
+<p>
+JavaScript provides different kinds of loops, including the
+for-in loop, which iterates over the properties of an object.
+For-in loops are useful in some contexts, but developers are
+discouraged from using for-in loops to iterator over arrays.
+The rationale for this rule is manifold. For illustration, consider
+the following example, which is supposed to print <tt>66</tt>
+</p>
+<p>
+First, because for-in considers all properties of an object, including
+properties inherited from an object's prototype, the
+iteration may accidentally include enumerable properties of
+<tt>Array.prototype</tt>. E.g., suppose a third-party library expands
+arrays by adding a method: <tt>Array.prototype.m = ...;</tt>. 
+In this case, the example prints <tt>66function() {...}</tt>. 
+Some browsers, e.g., Internet Explorer 7, mistakenly
+iterate over all built-in methods of arrays, causing
+unexpected behavior even if Array.prototype is not explicitly
+expanded. Second, some developers may incorrectly
+assume that a for-in loop over an array iterates through the
+array's elements, similar to, e.g., the for-each construct in
+Java. In this case, a developer would replace the loop body
+from above with <tt>sum += x</tt>, which leads to the unexpected
+output <tt>0012</tt>. Finally, a for-in loop is significantly slower
+than a traditional for loop for array objects, and should be
+avoided for performance reasons even if the other problems
+are ruled out.
+</p>

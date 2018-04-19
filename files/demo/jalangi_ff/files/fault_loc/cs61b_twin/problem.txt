@@ -1,0 +1,21 @@
+<pre>
+Part III  (2 points)
+--------------------
+Fill in the twin() method in the SList class so that it performs as indicated
+in the comment.  Your solution should not use arrays.
+
+  /**
+   *  twin() takes this list and doubles its length by replacing each node
+   *  with two consecutive nodes referencing the same item.
+   *
+   *  For example, if the input list is [ 3 7 4 2 2 ], the
+   *  output list is [ 3 3 7 7 4 4 2 2 2 2 ].
+   *
+   *  IMPORTANT:  Do not try to make new copies of the items themselves.
+   *  Make new SListNodes, but just copy the references to the items.
+   **/
+
+  public void twin() {
+    // Fill in your solution here.  (Ours is seven lines long.)
+  }
+</pre>

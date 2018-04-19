@@ -1,0 +1,12 @@
+<h4>Detect Long Running Functions</h4>
+<div style="width: 50%">
+<b>"[JavaScript] that executes in whole seconds is probably doing something wrong..."</b> <br/>
+<div style="width:100%; text-align: right;"> - Brendan Eich</div>
+</div>
+<p>
+In most major browsers, there is only a single process for executing JavaScript and responding user interface.
+Consequently, a long running function in JavaScript prevents the UI from responding to user inputs. Making sure that your JavaScript takes less time to execute is important to improve the user experience.
+<br/>
+According to research study (Miller et al.), the total amount of time that a single JavaScript operation should take (at a maximum) is 100 milliseconds. The research shows that
+if the user interface responds to user input within 100 milliseconds, the user feels that he is "directly manipulating the objects in the user interface."
+</p>

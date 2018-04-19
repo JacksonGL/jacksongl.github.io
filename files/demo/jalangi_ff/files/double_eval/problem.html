@@ -1,0 +1,4 @@
+<h4>Detect Double Evaluation</h4>
+In JavaScript standard, there are four functions that allow you to take as an argument a string code and evaluate it from within the running code: <tt>eval</tt>, <tt>Function</tt>, <tt>setTimeout</tt> and <tt>setInterval</tt>. But when you uses those functions with a string code argument, you incur a double evaluation penalty: it has to create a new interpreter/compiler instance and process the passed in string code. </br>
+
+Based on common code practise, there is no need to use <tt>eval()</tt> or <tt>Function()</tt> in most of the time. It is also best to to pass in a function as the first argument (instead of a string code) when using <tt>setTimeout()</tt> and <tt>setInterval()</tt>

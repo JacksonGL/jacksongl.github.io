@@ -1,0 +1,10 @@
+<h4>Finding Typable Arrays</h4>
+<p>
+In JavaScript programming language, one single <tt>Array</tt> object can simultaneously hold elements of different types of values such as numbers, booleans, objects or even functions. To achieve this flexibility and be memory efficient, the JIT-engine has to use complex data structures to represent arrays in memory (instead of a contiguous memory space like arrays in C\C++). This often slows down the operations on arrays even if in cases where arrays could be represented by contiguous memory space. One of the reasons is because static analysis that guarantees soundness is often time consuming which makes it expensive to deploy for JIT-compiler.
+</p>
+<p>
+<b><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">Typed Arrays</a></b> is integrated into standard and allows JavaScript developers to write C-like type-specialized and length-fixed arrays which are significantly faster.
+</p>
+<p>
+This dynamic analysis module monitors every single array created during program execution and recommends generic array declaration that may be replaced with typed arrays. Analysing with this module on JavaScript benchmarks like SunSpider and Google Octane enables to achieves up to 20% performance boost.
+</p>

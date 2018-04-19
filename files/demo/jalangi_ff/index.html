@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jalangi">
+    <meta name="keywords" content="Jalangi,program analysis,JavaScript, dynamic program analysis, find bugs, JITProf">
+    <meta name="author" content="Liang Gong, Koushik Sen">
+    <meta HTTP-EQUIV="EXPIRES" CONTENT="0">
+
+    <title>Jalangi - A Dynamic Analysis Framework for Frontend and Backend JavaScript</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap-modified.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="css/modern-business.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="highlight/styles/zenburn.css">
+    <link href='font/font.css' rel='stylesheet' type='text/css'>
+    <link href='font/roboto/font-roboto.css' rel='stylesheet' type='text/css'>
+    <script src="highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+    <script>
+    if (/MSIE (\d+\.\d+);/.test(navigator.userAgent))
+    { 
+        document.write('<p style="position: absolute; top: 10%; left: 20%; width: 60%; height: 95% font-size:20px; font-family: Verdana;"><h>Please visit this website using Firefox, Chrome, Opera, Safari, IE 11 or newer version :) <br/>For those of you who uses IE earlier version or develops IE, no offence. But this website does not work in Internet Explorer 10 or earlier version due to some cross platform issues. Anyone who\'s been developing on-page JavaScript Code knows that coding for multiple browsers is a nontrivial task, and unfortunately I am just <a href="https://www.linkedin.com/pub/liang-gong/37/a37/516">a poor graduate student</a> in Berkeley without much spare time to guarantee this websites work on every browser. Thank you for your attention and patience :)</h><br/><img src="imgs/sshot-1.png" style="width: 100%; height: 100%;" alt="screen shot"></img></p>');
+        document.execCommand('Stop');
+    }
+    </script>
+    <a href="https://github.com/SRA-SiliconValley/jalangi"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 1200;" src="imgs/fork.png" alt="Fork me on GitHub"></a>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
+                <a class="navbar-brand" href="index.html">Jalangi - A Dynamic Analysis Framework for JavaScript</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#about">About</a>
+                    </li>
+                    <li><a href="demo_integrated.htm">Online Demo</a>
+                    </li>
+                    <li><a href="#people">People</a>
+                    </li>
+                    <li><a href="#download">Download</a>
+                    </li>
+                    <li><a href="#publication">Publications</a>
+                    </li>
+                    <!--<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="portfolio-1-col.html">1 Column Portfolio</a>
+                            </li>
+                            <li><a href="portfolio-2-col.html">2 Column Portfolio</a>
+                            </li>
+                            <li><a href="portfolio-3-col.html">3 Column Portfolio</a>
+                            </li>
+                            <li><a href="portfolio-4-col.html">4 Column Portfolio</a>
+                            </li>
+                            <li><a href="portfolio-item.html">Single Portfolio Item</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="blog-home-1.html">Blog Home 1</a>
+                            </li>
+                            <li><a href="blog-home-2.html">Blog Home 2</a>
+                            </li>
+                            <li><a href="blog-post.html">Blog Post</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Publications <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="full-width.html">Full Width Page</a>
+                            </li>
+                            <li><a href="sidebar.html">Sidebar Page</a>
+                            </li>
+                            <li><a href="faq.html">FAQ</a>
+                            </li>
+                            <li><a href="404.html">404</a>
+                            </li>
+                            <li><a href="pricing.html">Pricing Table</a>
+                            </li>
+                        </ul>
+                    </li>-->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div id="myCarousel" style="background-color: #212121;" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        <!--<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>-->
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="fill" style="background-color: #212121;">
+                    <image style= "display: block; margin-left: auto; margin-right: auto; padding-top: 60px; align: center; height: 300px;" src="imgs/home-slides/simplified/introduction.png"/>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-color: #212121;">
+                    <image style= "display: block; margin-left: auto; margin-right: auto; padding-top: 60px; align: center; height: 500px;" src="imgs/home-slides/simplified/easy_to_write.png"/>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-color: #212121;">
+                    <image style= "display: block; margin-left: auto; margin-right: auto; padding-top: 60px; align: center; height: 300px;" src="imgs/home-slides/simplified/multi_platform.png"/>
+                </div>
+            </div>
+        <!--<div class="item active">
+                <div class="fill" style="background-image:url('imgs/home-slides/1.jpg');"></div>
+                <div class="carousel-caption">
+                    <h1>Step 1 - Install Jalangi Firefox Extension  <a class="btn btn-lg btn-primary pull-right top-dwn-btn" href="#download">Download</a></h1> 
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('imgs/home-slides/2.jpg');"></div>
+                <div class="carousel-caption">
+                    <h1>Step 2 - Write Your Own Analysis Module</h1>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('imgs/home-slides/3.jpg');"></div>
+                <div class="carousel-caption">
+                    <h1>Step 3 - Open the Webpage as Usual, Paste Analysis Module Code into Web Console</h1>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('imgs/home-slides/4.jpg');"></div>
+                <div class="carousel-caption">
+                    <h1>Step 4 - Browse and Get Output from Console
+                    </h1>
+                </div>
+            </div>-->
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+    </div>
+
+    <div class="section">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <h3><i class="fa fa-check-circle"></i> What is Jalangi</h3>
+                    <p>Jalangi is a Dynamic Analysis Framework for both front-end and back-end JavaScript. It allows you to monitor every operation of a JavaScript program and write your own program analysis code.</p>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h3><i class="fa fa-pencil"></i> Technical Details</h3>
+                    <p>Jalangi Firefox extension intercepts and transforms every line of JavaScript code in the webpage and external files. The code transformation adds hooks that allows you to monitor almost every operation (e.g., variable read/write, unary/binary operation, function/method call, etc.) performed by the execution. Simply overriding the API exposed allows you to perform your own dynamic analysis. Your dynamic analysis code will be executed side-by-side with the target program's execution.</p>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h3><i class="fa fa-folder-open"></i> Broad Impact and Applications</h3>
+                    <p>JavaScript is a loosely typed language which is often error-prune. Based on this framework, you can quickly build a analysis module to check different kinds of correctness bugs and performance bugs, doing various program analysis (e.g., debugging, Performance analysis, Monitoring dynamic behaviours, Record and replay, runtime call graph etc.)</p>
+                </div>
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.section -->
+
+    <div class="section"  id="about">
+    
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <h2>Jalangi in a Nutshell:</h2>
+                    <p>
+                    Jalangi Firefox extension intercepts and transforms every line of JavaScript code loaded by the browser to expose hooks to facilitate program analysis. 
+                    </p>
+                    <p>
+                    The figure on the right-hand side shows the original code snippet and transformed code snippet.
+                    Function J$.W and J$.R are callback functions (<i>i.e.,</i> hooks) for notifying the read and write operation of variables, the parameters of the callback function include the variable name and value. Similarly callback function. Those callback functions invoke specially designed dummy functions which will be exposed as API to facilitate user-defined dynamic analysis. Overriding those API functions will allow analysis code to be executed along the original execution.
+                    </p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <img class="img-responsive" src="imgs/code-transformation.png">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6" style="top: 24px">
+                    <img class="img-responsive" src="imgs/js_import.png">
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <h2>Jalangi Firefox Extension</h2>
+                    <!--<p>
+                    Vast majority of JavaScript code are written in front-end web pages, to enable Jalangi to analyze such a huge amount of applications we build this Jalangi Firefox Extension to automatically transform every piece of code that will be executed in a web browser. Basically Jalangi Firefox extension adopts a interceptor model that monitors every HTTP request, identify resources that contain JavaScript code and transform those code to add hooks.
+                    </p>-->
+                    <p>
+                    Different from server-side JavaScript (Node.js), in a web browser, a JavaScript statement can be added at any time in various ways (as shown on the left). Our Firefox Extension handles all those possibilities and we are confident that every line of JavaScript code in a web page has been intercepted and transformed. Moreover, our extension also work well with web pages that use HTML5 webworker which is multi-threading API for front-end JavaScript. See more about this extension <a href="http://www.slideshare.net/JacksonGL/jalangi-public">here</a>.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-6">
+                    <h2>API Exposed:</h2>
+                    <p>
+                        To quickly prototype and test a dynamic analysis, use the <a href="demo_integrated.htm">interactive demo page</a>.
+                        To install Jalangi on your local machine (Mac OS or Linux is recommended), please visit the <a href="https://github.com/SRA-SiliconValley/jalangi#installation">project's GitHub repository</a>.
+                        More detailed Documentation of each Jalangi API is available <a href="https://github.com/SRA-SiliconValley/jalangi/tree/master/docs">here</a>.
+                        To use Jalangi on Node.js with command line, please read the document <a href="https://github.com/SRA-SiliconValley/jalangi/blob/master/docs/commands.md">here</a>.<br/>
+						To use <a href="https://github.com/Samsung/jalangi2">Jalangi2</a>, see <a href="docs/index.html">Jalangi2 API</a>.
+                    </p>
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th>API</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="api">invokeFun(iid, f, base, args, val, isConstructor)</td>
+                            <td class="api_desc">callback when invoking a function or method</td>
+                          </tr>
+                          <tr>
+                            <td class="api">getFieldPre(iid, base, offset)</td>
+                            <td class="api_desc">callback before getting field of an object</td>
+                          </tr>
+                          <tr>
+                            <td class="api">getField(iid, base, offset, val);</td>
+                            <td class="api_desc">callback when getting field of an object, need return value val</td>
+                          </tr>
+                          <tr>
+                            <td class="api">putFieldPre(iid, base, offset, val)</td>
+                            <td class="api_desc">callback before putting field of an object, need return value val</td>
+                          </tr>
+                          <tr>
+                            <td class="api">putField(iid, base, offset, val)</td>
+                            <td class="api_desc">callback when putting field of an object, need return value val</td>
+                          </tr>
+                          <tr>
+                            <td class="api">return_(ret)</td>
+                            <td class="api_desc">callback when returning function without a return value, need return value ret</td>
+                          </tr>
+                          <tr>
+                            <td class="api">return_Rt(iid, val)</td>
+                            <td class="api_desc">callback when returning function with a return value, need return value val</td>
+                          </tr>
+                          <tr>
+                            <td class="api">scriptEnter(iid, val)</td>
+                            <td class="api_desc">callback when entering a script file</td>
+                          </tr>
+                          <tr>
+                            <td class="api">scriptExit(iid)</td>
+                            <td class="api_desc">callback when exitting a script file</td>
+                          </tr>
+                          <tr>
+                            <td class="api">literalPre(iid, val)</td>
+                            <td class="api_desc">callback before creating a literal object</td>
+                          </tr>
+                          <tr>
+                            <td class="api">literal(iid, val)</td>
+                            <td class="api_desc">callback when creating a literal object</td>
+                          </tr>
+                          <tr>
+                            <td class="api">readPre(iid, name, val, isGlobal)</td>
+                            <td class="api_desc">callback before before reading a variable</td>
+                          </tr>
+                          <tr>
+                            <td class="api">read(iid, name, val, isGlobal)</td>
+                            <td class="api_desc">callback when reading a variable, need return value val</td>
+                          </tr>
+                          <tr>
+                            <td class="api">writePre(iid, name, val, lhs)</td>
+                            <td class="api_desc">callback before writing a variable</td>
+                          </tr>
+                          <tr>
+                            <td class="api">write(iid, name, val, lhs)</td>
+                            <td class="api_desc">callback when writing a variable</td>
+                          </tr>
+                          <tr>
+                            <td class="api">declare(iid, name, val, isArgumentSync)</td>
+                            <td class="api_desc">callback when declaring a variable</td>
+                          </tr>
+                          <tr>
+                            <td class="api">binaryPre(iid, op, left, right)</td>
+                            <td class="api_desc">callback before doing a binary operation</td>
+                          </tr>
+                          <tr>
+                            <td class="api">binary(iid, op, left, right, result_c)</td>
+                            <td class="api_desc">callback when doing a binary operating, need return value result_c</td>
+                          </tr>
+                          <tr>
+                            <td class="api">unaryPre(iid, op, left)</td>
+                            <td class="api_desc">callback before doing a unary operation</td>
+                          </tr>
+                          <tr>
+                            <td class="api">unary(iid, op, left, result_c)</td>
+                            <td class="api_desc">callback when doing a unary operation, need return value result_c</td>
+                          </tr>
+                          <tr>
+                            <td class="api">conditionalPre(iid, left)</td>
+                            <td class="api_desc">callback before evaluating a conditional statement</td>
+                          </tr>
+                          <tr>
+                            <td class="api">conditional(iid, left, ret)</td>
+                            <td class="api_desc">callback when evaluating a conditional statement</td>
+                          </tr>
+                        </tbody>
+                     </table>
+                </div>
+            </div>
+            <!-- /.row -->
+            <div class="container" id="publication">
+            
+                <div class="row">
+                <h3 class="muted">Publication</h3>
+					<p> Liang Gong, Michael Pradel, and Koushik Sen, "JITProf: Pinpointing JIT-unfriendly JavaScript Code", FSE, 2015 (To Appear). <a href="https://www.eecs.berkeley.edu/~gongliang13/files/publications/JITProf%20Pinpointing%20JIT-Unfriendly%20JavaScript%20Code.pdf">preprint</a> | <a href="http://www.eecs.berkeley.edu/Pubs/TechRpts/2014/EECS-2014-144.pdf">technical report</a>
+					<p> Koushik Sen, George Necula, Liang Gong, and Wontae Choi, "MultiSE: Multi-path Symbolic Execution Using Value Summaries", FSE 2015 (To Appear). <a href="http://srl.cs.berkeley.edu/~ksen/papers/multise_tr.pdf">pdf</a> | <a href="http://srl.cs.berkeley.edu/~ksen/slides/multise.pdf">slides</a>
+                    </p>
+                    </p>
+                    <p> Liang Gong, Michael Pradel, Manu Sridharan, and Koushik Sen, "DLint: Dynamically Checking Bad Coding Practices in JavaScript", ISSTA. 2015. <a href="https://www.eecs.berkeley.edu/~gongliang13/files/publications/DLint%20Dynamically%20Checking%20Bad%20Coding%20Practices%20in%20JavaScript.pdf">pdf</a> | <a href="http://www.slideshare.net/JacksonGL/issta15-d-lintv3finalpublic">slides</a>
+                    </p>
+                    <p> Michael Pradel, and Koushik Sen, "The Good, the Bad, and the Ugly: An Empirical Study of Implicit Type Conversions in JavaScript", ECOOP, 2015.
+                    <!--<a href="http://www.eecs.berkeley.edu/Pubs/TechRpts/2014/EECS-2014-144.pdf">pdf</a>-->
+                    </p>
+                    <p> Michael Pradel, Parker Schuh, and Koushik Sen, "TypeDevil: Dynamic Type Inconsistency Analysis for JavaScript", ICSE, 2015.
+                    <a href="http://mp.binaervarianz.de/icse2015.pdf">pdf</a>
+                    </p>
+                    <p> Michael Pradel, Parker Schuh, George Necula, and Koushik Sen, "EventBreak: Analyzing the Responsiveness of User Interfaces through Performance-Guided Test Generation", OOPSLA 2015.
+                    <a href="http://mp.binaervarianz.de/oopsla2014.pdf">pdf</a>
+                    </p>
+                    <p> Koushik Sen, Swaroop Kalasapur, Tasneem Brutch, and Simon Gibbs, "Jalangi: A Selective Record-Replay and Dynamic Analysis Framework for JavaScript," in Proc. 9th joint meeting of the European Software Engineering Conference and the ACM SIGSOFT Symposium on the Foundations of Software Engineering (ESEC/FSE'13), 2013. <a href="http://srl.cs.berkeley.edu/~ksen/papers/jalangi.pdf">pdf</a>
+                    </p>
+                    <p> Koushik Sen, Swaroop Kalasapur, Tasneem Brutch, and Simon Gibbs, "Jalangi: A Tool Framework for Concolic Testing, Selective Record-Replay, and Dynamic Analysis of JavaScript," in Proc. 9th joint meeting of the European Software Engineering Conference and the ACM SIGSOFT Symposium on the Foundations of Software Engineering (ESEC/FSE'13), 2013. (Tool Paper) <a href="http://srl.cs.berkeley.edu/~ksen/papers/jalangi-tool.pdf">pdf</a>
+                    </p>
+                </div>
+                <!-- /.row -->
+            <div class="row well">
+                <div class="col-lg-8 col-md-8">
+                    <h4>Download source code:</h4>
+                    <p>Source code of Jalangi are available at the <a href="https://github.com/SRA-SiliconValley/jalangi">Github Repository</a>.</p>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <a class="btn btn-lg btn-primary pull-right" href="https://github.com/SRA-SiliconValley/jalangi/archive/master.zip">Direct Download</a>
+                </div>
+            </div>
+            <!-- /.row -->
+
+                <div class="row">
+                    <h3 class="muted" id="people" >Jalangi Firefox Extension Project Members</h3>  
+                    <div class="col-lg-4 col-md-4">
+                        <!--<h3>Faculty</h3>-->
+                          <div class="profile-block">
+                            <a href="http://www.cs.berkeley.edu/~ksen/">
+                                <img class="profile-img" src="imgs/ks.png"/>
+                                <div class="profile-info">
+                                    <a href="http://www.cs.berkeley.edu/~ksen/">Koushik Sen</a>
+                                    <br/>                            
+                                    ksen (at) cs.berkeley.edu <br><br>
+                                </div>
+                            </a>
+                          </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <!--<h3>Student</h3>-->
+                          <div class="profile-block">
+                             <a href="http://jacksongl.github.io/">
+                                 <img class="profile-img" src="imgs/lg.png"/>
+                                 <div class="profile-info">
+                                    <a href="http://jacksongl.github.io/">Liang Gong</a>
+                                    <br/>
+                                    gongliang13 (at) eecs.berkeley.edu <br><br>
+                                 </div>
+                             </a>
+                          </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container -->
+        
+            
+            <div class="row" id="download">
+                <div class="col-lg-12 col-md-6 col-sm-6">
+                    <h2>How to Install:</h2>
+                        <div class="row well">
+                            <div class="col-lg-8 col-md-8">
+                                <p>To install the tool, install <a href="http://www.mozilla.org/en-US/firefox/new/">Mozilla Firefox</a> and then download the <a>XPI package</a>.</p>
+								<p class="alertMessage">Note: A recent change in Firefox API breaks the firefox extension, use this firefox extension with <a href="https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">Firefox 33 or ealier</a>.<br/>Remember to <a href="https://support.mozilla.org/en-US/questions/753852">disable the automatic update.</a></p>
+								<p>Another option is using <a href="https://github.com/Berkeley-Correctness-Group/DLint">DLint</a> which includes a modified version of Firefox to do instrumentation before JavaScript code is compiled in the SpiderMonkey engine.</p>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <a class="btn btn-lg btn-primary" href="download/mac/jalang-ff-mac.xpi">Xpi (Mac)</a>
+                                <a class="btn btn-lg btn-primary pull-right" href="download/winlinux/jalangi_ff.xpi">Xpi (Win/Linux)</a>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                        <p>Drag the XPI file into Firefox Addon Manager.
+                        </p>
+                        <img class="img-responsive" src="imgs/addon-manager.png">
+                        <p>Now you are good to go!
+                        </p>
+                </div>
+            </div>
+            <!-- /.row -->
+            
+            
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-6">
+                    <h2>A Simple Tutorial:</h2>
+                        <p>In most JavaScript engines, generating a NaN error does not raise an exception, sometimes this kind of bugs can be subtle and hard to diagnose. 
+                        Based on Jalangi analysis framework, this tutorial shows how to write a analysis module that detects NaN (Not a Number) bugs.
+                        </p>
+                    <pre>
+A Simple NaN error check module:
+                        <code>         
+J$.analysis = {    
+    putFieldPre: function (iid, base, offset, val) {
+        if(typeof base != 'undefined' && base != null && (typeof val == 'number') && isNaN(val) == true){
+            console.log('[NaN iid: ' + iid +'] ' + base + '.' + offset + ':' + val);
+        }
+        return val;
+    }
+}
+                        </code>
+                    </pre>
+
+                    <p>In the code above, we override the J$.analysis method putFieldPre which is the callback function whenever after the target code access a field of an object or a function. In the callback function, we just check if the field we read has a NaN value, if it is, then we generate a warning indicating the location information (Index ID, short name iid), object and field information for manual checking and debugging. With similar checking code, we also override callback functions to monitor object field write, variable read and variable write to detect NaN values.</p>
+                    
+                    
+                    <p>Now visit a website using the Firefox with Jalangi extension installed (Note that every line of code has been transformed):</p>
+                    
+                    <img class="img-responsive" src="imgs/use-1.png">
+                    
+                    <p>Copy and paste the analysis module shown above into the web console, this will plug the analysis module we wrote into the transformed program:</p>
+                    <img class="img-responsive" src="imgs/use-2.png">
+
+                    <p>After integrating the analysis module into our framework (after pasting it into web console), we can start checking NaN bugs on any websites by interacting with the current loaded page. We found a bug in jQuery-1.8.3 by running a popular <a href="http://www.kendoui.com/">UI framework website</a> with the analysis module and the following warning periodically pops out in the console:</p>
+                    
+                    <img class="img-responsive" src="imgs/use-3.png">
+
+                    <p>Looking into its source code and tracing to its root cause shows that this commercial website used <a href="ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">an early version of jQuery</a>. In the jQuery external file, the following statement gets executed periodically to update the now field of an object. </p>
+                    
+                        <code>         
+this.now=(this.end-this.start)*t;
+                        </code>
+
+                    <p>The field was supposed to be a number and to record the time elapsed by substrate the start timestamps from the end timestamps, further diagnosis shows that sometimes this.end could return a string value (e.g., '30\% 0'). Consequently (this.end-this.start)*t becomes NaN which propagates to this.now.</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.section -->
+
+    <div class="container">
+
+        <hr>
+
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>
+                      <a href="http://www.eecs.berkeley.edu/">
+                          <img src="imgs/berkeley.jpg" width="70" height="70">
+                      </a>
+                      <a href="http://www.mozilla.org/en-US/research/">
+                          <img src="imgs/mozilla_wordmark.png" width="150" >
+                      </a>
+                      <a href="http://www.sisa.samsung.com/">
+                          <img src="imgs/Samsung-logo1.jpg" width="130" >
+                      </a>
+                      <a>
+                      <div style="display:none" id="clustrmaps-widget"></div><script type="text/javascript">var _clustrmaps = {'url' : 'https://www.eecs.berkeley.edu/~gongliang13/jalangi_ff/', 'user' : 1166299, 'server' : '3', 'id' : 'clustrmaps-widget', 'version' : 1, 'date' : '2015-04-08', 'lang' : 'en', 'corners' : 'square' };(function (){ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = 'http://www3.clustrmaps.com/counter/map.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);})();</script><noscript><a href="http://www3.clustrmaps.com/user/0fa11cbdb"><img src="http://www3.clustrmaps.com/stats/maps-no_clusters/https---www.eecs.berkeley.edu-~gongliang13-jalangi_ff--thumb.jpg" alt="Locations of visitors to this page" /></a></noscript>
+                      </a>
+                    </p>
+                    <p>
+                    &copy;  <a href="http://scholar.google.com/citations?hl=en&user=GA9tAsYAAAAJ">Liang Gong</a>, Electric Engineering  &amp; Computer Science, University of California, Berkeley. <br/>
+                    Powered by Bootstrap.<br/>
+                    A quick link to <a href="https://www.eecs.berkeley.edu/~gongliang13/lambda/">Online Lambda Calculus Interpreter</a> - Liang Gong. <br/>
+                    A quick link to <a href="http://www.eecs.berkeley.edu/Pubs/TechRpts/2014/EECS-2014-144.pdf">JITProf</a> - Liang Gong. <br/>
+                    A quick link to <a href="https://github.com/Berkeley-Correctness-Group/DLint">DLint</a> - Liang Gong.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- JavaScript -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/modern-business.js"></script>
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-47272416-1', 'berkeley.edu');
+      ga('send', 'pageview');
+
+    </script>
+
+</body>
+
+</html>

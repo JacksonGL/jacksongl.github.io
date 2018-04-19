@@ -1,0 +1,11 @@
+<h4>Finding Operations with No Effect</h4>
+<p>
+Some program constructs or built-in objects in JavaScript syntactically allow operations that has no dynamic effect during program execution. This often leads to confusing and bugs.
+For instance, in <tt>gbemu-part2.js</tt> file in Google Octane Benchmark. Statement <tt>decode64.length -= 1;</tt> intended to get a sub-string of string variable <tt>decode64</tt>.
+However, this statement has no side effect.
+The developer probably confuses this casting use on arrays with strings (if <tt>decode64</tt> is an array, the statement actually deletes the last element in the array).
+</p>
+<p>
+This simple dynamic analysis module monitors every put field operation and checks after the operation if the property value equals the new value intended.
+Click the <tt>Run</tt> button below, and find the bug in the example.
+</p>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Jalangi Online Demo</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="Jalangi">
+      <meta name="keywords" content="Jalangi, program analysis, JavaScript, dynamic program analysis, jshint, jslint, eslint, node.js, angularJS, pagespeed, js, JITProf">
+      <meta name="author" content="Liang Gong, Koushik Sen">
+      <meta HTTP-EQUIV="EXPIRES" CONTENT="0">
+      <script src="js/min/demo.js"></script>
+      <link rel="stylesheet" type="text/css" href="css/demo.css">
+      <link rel="stylesheet" type="text/css" href="font/font.css">
+      <link rel="stylesheet" type="text/css" href="font/roboto/font-roboto.css">
+      <link rel="stylesheet" type="text/css" href="css/screen2.css">
+   </head>
+   <body>
+      <script>
+         if (/MSIE (\d+\.\d+);/.test(navigator.userAgent))
+         { 
+             document.write('<p style="position: absolute; top: 10%; left: 20%; width: 60%; height: 95% font-size:20px; font-family: Verdana;"><h>Please visit this website using Firefox, Chrome, Opera, Safari, IE 11 or newer version :) <br/>For those of you who uses IE earlier version or develops IE, no offence. But this website does not work in Internet Explorer 10 or earlier version due to some cross platform issues. Anyone who\'s been developing on-page JavaScript Code knows that coding for multiple browsers is a nontrivial task, and unfortunately I am just <a href="https://www.linkedin.com/pub/liang-gong/37/a37/516">a poor graduate student</a> in Berkeley without much spare time to guarantee this websites work on every browser. Thank you for your attention and patience :)</h><br/><img src="imgs/sshot-1.png" style="width: 100%; height: 100%;" alt="screen shot"></img></p>');
+             document.execCommand('Stop');
+         }
+      </script>
+      <!--<a href="https://github.com/SRA-SiliconValley/jalangi"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 1200;" src="imgs/fork.png" alt="Fork me on GitHub"></a> -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+         <div class="container">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
+               <a class="navbar-brand" href="index.html">Jalangi - A Dynamic Analysis Framework for JavaScript</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+               <ul class="nav navbar-nav navbar-right">
+                  <li><a href="index.html#about">About</a>
+                  </li>
+                  <!--<li><a href="index.html#people">People</a>
+                     </li>-->
+                  <li><a href="index.html#download">Download</a>
+                  </li>
+                  <li><a href="index.html#publication">Publications</a>
+                  </li>
+               </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+         </div>
+         <!-- /.container -->
+      </nav>
+      <br>
+      <div class="container demo-content">
+         <h4></h4>
+         <p>
+            This is an <b>interactive demo</b>. Feel free to play with it and see how Jalangi works. Have fun!
+         </p>
+         <div class="row" style="vertical-align: middle;">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+               <h4 style="float:left; width: 550px">How to play with this interactive demo?</h4>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+               <div class="dropdown" style="list-style-type: none">
+                  <a style="margin-top: 8px; margin-left: 0px;" class="show-button" id="live_tour" href="#">&nbsp; Live Tour &nbsp;</a>
+                  <a style="margin-left: 10px; margin-top: 8px;" data-toggle="dropdown" class="more-demos dropdown-toggle noselect" href="#" data-intro="Click to list more analysis" data-position="right">More Demos <b class="caret"></b></a>
+                  <div style="margin-left: 96px; display: none;" id="dropdown-block-1" class="dropdown-block">
+                     <ul class="dropdown-menu">
+                        <li><a href="javascript: reloadAnalysisFiles('helloworld')">Hello World!</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('emptyAPI')">Empty Template (all APIs)</a>
+                        </li>
+                        <li class="cut-li">Detect Correctness Issue
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('nan')">NaN Checker</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('set_field_primitive')">Set Field to Primitives Checker</a>
+                        </li>
+                        <li><a href="javascript: window.location = 'fault_loc.htm'">Statistical Bug Localization</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('style_string')">Detect style Misuse</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('no_effect')">Detect No-effect Operations</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('imp')">Implicit Type Coercion Checker</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('dom_prop_attr')">DOM Property &amp; Attribute</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('crossbrowser')">Detect Cross-browser Issues</a>
+                        </li>
+						<li class="cut-li">Detect Security Issue
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('reveal_cookie')">Cookie Leaking Checker</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('confuse_url')">Detect Misleading URL</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('confuse_url_2')">Detect Misleading URL II</a>
+                        </li>
+						<li><a href="javascript: reloadAnalysisFiles('sop')">Attempt to violate SOP</a>
+                        </li>
+                        <li class="cut-li">Miscellaneous
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('eval')">Eval Usage Checker</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('profile')">Sequential &amp; Spectrum Profiler</a>
+                        </li>
+                        <!--<li><a href="javascript: reloadAnalysisFiles('symbolic')">Wrapper Engine</a>
+                           </li>-->
+						
+                     </ul>
+                     <div style="height: 352px;" id="dropdown-menu-v-divider" class="v-divider"></div>
+                     <ul class="dropdown-menu">
+                        <li class="cut-li">Detect Performance Issue
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('jit')">JIT-unfriendly Code Checker</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('typed_array')">Detect Typable Arrays</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('dom_lookup')">Detect Redundant DOM Lookup</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('caching_optim')">Caching Optimization</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('memo')">Memoization Function Checker</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('regexp')">Redundant RegExp Checker</a>
+                        </li>
+                        <!--<li><a href="javascript: reloadAnalysisFiles('loop')">Kill Infinite Loop</a>
+                           </li>-->
+                        <li><a href="javascript: reloadAnalysisFiles('longrunfun')">Detect Time-consuming Function</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('small_interval')">Detect Small Interval Issue</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('double_eval')">Detect Double Evaluation</a>
+                        </li>
+						<li><a href="javascript: reloadAnalysisFiles('objalloc')">Object Allocation Checker</a>
+                        </li>
+                        <li><a href="javascript: reloadAnalysisFiles('bit_op')">Detect Unnecessary Math Ops</a>
+                        </li>
+						<li><a href="javascript: reloadAnalysisFiles('arguments')">Detect Changes to "arguments"</a>
+                        </li>
+                        <li class="cut-li">Detect Bad Coding Practice
+                        </li>
+						<li><a href="javascript: reloadAnalysisFiles('dlint')">DLint: JavaScript Dynamic Linter</a>
+						</li>
+                        <li><a href="javascript: reloadAnalysisFiles('for_in_array')">Avoid for-in over Array</a>
+                        </li>
+						<li><a href="javascript: reloadAnalysisFiles('overflow')">Detect Overflow and Underflow</a>
+                        </li>
+						<li><a href="javascript: reloadAnalysisFiles('float_equal')">Float Number Equality Issue</a>
+                        </li>
+						<li><a href="javascript: reloadAnalysisFiles('parse_num')">Parse Num Without Radix</a>
+                        </li>
+						<li><a href="javascript: reloadAnalysisFiles('builtin_type_check')">Runtime Type Check for Built-in</a>
+                        </li>
+                     </ul>
+                  </div>
+                  <a style="margin-top: 8px; margin-left: 10px;" class="show-button" id="show_file_org" href="#">More Details</a>
+                  <a style="margin-top: 8px; margin-left: 10px;" class="show-button" id="share_analysis" href="#">Share Your Analysis</a>
+               </div>
+            </div>
+         </div>
+         <div class="row" id="mechanism_explain" style="display: none">
+            <div class="col-lg-7 col-md-7 col-sm-7">
+               <p>
+                  The figure on the right-hand side illustrates the relations between the four online editors.
+               </p>
+               <p>
+                  <b>Target code</b> is the source code to be transformed and analysed. <br/> 
+                  <tt>(Modify this file to see how Jalangi transform different program constructs.)</tt>
+               </p>
+               <p>
+                  <b>Transformed code</b> is the target code transformed by Jalangi. It adds hooks (e.g., J$.R for variable read etc.) which invoke functions defined in <tt>analysis.js</tt>.<br/> 
+                  <tt>(You cannot modify this code, as transformation is Jalangi's job.)</tt>
+               </p>
+               <p>
+                  <b>analysis.js</b> is the Jalangi runtime framework code that implements those hooks called in transformed code. Those hooks retain the semantics of the target code and invoke third-party call back functions defined in <tt>Third-party plugin</tt>.<br/> 
+                  <tt>(You can modify this file but we recommand you do your modification in <tt>third-party plugin</tt>.)</tt>
+               </p>
+               <p>
+                  <b>Third-party plugin</b> is the file written by third-party program analysis developers (that is YOU!!), overriding those predefined APIs allows you to intercept those execution events and do program analysis.<br/>
+                  <tt>(Modify this file to create whatever program analysis module you want.)</tt>
+               </p>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-5">
+               <img class="img-responsive" style="width:400px;" src="imgs/file_org.png">
+            </div>
+         </div>
+         <div class="row" id="share_instruction" style="display: none">
+            <div class="col-lg-7 col-md-7 col-sm-7">
+               <p>
+                  To share your analysis, please <b>send me an email (gongliang13 AT eecs DOT berkeley DOT edu)</b> containing the following three files:
+               </p>
+               <p>
+                  <b>Problem Description</b> (put it in <tt>problem.html</tt>) is a short description of the problem you are trying to solve and a short description of your analysis.
+                  The content of this file can be a HTML code snippet which will be shown in the same section as you see of this share instruction. You can also put links to your 
+                  homepage and related publications in this file.
+               </p>
+               <p>
+                  <b>Target Code</b> (put it in <tt>target.js</tt>) is the testing code to be transformed and analysed so that it can demonstrate the effectiveness of your analysis. <br/> 
+               </p>
+               <p>
+                  <b>Your Dynamic Analysis Code</b> (put it in <tt>plugin.js</tt>) is your analysis code. Please write your analysis code in just one file based on the Template (click the button <tt>More Demos</tt> -> <tt>Empty Template</tt>).<br/>
+               </p>
+               <p>
+                  I will review your code, give you some feedback and put it here soon. Also please feel free to ask me if you have any question regarding building analysis on top of Jalangi.
+               </p>
+            </div>
+         </div>
+         <p>
+            This is an interactive tutorial, code is transformed as you type.
+            To execute the transformed code with Jalangi framework press the Run button or <tt>Ctrl-Enter</tt> or <tt>Cmd-Enter</tt>. The <tt>transformed code</tt> will be executed which invokes hooks in <tt>analysis.js</tt>, which in turn invokes the third-party analysis module (written by you) defined in <tt>third-party plugin</tt>. 
+         </p>
+         <p id='problem-description'>
+         </p>
+         <pre class="example">
+        </pre>
+         <pre class="analysis_code" id="analysis_id">
+        /* Code of analysis.js */
+        </pre>
+         <pre class="plugin_code" id="plugin_id">
+        /* Code of third-party plugin */
+        </pre>
+         <h4 style="margin-top: 40px;">Acknowledgements</h4>
+         <p>
+            <a href="http://esprima.org/">Esprima</a>, <a href="http://marijnhaverbeke.nl/acorn/">Acorn</a> and
+            <a href="https://github.com/Constellation/escodegen">Escodegen</a> for parsing and code generation, and
+            <a href="http://codemirror.net/">CodeMirror</a> for the code editor.
+         </p>
+      </div>
+      <div class="container demo-footer">
+         <hr>
+         <footer>
+            <div class="row">
+               <div class="col-lg-12">
+                  <p>
+                     <a href="http://www.eecs.berkeley.edu/">
+                     <img src="imgs/berkeley.jpg" width="70" height="70">
+                     </a>
+                     <a href="http://www.mozilla.org/en-US/research/">
+                     <img src="imgs/mozilla_wordmark.png" width="150" >
+                     </a>
+                     <a href="http://www.sisa.samsung.com/">
+                     <img src="imgs/Samsung-logo1.jpg" width="130" >
+                     </a>
+                     <a>
+                     <div style="display:none" id="clustrmaps-widget"></div><script type="text/javascript">var _clustrmaps = {'url' : 'https://www.eecs.berkeley.edu/~gongliang13/jalangi_ff/', 'user' : 1166299, 'server' : '3', 'id' : 'clustrmaps-widget', 'version' : 1, 'date' : '2015-04-08', 'lang' : 'en', 'corners' : 'square' };(function (){ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = 'http://www3.clustrmaps.com/counter/map.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);})();</script><noscript><a href="http://www3.clustrmaps.com/user/0fa11cbdb"><img src="http://www3.clustrmaps.com/stats/maps-no_clusters/https---www.eecs.berkeley.edu-~gongliang13-jalangi_ff--thumb.jpg" alt="Locations of visitors to this page" /></a></noscript>
+                     </a>
+                  </p>
+                  <p>
+                     &copy;  <a href="http://scholar.google.com/citations?hl=en&user=GA9tAsYAAAAJ">Liang Gong</a>, Electric Engineering  &amp; Computer Science, University of California, Berkeley. <br/>
+                     Powered by Bootstrap.<br/>
+                     A quick link to <a href="https://www.eecs.berkeley.edu/~gongliang13/lambda/">Online Lambda Calculus Interpreter</a> - Liang Gong. <br/>
+                     A quick link to <a href="http://www.eecs.berkeley.edu/Pubs/TechRpts/2014/EECS-2014-144.pdf">JITProf</a> - Liang Gong. <br/>
+                     A quick link to <a href="https://github.com/Berkeley-Correctness-Group/DLint">DLint</a> - Liang Gong.
+                  </p>
+               </div>
+            </div>
+         </footer>
+      </div>
+      <!--<script src="js/jalangi_backup.js"></script>-->
+      <!--<script src="https://rawgit.com/SRA-SiliconValley/jalangi/master/src/js/Config.js"></script>
+         <script src="https://rawgit.com/SRA-SiliconValley/jalangi/master/src/js/Constants.js"></script>
+         <script src="https://rawgit.com/SRA-SiliconValley/jalangi/master/src/js/Globals.js"></script>
+         <script src="https://rawgit.com/SRA-SiliconValley/jalangi/master/src/js/SMemory.js"></script>
+         <script src="https://rawgit.com/SRA-SiliconValley/jalangi/master/src/js/utils/astUtil.js"></script>-->
+      <!--<script src="js/min/jquery-1.10.2.js"></script>
+         <script src="js/min/bootstrap.js"></script>
+         <script src="js/min/codemirror.js"></script>
+         <script src="js/min/escodegen.js"></script>
+         <script src="js/min/intro.js"></script>-->
+      <script src="js/min/demo-logic.js"></script>
+      <script>
+         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         ga('create', 'UA-47272416-1', 'berkeley.edu');
+         ga('send', 'pageview');
+      </script>
+      <script>
+         delay_load("https://rawgit.com/SRA-SiliconValley/jalangi/master/src/js/Config.js");
+         delay_load("https://rawgit.com/SRA-SiliconValley/jalangi/master/src/js/Constants.js");
+         delay_load("https://rawgit.com/SRA-SiliconValley/jalangi/master/src/js/Globals.js");
+         delay_load("https://rawgit.com/SRA-SiliconValley/jalangi/master/src/js/SMemory.js");
+         delay_load("https://rawgit.com/SRA-SiliconValley/jalangi/master/src/js/utils/astUtil.js");
+      </script>
+   </body>
+</html>

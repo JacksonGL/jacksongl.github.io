@@ -1,0 +1,2 @@
+<h4>Use Bitwise Operator Instead of Pure Mathematical Operations</h4>
+In modern JavaScript engines, bitwise operator is often faster than pure mathematical operations. For example <tt>i%2</tt> requires dividing by 2 to determine the reminder. However, the result can be obtained fast by using bitwise operation <tt>!(i&1)</tt>. Testing on node.js, the bitwise calculation is almost twice faster than the pure mathematical calculation.

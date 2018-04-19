@@ -1,0 +1,4 @@
+<h4>Invoke Parse Function without a Radix</h4>
+The second argument of the <tt>parseInt</tt> function is used to specify a radix. If no radix is specified, the function can return unexpected result. 
+For instance, if the string begins with a <tt>0</tt> it will be interpreted as an octal (base 8) number on Safari. Consequently, the following code
+snippet may produce different results on different platforms.

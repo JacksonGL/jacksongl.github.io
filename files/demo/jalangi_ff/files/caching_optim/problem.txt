@@ -1,0 +1,7 @@
+<h4>Finding Cachable Objects</h4>
+<p>
+Despite advancements in JIT-engine performance, there are still aspects of JavaScript that modern JavaScript engine does not handle. While optimizations such as function inlining, hidden classes + inline caching are done, the dynamic natural of JavaScript programming language still leaves many performance problems unsolved.
+</p>
+<p>
+Identifier resolution is not free: the deeper into the execution context's scope chain an identifier exists, the slower it is to access for both reads and writes
+</p>

@@ -1,0 +1,7 @@
+<h4>Set Field on Primitives Checker</h4>
+<p>
+JavaScript has five types of primitive values: <tt>booleans</tt>, <tt>numbers</tt>, <tt>strings</tt>, <tt>null</tt>, and <tt>undefined</tt>. When the code tries to extract properties and call methods of a primitive value, JavaScript will make implicit coercion.
+</p>
+<p>
+In the example, <tt>num.isPositive = true;</tt> has no effect as primitive number <tt>num</tt> is first converted into a Number wrapper object and a new field is attached to the wrapper object. Finally the wrapper object is discarded and the execution raises no exception or warning. So it looks like string <tt>num</tt> gets a new field, but it does not. And later when trying to access the field by <tt>num.isPositive</tt>, an confusing <tt>undefined</tt> will be returned. This bug can easily be created by JavaScript beginners and can lead to subtle bugs which are hard to diagnose. 
+</p>

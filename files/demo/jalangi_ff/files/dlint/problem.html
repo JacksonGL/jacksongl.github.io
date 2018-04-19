@@ -1,0 +1,345 @@
+<h4>DLint: Dynamically Checking Bad Coding Practices in JavaScript</h4>
+JavaScript is becoming one of the most popular languages, yet it is known for its suboptimal design. To effectively use JavaScript despite its design flaws, developers try to follow informal code quality rules that help avoiding correctness, maintainability, performance, and security problems. Lightweight static analyses, implemented in "lint-like" tools, are widely used to find violations of these rules, but are of limited use because of the language's dynamic nature. This paper presents DLint, a dynamic analysis approach to check code quality rules in JavaScript. DLint consists of a generic framework and an extensible set of checkers that each address a particular rule. We formally describe and implement 28 checkers that address problems missed by state-of-the-art static approaches. Applying the approach in a comprehensive empirical study on over 200 popular web sites shows that static and dynamic checking complement each other. On average per web site, DLint detects 49 problems that are missed statically, including visible bugs on the web sites of IKEA, Hilton, eBay, and CNBC.
+<h5>Publication</h5>
+The technical Report is available at: <br>
+<a href="http://www.eecs.berkeley.edu/Pubs/TechRpts/2015/EECS-2015-5.pdf"> Liang Gong, Michael Pradel, Manu Sridharan and Koushik Sen, "DLint: Dynamically Checking Bad Coding Practices in JavaScript," Technical Report, 2015. pdf</a>
+<h4>Source Code</h4>
+The source code of DLint is available at <a href="https://github.com/Berkeley-Correctness-Group/DLint"> here (GitHub)</a>
+
+<h4>Bad Coding Practices</h4>
+A list of collected bad coding practices is available at <a href="https://github.com/Berkeley-Correctness-Group/DLint/blob/master/README_Static_Lint_Rules.md"> here (GitHub Doc)</a>
+
+<h4>All Checkers</h4>
+DLint has in total 37 checkers, among which 28 checkers are capable of detecting bad coding practices missed by <a href="http://jshint.com/">JSHint</a>, <a href="http://www.jslint.com/">JSLint</a> or <a href="http://eslint.org/">ESLint</a> on real-world websites.
+
+<h4 id="dlint-checkers">DLint Checkers</h4>
+<p>Generated on Sun Jan 25 2015 20:12:27 GMT-0800 (PST)</p>
+<p><strong>Summary</strong>: 23x <span>background-color:LawnGreen&gt;NeedDynamic</span>, 9x <span>background-color:Gold&gt;MayNeedDynamic</span>, 29x <span>background-color:LightBlue&gt;SingleEventPattern</span>, 2x <span>background-color:LightCyan&gt;MultiEventPattern</span>, 4x <span>background-color:Coral&gt;CanCheckStatically</span>, 7x <span>background-color:IndianRed&gt;Obsolete</span></p>
+<hr>
+<h5 id="chk-1-checknan">Chk-1. CheckNaN</h5>
+<p>Find operations that result in NaN (not a number).</p>
+<p>To reduce false positives, attempts to check if NaNs propagate to the DOM (optionally, currently disabled).</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs oxygene">unOp<span class="hljs-comment">(*,val,NaN) WHERE val \neq NaN ORR
+binOp(*,left,right,NaN) WHERE left \neq NaN AND right \neq NaN ORR
+call(*,*,args,NaN,*)</span> <span class="hljs-keyword">WHERE</span> NaN \notin args</code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-2-comparefunctionwithprimitives">Chk-2. CompareFunctionWithPrimitives</h5>
+<p>Find comparisons of a function with a primitive.</p>
+<p>May be problematic if the developer intended to call the function before comparison.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs vbscript">binOp(relOrEqOp,<span class="hljs-built_in">left</span>,<span class="hljs-built_in">right</span>,*) WHERE isFct(<span class="hljs-built_in">left</span>) <span class="hljs-keyword">AND</span> isPrim(<span class="hljs-built_in">right</span>) ORR
+binOp(relOrEqOp,<span class="hljs-built_in">left</span>,<span class="hljs-built_in">right</span>,*) WHERE isPrim(<span class="hljs-built_in">left</span>) <span class="hljs-keyword">AND</span> isFct(<span class="hljs-built_in">right</span>)</code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-3-concatundefinedtostring">Chk-3. ConcatUndefinedToString</h5>
+<p>Find code that concatenates a string and undefined.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs vbscript">binOp(+,<span class="hljs-built_in">left</span>,<span class="hljs-built_in">right</span>,res) WHERE (<span class="hljs-built_in">left</span> = undefined <span class="hljs-keyword">OR</span> <span class="hljs-built_in">right</span> = undefined) <span class="hljs-keyword">AND</span> isString(res)</code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-4-constructwrappedprimitive2">Chk-4. ConstructWrappedPrimitive2</h5>
+<p>Finds calls of constructors that wrap a primitive into an Object, such as <code>new Number()</code>.</p>
+<p>Warns only if the wrapped primitive leads to result of a binary operation that <br>
+is different from what the non-wrapped primitive would yield.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs fsharp">cond(<span class="hljs-keyword">val</span>) WHERE isBool(<span class="hljs-keyword">val</span>) AND <span class="hljs-keyword">val</span>.valueOf() = <span class="hljs-keyword">false</span></code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-5-doubleevaluation">Chk-5. DoubleEvaluation</h5>
+<p>Find calls of eval() and its evil twins.</p>
+<p>Warns about:</p>
+<ul>
+<li>direct and indirect call of <code>eval</code> function</li>
+<li>call of <code>Function</code> function</li>
+<li>call of <code>document.write</code>: document.write can be a form of eval</li>
+<li>pass to <code>setTimeout</code> or <code>setInterval</code> a string instead of a function <br>
+(this is another form of calling eval).</li>
+</ul>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs sql"><span class="hljs-operator"><span class="hljs-keyword">call</span>(builtin,eval,*,*,*) ORR
+<span class="hljs-keyword">call</span>(builtin,Function,*,*,*) ORR
+<span class="hljs-keyword">call</span>(builtin,setTimeout,args,*,*) <span class="hljs-keyword">WHERE</span> isString(args[<span class="hljs-number">0</span>]) ORR
+<span class="hljs-keyword">call</span>(builtin,setInterval,args,*,*) <span class="hljs-keyword">WHERE</span> isString(args[<span class="hljs-number">0</span>]) ORR
+<span class="hljs-keyword">call</span>(document,<span class="hljs-keyword">write</span>,*,*,*)</span></code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-6-floatnumberequalitycomparison">Chk-6. FloatNumberEqualityComparison</h5>
+<p>Find equality comparison between two floating point numbers.</p>
+<p>In JavaScript <code>0.1 + 0.2</code> does not equal to <code>0.3</code> due to floating point rounding. <br>
+This checker tries to identify any statement of the form</p>
+<pre class="prettyprint"><code class="language-javascript hljs ">val == val2
+val != val2
+val === val2
+val !== val2</code></pre>
+<p>where <code>val</code> and <code>val2</code> are both numbers, one of which is a float and their difference <br>
+is smaller than a threshold.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs vbscript">binOp(eqOp,<span class="hljs-built_in">left</span>,<span class="hljs-built_in">right</span>,*) WHERE isFloat(<span class="hljs-built_in">left</span>) <span class="hljs-keyword">AND</span> isFloat(<span class="hljs-built_in">right</span>) <span class="hljs-keyword">AND</span> |<span class="hljs-built_in">left</span>-<span class="hljs-built_in">right</span>| &lt; \epsilon</code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-7-forinarray">Chk-7. ForInArray</h5>
+<p>Find code that iterates over an array with for .. in.</p>
+<p>It should be avoided because:</p>
+<ul>
+<li>using a normal for-loop is faster</li>
+<li>for .. in includes properties that some library may have added to Array.prototype</li>
+<li>programmers may expect to iterate over the elements instead of the indices</li>
+</ul>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs erlang"><span class="hljs-function"><span class="hljs-title">forIn</span><span class="hljs-params">(val)</span> WHERE <span class="hljs-title">isArray</span><span class="hljs-params">(val)</span></span></code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-8-functioncalledwithmorearguments">Chk-8. FunctionCalledWithMoreArguments</h5>
+<p>Find functions that are called with more arguments than expected by the function.</p>
+<p>Checks for the number of formal parameters of a function and <br>
+for whether the function accesses the <code>arguments</code> variable.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs oxygene">call<span class="hljs-comment">(*,*,args,*,*)</span> <span class="hljs-keyword">WHERE</span> |args| &gt; |\mbox<span class="hljs-comment">{formal params. of callee}</span>| <span class="hljs-keyword">AND</span> \nexists~ varRead(arguments,*)~\mbox<span class="hljs-comment">{during the call}</span></code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightCyan&gt;MultiEventPattern</span></p>
+<hr>
+<h5 id="chk-9-functiontostring">Chk-9. FunctionToString</h5>
+<p>Find calls of Function.toString().</p>
+<p>The value returned by Function.toString() is only vaguely <br>
+defined in the language specification and depends on the JavaScript engine.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs erlang"><span class="hljs-function"><span class="hljs-title">call</span><span class="hljs-params">(base,to<span class="hljs-variable">String</span>,*,*,*)</span> WHERE <span class="hljs-title">isFct</span><span class="hljs-params">(base)</span></span></code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-10-globalthis">Chk-10. GlobalThis</h5>
+<p>Find code that refers to <code>this</code> even though <code>this</code> is the global object.</p>
+<p>When <code>this</code> is the global object, there is not need to use <code>this</code> (and it maybe unintended).</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs coffeescript">varRead(<span class="hljs-keyword">this</span>,<span class="hljs-built_in">global</span>)</code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-11-inconsistentconstructor">Chk-11. InconsistentConstructor</h5>
+<p>Find accesses of the <code>constructor</code> property that do not yield the function that has created the object.</p>
+<p>This may occur, e.g., if a developer forgets to set the <code>constructor</code> field of a subclass.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs delphi">propRead(base,<span class="hljs-function"><span class="hljs-keyword">constructor</span>,<span class="hljs-title">val</span>) <span class="hljs-title">WHERE</span> <span class="hljs-title">val</span> \<span class="hljs-title">neq</span> \<span class="hljs-title">mbox</span><span class="hljs-comment">{function that has created}</span>~<span class="hljs-title">base</span></span></code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-12-inconsistentnewcallprefix">Chk-12. InconsistentNewCallPrefix</h5>
+<p>Find inconsistent usages of constructor functions.</p>
+<p>Warns if a function is called both with and without the <code>new</code> keyword.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs sql"><span class="hljs-operator"><span class="hljs-keyword">call</span>(*,f,*,*,<span class="hljs-keyword">false</span>) <span class="hljs-keyword">AND</span> <span class="hljs-keyword">call</span>(*,f,*,*,<span class="hljs-keyword">true</span>)</span></code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightCyan&gt;MultiEventPattern</span></p>
+<hr>
+<h5 id="chk-13-noeffectoperation">Chk-13. NoEffectOperation</h5>
+<p>Find property writes that have no effect.</p>
+<p>Excludes the following situations:</p>
+<ul>
+<li>set property to primitive values (checked by another checker)</li>
+<li>set NaN as property value, as NaN !== NaN</li>
+<li>set property to CSS objects, as the browser engine will automatically reformat the content</li>
+</ul>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs applescript">propWrite(base,<span class="hljs-property">name</span>,val) WHERE base.<span class="hljs-property">name</span> \neq val~\mbox{<span class="hljs-keyword">after</span> <span class="hljs-keyword">the</span> <span class="hljs-command">write</span>}</code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-14-nonnumericarrayproperty">Chk-14. NonNumericArrayProperty</h5>
+<p>Find code that reads or writes a non-numeric array property.</p>
+<p>Ignores properties that are defined in Array.prototype.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs vbnet">(propWrite(base,name,*) <span class="hljs-keyword">OR</span> propRead(base,name,*)) <span class="hljs-keyword">WHERE</span> isArray(base) <span class="hljs-keyword">AND</span> !isNumeric(name) <span class="hljs-keyword">AND</span> name \notin arrayProps)</code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-15-nonobjectprototype">Chk-15. NonObjectPrototype</h5>
+<p>Find code that sets the <code>prototype</code> property to a non-object.</p>
+<p>Prototypes must always be objects.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs tex">propWrite(*,name,val) WHERE name <span class="hljs-command">\in</span> <span class="hljs-command">\{</span>prototype, <span class="hljs-command">\_</span><span class="hljs-command">\_</span>proto<span class="hljs-command">\_</span><span class="hljs-command">\_</span><span class="hljs-command">\}</span> AND !isObject(val)</code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-16-overflowunderflow">Chk-16. OverFlowUnderFlow</h5>
+<p>Find numerical overflows and underflows.</p>
+<p>Looks for arithmetic operations where a finite value results in <br>
+an infinite value.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs tex">unOp(*,val,<span class="hljs-command">\infty</span>) WHERE val <span class="hljs-command">\neq</span> <span class="hljs-command">\infty</span> ORR
+binOp(*,left,right,<span class="hljs-command">\infty</span>) WHERE left <span class="hljs-command">\neq</span> <span class="hljs-command">\infty</span> AND right <span class="hljs-command">\neq</span> <span class="hljs-command">\infty</span> ORR
+call(builtin,*,args,<span class="hljs-command">\infty</span>,*) WHERE <span class="hljs-command">\infty</span> <span class="hljs-command">\notin</span> args</code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-17-overwrittenprototype">Chk-17. OverwrittenPrototype</h5>
+<p>Find code that overwrites in existing prototype object.</p>
+<p>Instead, the code may want to extend the existing prototype.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs tex">propWrite(base,name,*) WHERE name <span class="hljs-command">\in</span> <span class="hljs-command">\{</span>prototype, <span class="hljs-command">\_</span><span class="hljs-command">\_</span>proto<span class="hljs-command">\_</span><span class="hljs-command">\_</span><span class="hljs-command">\}</span> AND base.name<span class="hljs-special">~</span><span class="hljs-command">\mbox</span><span class="hljs-special">{</span>is a user-defined prototype before the write<span class="hljs-special">}</span></code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-18-setfieldofprimitive">Chk-18. SetFieldOfPrimitive</h5>
+<p>Find code that attempts to write a property of a primitive value.</p>
+<p>Such code will succeed because the primitive is coerced into an object, <br>
+but the write is meaningless as it doesn¡°`t modify the primitive.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs erlang"><span class="hljs-function"><span class="hljs-title">propWrite</span><span class="hljs-params">(base,*,*)</span> WHERE <span class="hljs-title">isPrim</span><span class="hljs-params">(base)</span></span></code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-19-shadowprotoproperty">Chk-19. ShadowProtoProperty</h5>
+<p>Find writes of an object property that shadows a prototype property.</p>
+<p>To reduce false warnings, ignore it if the base object of the put property <br>
+operation is a DOM HTML element.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs fsharp">propWrite(<span class="hljs-keyword">base</span>,name,<span class="hljs-keyword">val</span>) WHERE <span class="hljs-keyword">val</span>~\mbox{is defined <span class="hljs-keyword">in</span>}~ <span class="hljs-keyword">base</span>```s ~\mbox{prototype chain} AND !isFct(<span class="hljs-keyword">val</span>) AND (<span class="hljs-keyword">base</span>,name) \notin shadowingAllowed</code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-20-tostringgivesnonstring">Chk-20. ToStringGivesNonString</h5>
+<p>Find calls of <code>toString()</code> that return a non-string.</p>
+<p><code>toString()</code> should always return a string.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs oxygene">call<span class="hljs-comment">(*,toString,*,ret,*)</span> <span class="hljs-keyword">WHERE</span> !isString(ret)</code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-21-undefinedoffset">Chk-21. UndefinedOffset</h5>
+<p>Find code that attempts to access the <code>undefined</code> property.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs delphi">propWrite<span class="hljs-comment">(*,"undefined",*)</span> ORR
+propRead<span class="hljs-comment">(*,"undefined",*)</span></code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-22-addenumerablepropertytoobject">Chk-22. AddEnumerablePropertyToObject</h5>
+<p>Find code that adds an enumerable property to Object.</p>
+<p>Should be avoided because it affects every for..in loop in the program.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs vbnet">propWrite(<span class="hljs-built_in">Object</span>,*,*) ORR
+<span class="hljs-keyword">call</span>(<span class="hljs-built_in">Object</span>,defineProperty,args,*,*) <span class="hljs-keyword">WHERE</span> args.length = <span class="hljs-number">3</span> <span class="hljs-keyword">AND</span> args[<span class="hljs-number">2</span>].enumerable = <span class="hljs-literal">true</span></code></pre>
+<p><span>background-color:Gold&gt;MayNeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-23-delayedcodestring">Chk-23. DelayedCodeString</h5>
+<p>Find strings passed to setTimeout and setInterval.</p>
+<p>Should be avoided because it causes slowdown and because some <br>
+platforms do not support it (most browsers do, but node.js doesn¡°`t).</p>
+<p>Superseded by newer checker <code>DoubleEvaluation</code>.</p>
+<p><span>background-color:Gold&gt;MayNeedDynamic</span></p>
+<hr>
+<h5 id="chk-24-emptyclassinregexp">Chk-24. EmptyClassInRegexp</h5>
+<p>Find empty class in regular expression.</p>
+<p>The following example defines a regular expression including an empty character class:</p>
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-keyword">var</span> r = <span class="hljs-regexp">/^abc[]/</span>;</code></pre>
+<p>This error is raised to highlight code that may not work as you expect it to.  <br>
+According to the regular expression grammar in the ECMAScript standard, empty character  <br>
+classes are allowed. However, an empty character class can never match anything, meaning  <br>
+the regular expression in the example above will always fail to match. Since it¡°`s unlikely  <br>
+you intended such behaviour, a warning is raised to highlight the fact that you may have  <br>
+overlooked something, or simply made a small typo.</p>
+<p>However, static analysis may not accurately catch the following case:</p>
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-keyword">var</span> str = <span class="hljs-string">"^abc[]"</span>;
+...
+<span class="hljs-keyword">var</span> r = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(str);</code></pre>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs scss"><span class="hljs-function">lit(val)</span> WHERE <span class="hljs-function">isRegExp(val)</span> AND val~\mbox{contains "<span class="hljs-attr_selector">[]</span>"} ORR
+<span class="hljs-function">call(builtin,RegExp,args,*,*)</span> WHERE <span class="hljs-function">isString(args[<span class="hljs-number">0</span>])</span> AND args<span class="hljs-attr_selector">[0]</span>~\mbox{contains "<span class="hljs-attr_selector">[]</span>"}</code></pre>
+<p><span>background-color:Gold&gt;MayNeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-25-illegaluseofargumentsvariable">Chk-25. IllegalUseOfArgumentsVariable</h5>
+<p>Find code that accesses non-existing properties of the <code>arguments</code> variable.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs javascript">propRead(<span class="hljs-built_in">arguments</span>,name,*) WHERE name \notin argumentProps ORR
+propWrite(<span class="hljs-built_in">arguments</span>,*,*) ORR
+call(<span class="hljs-built_in">arguments</span>,concat,*,*,*)</code></pre>
+<p><span>background-color:Gold&gt;MayNeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-26-missradixarginparsenum">Chk-26. MissRadixArgInParseNum</h5>
+<p>Find calling <code>parseInt</code> function without the radix parameter.</p>
+<p>Use of parseInt function should include a second parameter indicating <br>
+the radix, otherwise the code may have different interpretation by different people.  </p>
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-built_in">parseInt</span>(<span class="hljs-string">"10"</span>);
+<span class="hljs-comment">// use the following instead</span>
+<span class="hljs-built_in">parseInt</span>(<span class="hljs-string">"10"</span>, <span class="hljs-number">10</span>);</code></pre>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs sql"><span class="hljs-operator"><span class="hljs-keyword">call</span>(builtin,parseInt,args,*,*) <span class="hljs-keyword">WHERE</span> args.length = <span class="hljs-number">1</span></span></code></pre>
+<p><span>background-color:Gold&gt;MayNeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-27-stylemisuse">Chk-27. StyleMisuse</h5>
+<p>Find code that compares a CSS object with a string.</p>
+<p>Even though style attributes can be set as a string in HTML, <br>
+this comparison is meaningless in JavaScript because the <code>style</code> property <br>
+is not a string and does not provide a toString() method.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs vbscript">binOp(eqOp,<span class="hljs-built_in">left</span>,<span class="hljs-built_in">right</span>) WHERE isCSSObj(<span class="hljs-built_in">left</span>) <span class="hljs-keyword">AND</span> isString(<span class="hljs-built_in">right</span>) ORR
+binOp(eqOp,<span class="hljs-built_in">left</span>,<span class="hljs-built_in">right</span>) WHERE isString(<span class="hljs-built_in">left</span>) <span class="hljs-keyword">AND</span> isCSSObj(<span class="hljs-built_in">right</span>)</code></pre>
+<p><span>background-color:Gold&gt;MayNeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-28-uncountablespaceinregexp">Chk-28. UncountableSpaceInRegexp</h5>
+<p>Find multiple empty spaces in a regular expression string, <br>
+which makes the code hard to read.</p>
+<p>It raises a warning when a regular expression literal <br>
+  contains two or more consecutive space characters.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs oxygene">(lit(val) <span class="hljs-keyword">OR</span> call<span class="hljs-comment">(*,RegExp,*,*,*)</span>) <span class="hljs-keyword">WHERE</span> isRegExp(val) <span class="hljs-keyword">AND</span> val~\mbox<span class="hljs-comment">{contains "~ ~"}</span></code></pre>
+<p><span>background-color:Gold&gt;MayNeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-29-usearrobjconstrwithoutarg">Chk-29. UseArrObjConstrWithoutArg</h5>
+<p>Find use of <code>Array</code> and <code>Object</code> constructor without parameter</p>
+<p>Try to use Array literal whenever possible <br>
+Generate a warning when encounter a call to the Array constructor  <br>
+preceded by the new operator with no arguments or more than one  <br>
+argument or a single argument that is not a number.</p>
+<p>For example:</p>
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(); <span class="hljs-comment">// generate warning</span>
+<span class="hljs-keyword">var</span> arr2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">10</span>); <span class="hljs-comment">// no warning</span></code></pre>
+<p>Static analysis can not easily catch the following case:</p>
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-keyword">var</span> ARRAY_ORIG = <span class="hljs-built_in">Array</span>;
+...
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> ARRAY_ORIG();</code></pre>
+<p>Similarly, the object literal notation {} is preferable error (and the <br>
+alternative Use the object literal notation {} and Use the object  <br>
+literal notation {} or Object.create(null) error) are thrown when  <br>
+JSLint, JSHint and ESLint encounter a call to the Object constructor  <br>
+preceded by the new operator.</p>
+<p>For example:</p>
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// this leads to a warning</span>
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>();</code></pre>
+<p>Similar to the previous rule, this cannot be accurately caught by  <br>
+static analysis due to the limitation of alias analysis.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs vbscript"><span class="hljs-keyword">call</span>(builtin,f,args,*,*) WHERE (<span class="hljs-built_in">isArray</span>(f) <span class="hljs-keyword">OR</span> <span class="hljs-built_in">isObject</span>(f)) <span class="hljs-keyword">AND</span> args.length = <span class="hljs-number">0</span></code></pre>
+<p><span>background-color:Gold&gt;MayNeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-30-dsstore">Chk-30. .DS_Store</h5>
+<hr>
+<h5 id="chk-31-functionasobject">Chk-31. FunctionAsObject</h5>
+<p>Find code that uses functions as objects, i.e., code that stores properties in function objects.</p>
+<p>It turns out that using functions as objects is common, so this checker results in many (false) warnings.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs cs">(propRead(<span class="hljs-keyword">base</span>,name,*) OR propWrite(<span class="hljs-keyword">base</span>,name,*)) WHERE isFct(<span class="hljs-keyword">base</span>) AND name \notin expectedFctProps)</code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span>, <span>background-color:IndianRed&gt;Obsolete</span></p>
+<hr>
+<h5 id="chk-32-similarpropertyname">Chk-32. SimilarPropertyName</h5>
+<p>Find accesses of non-existing properties, <br>
+where a property with a similar name exists.</p>
+<p>Intended to catch typos in property names. <br>
+Current version has many false positives; needs more work to become an effective checker.</p>
+<p><em>Pattern:</em></p>
+<pre class="prettyprint"><code class=" hljs autohotkey">propRead(base,name,val) WHERE val = undefined <span class="hljs-literal">AND</span> \exists~ name<span class="hljs-escape">``</span><span class="hljs-escape">`~</span>.~base.name<span class="hljs-escape">``</span><span class="hljs-escape">` </span>\neq undefined <span class="hljs-literal">AND</span> similar(name,name<span class="hljs-escape">``</span><span class="hljs-escape">`)</span></code></pre>
+<p><span>background-color:LawnGreen&gt;NeedDynamic</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span>, <span>background-color:IndianRed&gt;Obsolete</span></p>
+<hr>
+<h5 id="chk-33-constructwrappedprimitive">Chk-33. ConstructWrappedPrimitive</h5>
+<p>Finds calls of constructors that should not be called.</p>
+<p>E.g., constructors that wrap primitives, such as Number().</p>
+<p><span>background-color:Gold&gt;MayNeedDynamic</span>, <span>background-color:IndianRed&gt;Obsolete</span></p>
+<hr>
+<h5 id="chk-34-accesstoproto">Chk-34. AccessToProto</h5>
+<p>Find accesses of the <code>__proto__</code> property.</p>
+<p>Accessing this property is deprecated.</p>
+<p><span>background-color:Coral&gt;CanCheckStatically</span>, <span>background-color:IndianRed&gt;Obsolete</span>, <span>background-color:LightBlue&gt;SingleEventPattern</span></p>
+<hr>
+<h5 id="chk-35-extracommainarrayliteral">Chk-35. ExtraCommaInArrayLiteral</h5>
+<p>Finds extra commas in array literals.</p>
+<p><span>background-color:Coral&gt;CanCheckStatically</span>, <span>background-color:IndianRed&gt;Obsolete</span></p>
+<hr>
+<h5 id="chk-36-overwritebuiltinvariable">Chk-36. OverwriteBuiltinVariable</h5>
+<p>Find assignments that overwrite a built-in variable.</p>
+<p>Built-in variables, such as <code>arguments</code> and <code>String</code> should not be <br>
+overwritten by any JS program.</p>
+<p><span>background-color:Coral&gt;CanCheckStatically</span>, <span>background-color:IndianRed&gt;Obsolete</span></p>
+<hr>
+<h5 id="chk-37-reservedwordreference">Chk-37. ReservedWordReference</h5>
+<p>Find writes to local variables that have a reserved name.</p>
+<p>Reserved names considered here include, e.g., <code>enum</code> and <code>float</code>.</p>
+<p><span>background-color:Coral&gt;CanCheckStatically</span>, <span>background-color:IndianRed&gt;Obsolete</span></p>
+<hr>

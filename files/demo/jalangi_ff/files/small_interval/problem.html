@@ -1,0 +1,4 @@
+<h4>Do Not Call setInterval with Too Small Interval</h4>
+Time resolution on Windows systems is 15 milliseconds, meaning that it will interpret a time delay of 15 as either 0 or 15, depending on when the system
+time was last updated. Setting timer delays of less than 15 can cause browser locking in Internet Explorer, so the smallest recommended delay is 
+25 milliseconds to ensure a delay of at least 15 milliseconds.

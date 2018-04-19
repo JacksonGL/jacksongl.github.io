@@ -1,0 +1,705 @@
+<html>
+<head>
+    <title>Online Demo</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spectrum-based Fault Localization for JavaScript">
+    <meta name="keywords" content="Jalangi,Spectrum,fault localization,bug localization,JavaScript,">
+    <meta name="author" content="Liang Gong">
+    <link href="css/bootstrap.css" rel="stylesheet">
+  
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="css/modern-business.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="highlight/styles/zenburn.css">
+	<link href='font/font.css' rel='stylesheet' type='text/css'>
+	<link href='font/roboto/font-roboto.css' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/screen2.css">
+	<link rel="stylesheet" href="css/codemirror.css">
+	<link rel="stylesheet" href="css/fault_loc.css">
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/esprima.js"></script>
+	<script src="js/escodegen.browser.js"></script>
+	<script src="js/modern-business.js"></script>
+	<script src="files/fault_loc/faultLocFramework.js"></script>
+<!--  <script src="js/jalangi.js"></script> -->
+</head>
+<body>
+	<script>
+	if (/MSIE (\d+\.\d+);/.test(navigator.userAgent))
+	{ 
+		document.write('<p style="position: absolute; top: 10%; left: 20%; width: 60%; height: 95% font-size:20px; font-family: Verdana;"><h>Please visit this website using Firefox, Chrome, Opera, Safari, IE 11 or newer version :) <br/>For those of you who uses IE earlier version or develops IE, no offence. But this website does not work in Internet Explorer 10 or earlier version due to some cross platform issues. Anyone who\'s been developing on-page JavaScript Code knows that coding for multiple browsers is a nontrivial task, and unfortunately I am just <a href="https://www.linkedin.com/pub/liang-gong/37/a37/516">a poor graduate student</a> in Berkeley without much spare time to guarantee this websites work on every browser. Thank you for your attention and patience :)</h><br/><img src="imgs/sshot-1.png" style="width: 100%; height: 100%;" alt="screen shot"></img></p>');
+		document.execCommand('Stop');
+	}
+	</script>
+	<!--<a href="https://github.com/SRA-SiliconValley/jalangi"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 1200;" src="imgs/fork.png" alt="Fork me on GitHub"></a>-->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
+                <a class="navbar-brand" href="index.html">A Demo of Fault Localization</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#about">About</a>
+                    </li>
+					<li><a href="index.html">Instrumentation Framework</a>
+                    </li>
+					<li><a href="demo_integrated.htm">More Demos</a>
+                    </li>
+                    <li><a href="https://www.linkedin.com/pub/liang-gong/37/a37/516">People</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+	
+  
+  <br>
+  <div class="container">
+    <h3>Fault Localization and Auto-grading for MOOC</h3>
+    <p>
+      This is an online demo demonstrating how Jalangi works, feel free to copy and paste your own solution and reference solution. Have fun!!
+    </p>
+		<div class="row" style="vertical-align: middle;">
+			<div class="col-lg-6 col-md-6 col-sm-6">
+				<h4 style="float:left; width: 550px">How to play with these four file editors?</h4> <a style="margin-top: 8px; margin-left: -160px;" class="show-detail" id="show_file_org" href="#">More Details</a>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2" >
+			    <li class="dropdown" style="list-style-type: none">
+						<a data-toggle="dropdown" class="more-demos dropdown-toggle" id="show_file_org" href="#" style="margin-left: -80px; margin-top: 8px;">More Examples <b class="caret"></b></a>
+                        <ul class="dropdown-menu" style="margin-left: -80px;">
+                            <li><a href="javascript: reloadAnalysisFiles('sample1')">Find Max Multiple Fault</a>
+                            </li>
+							<li><a href="javascript: reloadAnalysisFiles('sample6')">Find Abs Fault (cheating)</a>
+                            </li>
+                            <li><a href="javascript: reloadAnalysisFiles('sample2')">Find Max Single Fault</a>
+                            </li>
+							<li><a href="javascript: reloadAnalysisFiles('sample3')">Quick Sort Single Fault</a>
+                            </li>
+							<li><a href="javascript: reloadAnalysisFiles('cs61b_smooth')">Berkeley CS61B Homework3 Part I</a>
+                            </li>
+							<li><a href="javascript: reloadAnalysisFiles('cs61b_squish')">Berkeley CS61B Homework3 Part II</a>
+                            </li>
+							<li><a href="javascript: reloadAnalysisFiles('cs61b_twin')">Berkeley CS61B Homework3 Part III</a>
+                            </li>
+							<li><a href="javascript: reloadAnalysisFiles('dLinkList')">Double Linked List</a>
+                            </li>
+							<li><a href="javascript: reloadAnalysisFiles('bst')">Binary Search Tree</a>
+                            </li>
+							<li><a href="javascript: reloadAnalysisFiles('sample7')">Merge Sort Single Fault</a>
+                            </li>
+							<li><a href="javascript: reloadAnalysisFiles('heapsort')">Heap Sort Single Fault</a>
+                            </li>
+							<li><a href="javascript: reloadAnalysisFiles('sample4')">Quick Sort Single Fault-2</a>
+                            </li>
+							<li><a href="javascript: reloadAnalysisFiles('sample5')">Quick Sort Single Fault-3</a>
+                            </li>
+							<li><a href="javascript: reloadAnalysisFiles('myqsort')">My Quick Sort</a>
+                            </li>
+                        </ul>
+                </li>	
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2" >
+				<a style="margin-left: -120px; margin-top: 8px;" class="show-detail" id="show_fault_pubs" href="#">Publications</a>
+			</div>
+		</div>
+	
+            <div class="row" id="mechanism_explain" style="display: none">
+                <div class="col-lg-7 col-md-7 col-sm-7">
+					<p>
+					The figure on the right-hand side illustrates the relations between the four online editors.
+					</p>
+                    <p>
+						<b>Target code</b> is the source code to be transformed and analysed. <br/> 
+						<tt>(Modify this file to see how Jalangi transform different program constructs.)</tt>
+					</p>
+					<p>
+						<b>Transformed code</b> is the target code transformed by Jalangi. It adds hooks (e.g., J$.R for variable read etc.) which invoke functions defined in <tt>analysis.js</tt>.<br/> 
+						<tt>(You cannot modify this code, as transformation is Jalangi's job.)</tt>
+					</p>
+					<p>
+						<b>analysis.js</b> is the Jalangi runtime framework code that implements those hooks called in transformed code. Those hooks retain the semantics of the target code and invoke third-party call back functions defined in <tt>Third-party plugin</tt>.<br/> 
+						<tt>(You can modify this file but we recommend you do your modification in <tt>third-party plugin</tt>.)</tt>
+					</p>
+					<p>
+						<b>Third-party plugin</b> is the file written by third-party program analysis developers (that is YOU!!), overriding those predefined APIs allows you to intercept those execution events and do program analysis.<br/>
+						<tt>(Modify this file to create whatever program analysis module you want.)</tt>
+					</p>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5">
+                    <img class="img-responsive" style="width:400px;" src="imgs/file_org.png">
+                </div>
+            </div>
+			
+			<div class="row" id="prev_pubs" style="display: none; padding-left: 20px;">
+				<h4 >Publications</h4>
+				<p> Liang Gong: Auto-Grading Dynamic Programming Language Assignments. Technical Report, UC Berkeley, 2014 <a href="files/fault_loc/report/LiangGong.technical-report.pdf">pdf</a> <a href="files/fault_loc/report/LiangGong.cs294-98-poster.pdf">poster</a>
+				<br/>
+				<p> Liang Gong, David Lo, Lingxiao Jiang, Hongyu Zhang: Interactive fault localization leveraging simple user feedback. ICSM 2012: 67-76 <a href="http://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CDAQFjAA&url=http%3A%2F%2Fwww.mysmu.edu%2Ffaculty%2Flxjiang%2Fpapers%2Ficsm12interactiveFL.pdf&ei=gZU3U5idOITs2wWD2YDQDA&usg=AFQjCNFZRkDBDZYtv_vpwNqmLbjkw3zuWw&sig2=gPSdjrBMM39CiELWXjiKSA">pdf</a>
+				<br/>
+				<p> Liang Gong, David Lo, Lingxiao Jiang, Hongyu Zhang: Diversity maximization speedup for fault localization. ASE 2012: 30-39 <a href="http://www.mysmu.edu/faculty/lxjiang/papers/ase12FLspeedup.pdf">pdf</a>
+			</div>
+	</p>
+    <p>
+      This is an interactive tutorial, code is transformed as you type.
+      To execute a piece of code press the Run button or <tt>Ctrl-Enter</tt> or <tt>Cmd-Enter</tt>. The <tt>transformed code</tt> will be executed which invokes hooks in <tt>analysis.js</tt>, which in turn invokes the third-party analysis module (written by you) defined in <tt>third-party plugin</tt>. 
+    </p>
+	<p id='problem-description'>
+	</p>
+	
+
+	<pre class="faulty_code" id="faulty_code_id">
+	/* faulty code */
+	</pre>
+
+	<pre class="ref_imp_code" id="ref_imp_id">
+	/* Code of reference implementation */
+	</pre>
+
+	<pre class="example">
+	</pre>
+
+	<pre class="analysis_code" id="analysis_id">
+	/* Code of analysis.js */
+	</pre>
+
+	<pre class="plugin_code" id="plugin_id">
+	/* Code of third-party plugin */
+	</pre>
+
+
+	<h4>Acknowledgements</h4>
+	<p>
+	  <a href="http://esprima.org/">Esprima</a>, <a href="http://marijnhaverbeke.nl/acorn/">Acorn</a> and
+	  <a href="https://github.com/Constellation/escodegen">Escodegen</a> for parsing and code generation, and
+	  <a href="http://codemirror.net/">CodeMirror</a> for the code editor.
+	</p>
+	</div>
+
+	<div class="container">
+
+        <hr>
+
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+					<p>
+					  <a href="http://www.eecs.berkeley.edu/">
+						  <img src="imgs/berkeley.jpg" width="70" height="70">
+					  </a>
+					  <a href="http://www.mozilla.org/en-US/research/">
+						  <img src="imgs/mozilla_wordmark.png" width="150" >
+					  </a>
+					  <a href="http://www.sisa.samsung.com/">
+						  <img src="imgs/Samsung-logo1.jpg" width="130" >
+					  </a>
+					  
+					  
+					</p>
+					<p>&copy;  Liang Gong, Electric Engineering  &amp; Computer Science, University of California, Berkeley. <br/>
+					Powered by Bootstrap.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+<script src="js/codemirror.js"></script>
+<script>
+// target relative path
+// example: "files/target1.js"
+function resetTargetCode(url){
+	// request target code content
+	$.ajax({ type: "GET",   
+			 url: url,
+			 dataType: "text",
+			 async: true,
+			 success : function(data) {
+				codeMirrors['ex:0:source'].setValue(data);
+			 }
+	});
+}
+
+// target relative path
+// example: "files/ref_imp.js"
+function resetRefImpCode(url){
+	// request reference implementation content
+	$.ajax({ type: "GET",   
+			 url: url,
+			 dataType: "text",
+			 async: true,
+			 success : function(data) {
+				codeMirrors['ex:1:source'].setValue(data);
+			 }
+	});
+}
+
+// target relative path
+// example: "files/analysis.js"
+function resetAnalysisCode(url){
+	// request analysis.js content
+	$.ajax({ type: "GET",   
+			 url: url,
+			 dataType: "text",
+			 async: true,
+			 success : function(data) {
+				codeMirrors['ex:2:source'].setValue(data);
+			 }
+	});
+}
+
+// target relative path
+// example: "files/plugin.js"
+function resetPluginCode(url){
+	// request plugin.js content
+	$.ajax({ type: "GET",   
+			 url: url,
+			 dataType: "text",
+			 async: true,
+			 success : function(data) {
+				codeMirrors['ex:3:source'].setValue(data);
+			 }
+	});
+}
+
+// target relative path
+// example: "files/faultLocAlg.js"
+function resetfaultLocAlg(url){
+	// request faultLocAlg.js content
+	$.ajax({ type: "GET",   
+			 url: url,
+			 dataType: "text",
+			 async: true,
+			 success : function(data) {
+				codeMirrors['ex:4:source'].setValue(data);
+			 }
+	});
+}
+
+
+
+function resetProblemDescription(url){
+	var isFadeOut = false;
+	var isReceived = false;
+	var receivedData = null;
+	
+	function trigger(){
+		if(isFadeOut && isReceived) {
+			$('#problem-description').html(receivedData).show('slow');
+		}
+	}
+	
+	$('#problem-description').hide('slow', function() {isFadeOut = true; trigger();});
+	// request problem.html content
+	$.ajax({
+		type: "GET",
+		url: url,
+		dataType: "text",
+		async: true,
+		success: function(data) {
+			receivedData = data;
+			var tmpData = replaceAll(' ', '', receivedData);
+			if(tmpData.length > 0) {
+				isReceived = true;
+				trigger();
+			}
+		}
+	});
+}
+
+function reloadAnalysisFiles(analysis_name) {
+	resetTargetCode("files/fault_loc/" + analysis_name + "/target1.js");
+	resetAnalysisCode("files/fault_loc/analysis.js");
+	resetPluginCode("files/fault_loc/" + analysis_name + "/plugin.js");
+	resetRefImpCode("files/fault_loc/" + analysis_name + "/ref_imp.js");
+	resetProblemDescription("files/fault_loc/" + analysis_name + "/problem.html");
+}
+
+var id = 2;
+
+// integrate analysis code with plugin code
+$('.analysis_code').replaceWith(function() {
+  var plugin_code = ($('#plugin_id'))[0].innerHTML;
+  var plugin_id = ($('#plugin_id'))[0].id;
+  var analysis_id = this.id;
+  var src = this.innerHTML;
+  var lineCount = src.split("\n").length;
+  var res = '<table class="analysis_code"><tr><td><textarea id="ex:' + (id++) + ':source" class="jcCode" rows="' + lineCount + '" spellcheck="false">' + src + '</textarea></td><td><textarea id="ex:' + (id) + ':source" class="jcCode" rows="' + lineCount + '" spellcheck="false">' + plugin_code + '</textarea></td></tr></table>';
+  id++;
+  return res;
+});
+
+id = 0;
+
+// integrate fault Localization algorithm code with reference implementation code
+$('.faulty_code').replaceWith(function() {
+  var ref_imp_code = ($('#ref_imp_id'))[0].innerHTML;
+  var ref_imp_id = ($('#ref_imp_id'))[0].id;
+  var faultLocAlg_id = this.id;
+  var src = this.innerHTML;
+  var lineCount = src.split("\n").length;
+  var res = '<table class="analysis_code"><tr><td><textarea id="ex:' + (id++) + ':source" class="jcCode jcCodeTarget" rows="' + lineCount + '" spellcheck="false">' + src + '</textarea></td><td><textarea id="ex:' + (id) + ':source" class="jcCode" rows="' + lineCount + '" spellcheck="false">' + ref_imp_code + '</textarea></td></tr></table><table class="toolbar"><tr><td><div id="ex:' + id + '" class="minibutton run" title="Ctrl-Enter">Run</div></td></tr></table>';
+  id++;
+  return res;
+});
+
+/**/
+
+id = 4;
+
+$('.example').replaceWith(function() {
+  var src = this.innerHTML;
+  var lineCount = src.split("\n").length;
+  var res = '<table class="example"><tr><td><textarea id="ex:' + id + ':source" class="jcCode" rows="' + lineCount + '" spellcheck="false">' + src + '</textarea></td><td valign="top"><pre style=\"overflow: auto; overflow-y: scroll; height:100%\" id="ex:' + id + ':result" class="jcResult"></pre></td></tr></table>';
+  id ++;
+  return res;
+});
+
+$('#show_file_org').click(function (){
+	if($('#mechanism_explain').is(":visible")){
+		$('#mechanism_explain').hide('slow');
+		$('#show_file_org').html('More Details');
+	} else {
+		$('#mechanism_explain').show('slow');
+		$('#show_file_org').html('Hide Details')
+	}
+	
+});
+
+$('#show_fault_pubs').click(function (){
+	if($('#prev_pubs').is(":visible")){
+		$('#prev_pubs').hide('slow');
+		$('#show_fault_pubs').html('Publications');
+	} else {
+		$('#prev_pubs').show('slow');
+		$('#show_fault_pubs').html('Hide Pubs')
+	}
+	
+});
+
+//simply remove the plugin code <pre>
+$('.plugin_code').replaceWith(function() {
+	return "";
+});
+
+//simply remove the ref code <pre>
+$('.ref_imp_code').replaceWith(function() {
+	return "";
+});
+
+var lastMarker;
+
+window.getLocationFromIID = function (iid) {
+	var location = window.iidToLocationMap[iid];
+	var loc = '';
+	if (location) {
+		loc = 'line No.: ' + location[1] + ', col: ' + location[2];
+	} else {
+		loc = '[iid]: ' + iid;
+	}
+	return loc;
+}
+
+function replaceAll(find, replace, str) {
+	return str.replace(new RegExp(find, 'g'), replace);
+}
+
+function compileExample(ex) {
+	var this_obj = this;
+	try {
+		esnstrument.setBaseIid; // check if esnstrument is ready
+	} catch(e) {
+		setTimeout(function () {compileExample.call(this_obj, ex);}, 400); // call it later
+	}
+	
+	if (lastMarker) {
+		this.clearMarker(lastMarker);
+	}
+	var number = ex.split(":")[1];
+	var result = document.getElementById("ex:4:result");
+	try {
+		var source = this.getValue();
+		esnstrument.setBaseIid(0);
+		var inst_code = '/* Code transformed by Jalangi */ \n' + esnstrument.instrumentCode(source, true, '');
+		result.innerHTML = inst_code;
+	} catch (x) {
+		result.innerHTML = x.message;
+		if (x.lineNumber) {
+			lastMarker = this.setMarker(x.lineNumber - 1, "<span style=\"color: #900\">x</span> %N%");
+		}
+	}
+}
+
+var Timer = (function () {
+	function timer() {
+		this.name = null;
+		this.start = null;
+	}
+
+	timer.prototype.begin = function (name) {
+		if (this.start) {
+			if (this.name) {
+				trace("Timer: " + (new Date() - this.start) + " ms: " + this.name);
+			} else {
+				trace("Timer: " + (new Date() - this.start) + " ms.");
+			}
+		}
+		this.start = new Date();
+		this.name = name;
+	};
+
+	return timer;
+})();
+
+var timer;
+var trace;
+
+function require(name) {
+	if (name === "memory") {
+		return memory;
+	}
+	return null;
+}
+
+
+// reset the configuration after every round of fault localization
+function resetConfig() {
+	var config = {};
+	config.inputMatrix = [];
+	config.traces = [];
+	config.oracles = [];
+	config.refOracles = [];
+	config.isReference = false;
+	if(window.faultLocConfig) { // clear markers created in the last round
+		var hisMarkers = window.faultLocConfig.hisMarkers;
+		if(hisMarkers) {
+			for(var i=0;i<hisMarkers.length;i++) {
+				//console.log(hisMarkers);
+				hisMarkers[i].clear();
+			}
+		}
+	}
+	
+	config.hisMarkers = [];
+	window.faultLocConfig = config;
+}
+
+function executeExample(id, enableMemCheck) {
+  var number = id.split(":")[1];
+  var result = document.getElementById("ex:4:result");
+  try {
+    timer = new Timer();
+    result.innerHTML = "";
+    trace = function (x) {
+      result.innerHTML += x + "\n";
+    };
+	//append analysis.js and plugin.js
+	var pluginCode = codeMirrors['ex:3:source'].getValue();
+	var analysisCode = codeMirrors['ex:2:source'].getValue();
+	var faultLocAlgorithmCode = codeMirrors['ex:4:source'].getValue();
+	var refCode = codeMirrors['ex:1:source'].getValue();
+	
+	result.innerHTML += "-----------------------------------------------------\n";
+	start = new Date();
+	var source = codeMirrors['ex:0:source'].getValue();
+	
+	esnstrument.setBaseIid(0);
+	var inst_code = '/*Jalangi Transformed:*/ \n' + esnstrument.instrumentCode(source, true, '');
+	inst_code =  analysisCode + '\n\n' + pluginCode + '\n\n' + inst_code;
+	var intercept_console_code = "window.faultLocConfig.console_log = console.log; console.log = function (str) {if(typeof str === 'undefined'){str = '';} else if (typeof str ==='object') {consoleOutput += ('' + str.toString() + '\\n');} else  consoleOutput += ('' + str + '\\n');}; \n";
+	var unintercept_console_code = 'console.log = window.faultLocConfig.console_log;';
+	result.innerHTML += "code transformed in: " + (new Date() - start) + " ms\n";
+    start = new Date();
+	
+	//reset the editor marker
+	var targetDoc = codeMirrors['ex:0:source'];
+	
+	// configuration before run
+	resetConfig();
+	consoleOutput = '';
+	//set the fault localization algorithm
+	new Function(faultLocAlgorithmCode)();
+	
+	var instCodeModule = new Function('try{\n' + inst_code + '}catch(e){console.log(e); console.log(e.stack);}');
+	var refCodeModule = new Function('try{\n' + analysisCode + '\n\n' + refCode + '}catch(e){console.log(e); console.log(e.stack);}');
+	
+	// repeatedly run the experiment
+	// start intercepting console.log
+	new Function(intercept_console_code)();
+    for(var rep_index = 0; rep_index<200; rep_index++) {
+		consoleOutput += '---round ' + rep_index + '---\n';
+		window.faultLocConfig.isReference = false;
+		instCodeModule(); // it will collect input and output
+		var profile = J$.analysis.getTrace();
+		window.faultLocConfig.traces.push(profile);
+		
+		// run the new input on reference implementation
+		window.faultLocConfig.isReference = true;
+		refCodeModule(); // it will collect input and output
+	}
+	// unintercept console.log
+	new Function(unintercept_console_code)();
+	
+	// finally run fault localization
+	var scores = faultLocCore.faultLocalization();
+	//console.dir(scores);
+
+	//console.dir(window.iidToLocationMap);
+	// mark lines and columns according to the results.
+	for (var i = 0; i < scores.length; i++) {
+		if (scores[i]) {
+			var iid = i;
+			if(!window.iidToLocationMap[iid]) {
+				console.warn('iid to location map: ' + iid + ' does not exist.');
+				continue;
+			}
+			var lineNo = window.iidToLocationMap[iid][1];
+			var startColumn = window.iidToLocationMap[iid][2];
+			var endColumn = window.iidToLocationMap[iid][3];
+			var marker = targetDoc.markText({
+				line : lineNo - 1,
+				ch : startColumn - 1
+				}, {
+					line : lineNo - 1,
+					ch : endColumn - 1
+				},
+				'error-marker-' + parseInt(scores[i] * 15));
+			window.faultLocConfig.hisMarkers.push(marker);
+		}
+	}
+	// run it one more time to get console output
+	//instCodeModule();
+	
+    timer.begin(null);
+    result.innerHTML += "-----------------------------------------------------\n";
+    result.innerHTML += "Executed in : " + (new Date() - start) + " ms.\n";
+	if(typeof consoleOutput !== 'undefined'){
+		result.innerHTML += "-----------------------------------------------------\n";
+		result.innerHTML += ("Console output : \n" + consoleOutput);
+	}
+  } catch (x) {
+    result.innerHTML = x.message;
+  }
+}
+
+var codeMirrors = {};
+
+$('.jcCode').each(function () {
+	var id = this.id;
+	//console.log(id);
+	if (id === 'ex:0:source') {
+		var cm = codeMirrors[id] = CodeMirror.fromTextArea(this, {
+				tabSize : 2,
+				lineNumbers : true,
+				gutter : true,
+				onChange : function () {
+					compileExample.call(cm, id);
+				},
+				extraKeys : {
+					"Ctrl-Enter" : function () {
+						executeExample.call(cm, id);
+					},
+					"Cmd-Enter" : function () {
+						executeExample.call(cm, id);
+					}
+				},
+				theme: 'jacksongl'
+			});
+		compileExample.call(cm, id);
+	} else {
+		codeMirrors[id] = CodeMirror.fromTextArea(this, {
+				tabSize : 2,
+				lineNumbers : true,
+				gutter : true,
+				theme: 'jacksongl'
+			});
+	}
+});
+
+$('.jcCodeTarget').each(function() {
+  var id = this.id;
+});
+
+var param = get_HTTP_GET_parameter();
+
+switch(param) {
+	case 'sample1': break;
+	case 'sample2': break;
+	case 'sample3': break;
+	case 'sample4': break;
+	case 'sample5': break;
+	case 'sample6': break;
+	case 'sample7': break;
+	case 'myqsort': break;
+	case 'cs61b_smooth': break;
+	case 'cs61b_squish': break;
+	case 'cs61b_twin': break;
+	case 'dLinkList': break;
+	case 'bst': break;
+	case 'heapsort': break;
+	default: param = 'sample1';
+}
+resetTargetCode("files/fault_loc/" + param + "/target1.js");
+resetAnalysisCode("files/fault_loc/analysis.js");
+resetPluginCode("files/fault_loc/" + param + "/plugin.js");
+resetProblemDescription("files/fault_loc/" + param + "/problem.html");
+resetfaultLocAlg("files/fault_loc/faultLocAlg.js");
+resetRefImpCode("files/fault_loc/" + param + "/ref_imp.js");
+
+
+
+
+$('.run').click(function() {
+  var number = this.id.split(":")[1];
+  executeExample.call(codeMirrors["ex:" + number + ":source"], this.id);
+});
+
+$('.runMemCheck').click(function() {
+  var number = this.id.split(":")[1];
+  executeExample.call(codeMirrors["ex:" + number + ":source"], this.id, true);
+});
+
+
+// change console output size dynamically according to the target code editor size
+var targetEditor = $(document.getElementsByClassName('CodeMirror-lines')[2]);
+var outputWindow = document.getElementById('ex:4:result');
+setInterval(function(){
+	//console.log('height: ' + targetEditor.height());
+	outputWindow.style.height = (targetEditor.height() + 20) + 'px';
+	}
+,100);
+
+</script>
+
+<!-- JavaScript -->
+    <script src="js/bootstrap.js"></script>
+    
+	
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-47272416-1', 'berkeley.edu');
+	  ga('send', 'pageview');
+
+	</script>
+	
+</body>
+</html>

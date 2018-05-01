@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="online lambda calculus interpreter">
+      <meta name="author" content="Liang Gong">
+      <meta name="keywords" content="lambda calculus, online interpreter, javascript">
+      <link rel="icon" href="img/lambda.ico">
+      <title>Lambda Calculus Interpreter</title>
+      <link href="css/min/min.css" rel="stylesheet">
+      <!-- Bootstrap core CSS -->
+      <!--<link href="css/bootstrap.css" rel="stylesheet">-->
+      <!-- Custom styles for this template -->
+      <!--<link href="css/cover.css" rel="stylesheet">-->
+      <!--<link href="css/console.css" rel="stylesheet" />-->
+      <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+      <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+      <!--<script src="js/ie-emulation-modes-warning.js"></script>-->
+      <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+      <!--<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />-->
+      <!--<style type="text/css" id="holderjs-style"></style>-->
+   </head>
+   <body>
+      <div class="site-wrapper">
+         <div class="site-wrapper-inner">
+            <div class="cover-container">
+               <div class="masthead clearfix">
+                  <div class="inner">
+                     <h3 class="masthead-brand">&lambda; Calculus Interpreter</h3>
+                     <ul id="navMenu1" class="masthead-nav">
+                        <li data-menuanchor="firstPage" class="active"><a href="#firstPage">Console</a></li>
+                        <li data-menuanchor="secondPage"><a href="#secondPage">Features</a></li>
+                     </ul>
+                  </div>
+               </div>
+               <div id="fullpage">
+                  <!--first slide-->
+                  <div class="section">
+                     <div class="inner cover">
+                        <!--<p class="lead">A simple console for formatting, static checking and interpreting &lambda; Calculus.</p>-->
+                        <p style="text-align: left;">
+                           A simple input sample: <span class="code">(lambda x.(x x))</span>. Or type <span class="code">help</span> to learn more. <br/>
+                           Try a complicated one:  <span class="code">(((lambda  x y.(y x))(((((lambda x y. (y x))(((lambda x.x) 12)))) (lambda x.x))))(lambda x.x)) </span>
+                        </p>
+                        <div id="console"></div>
+                     </div>
+                  </div>
+                  <!--second slide-->
+                  <div class="section">
+                     <div class="inner cover">
+                        <h1 class="cover-heading">What is &lambda; Calculus?</h1>
+                        <!--<p class="lead">A simple console for formatting, type checking and interpreting &lambda; Calculus.</p> -->
+                        <ul class="description">
+                           <li>
+                              <b><span style="color:yellow">&lambda; Calculus</span> is considered as the smallest universal programming language.</b>
+                           </li>
+                           <li>
+                              The &lambda; calculus is developed as a theory of functions for manipulating functions in a purely syntactic manner.
+                           </li>
+                           <li>
+                              All functional programming languages can be viewed as syntactic variations of the lambda calculus, so that both their semmantics
+                              and implementation can be analysed in the context of the lambda calculus.
+                           </li>
+                           <!--<li>
+                              A function is a mapping from the elements of a domain set to the elements of a codomain set given by a rule.
+                              </li>-->
+                           <li>
+                              <b>Church's Thesis</b>: The effectively computable functions on the positive integers are precisely those functions definable in the pure
+                              lambda calculus (and computable by Turing machines). <br>
+                              The term "thesis" means a conjecture. But since all methods developed for computing
+                              functions have been proved to be no more powerful than the lambda calculus, it captures the idea of computable functions as well as we
+                              can hope.
+                           </li>
+                           <li>
+                              Introduction to &lambda; Calculus is publicly available <a href="http://www.cis.upenn.edu/~bcpierce/tapl/" style="color: yellow;">here</a> and <a href="http://homepage.cs.uiowa.edu/~slonnegr/plf/Book/Chapter5.pdf" style="color: yellow;">here</a>.
+                           </li>
+                        </ul>
+                        <h2>
+                        Features</h1>
+                        <ul class="description">
+                           <li>
+                              Automatic formatting
+                           </li>
+                           <li>
+                              Check unbound variables
+                           </li>
+                           <li>
+                              Alpha reduction (eliminate duplicated variable name)
+                           </li>
+                           <li>
+                              Normal order reduction and normal order evaluation
+                           </li>
+                           <li>
+                              Identify infinite reduction
+                           </li>
+                           <li>
+                              More features on the way...</br>
+                              <a style="color: yellow;" href="mailto:gongliang13@berkeley.edu">Let me know</a> if you have new ideas or suggestions.
+                           </li>
+                        </ul>
+                        <!--<a href="#" class="btn btn-lg btn-default">Learn More</a>-->
+                     </div>
+                  </div>
+               </div>
+               <div class="mastfoot">
+                  <div class="inner">
+                     <p>© <a href="http://jacksongl.github.io/">Liang Gong</a>, Electric Engineering & Computer Science, University of California, Berkeley.</p>
+                     <p>Powered by Bootstrap, template by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--
+      <script language="JavaScript1.5" type="text/javascript" src="js/bootstrap.js"></script>
+      <script language="JavaScript1.5" type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+      <script language="JavaScript1.5" type="text/javascript" src="js/jquery.console.js"></script>
+      <script language="JavaScript1.5" type="text/javascript" src="js/lambda_parser.js"></script>
+      <script language="JavaScript1.5" type="text/javascript" src="js/lambda_gen.js"></script>
+      <script language="JavaScript1.5" type="text/javascript" src="js/static_checker.js"></script>
+      <script language="JavaScript1.5" type="text/javascript" src="js/evaluator.js"></script>
+      <script language="JavaScript1.5" type="text/javascript" src="js/parse_error_fix.js"></script>
+      <script language="JavaScript1.5" type="text/javascript" src="js/transformer.js"></script>
+      <script language="JavaScript1.5" type="text/javascript" src="js/demo.js"></script>-->
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <!-- <script src="js/ie10-viewport-bug-workaround.js"></script> -->
+      <script language="JavaScript1.5" src="js/min/min.js" type="text/javascript"></script>
+      <script>
+         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         
+         ga('create', 'UA-54785917-1', 'auto');
+         ga('send', 'pageview');
+      </script>
+   </body>
+</html>

@@ -25,7 +25,7 @@ div.console6 div.jquery-console-inner {
 
 div.console6 div.jquery-console-prompt-box {
     color: #fff;
-    font-family: consolas;
+    font-family: consolas, monospace, monaco;
 }
 
 div.console6 div.jquery-console-focus span.jquery-console-cursor {
@@ -36,26 +36,26 @@ div.console6 div.jquery-console-focus span.jquery-console-cursor {
 
 div.console6 div.jquery-console-welcome {
 	color: #1ad027;
-    font-family: consolas;
+    font-family: consolas, monospace, monaco;
     padding: .1em;
 }
 
 div.console6 div.jquery-console-message-error {
     color: #ef0505;
-    font-family: consolas;
+    font-family: consolas, monospace, monaco;
     font-weight: 700;
     padding: .1em;
 }
 
 div.console6 div.jquery-console-message-value {
     color: #D3D3D3;
-    font-family: consolas;
+    font-family: consolas, monospace, monaco;
     padding: .1em;
 }
 
 div.console6 div.jquery-console-message-type {
     color: #1ad027;
-    font-family: consolas;
+    font-family: consolas, monospace, monaco;
     padding: .1em;
 }
 
@@ -78,7 +78,7 @@ a:focus {
 .code {
     border: 1px solid black;
     background-color: rgb(94, 88, 88);
-    font-family: consolas;
+    font-family: consolas, monospace, monaco;
     font-size: 13px;
     text-align: left;
     color: white;
